@@ -1,2 +1,0 @@
-# MVPProject-frontend
-artist website
