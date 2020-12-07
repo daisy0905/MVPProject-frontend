@@ -1,57 +1,47 @@
 <template>
-  <div>
-    <transition-group name="fade" tag="div">
-      <div v-for="i in [currentIndex]" :key="i">
-        <img @click="goToHome" :src="currentImg" />
-      </div>
-    </transition-group>
-    <!-- <a class="prev" @click="prev" href="#">&#10094; Previous</a>
-    <a class="next" @click="next" href="#">&#10095; Next</a> -->
+  <div id="cover-image">
+    <div class="main-image">
+      <img :src="mainImageSrc">
+    </div>
+    <div v-for="img in images" class="item" :key="img.id">
+      <img src="img.image" alt="">
+    </div>
   </div>
 </template>
-
 <script>
-    export default {
-        name: "Slider",
-        data() {
-            return {
-                images: [
-                    "https://cdn.pixabay.com/photo/2015/12/12/15/24/amsterdam-1089646_1280.jpg",
-                    "https://cdn.pixabay.com/photo/2016/02/17/23/03/usa-1206240_1280.jpg",
-                    "https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_1280.jpg",
-                    "https://cdn.pixabay.com/photo/2016/12/04/19/30/berlin-cathedral-1882397_1280.jpg"
-                ],
-                timer: null,
-                currentIndex: 0
-            };
-        },
-
-        mounted: function() {
-            this.startSlide();
-        },
-
-        methods: {
-            startSlide: function() {
-                this.timer = setInterval(this.next, 4000);
-            },
-
-            next: function() {
-                this.currentIndex += 1;
-            },
-            prev: function() {
-                this.currentIndex -= 1;
-            },
-            goToHome: function() {
-                this.$router.push("/home")
-            }
-        },
-
-        computed: {
-            currentImg: function() {
-                return this.images[Math.abs(this.currentIndex) % this.images.length];
-            }
-        }
+  export default {
+    name: 'Images',
+  data () {
+    return {
+      images: [],
+      mainImageSrc: null
     }
+  },
+  methods: {
+  },
+  created () {
+    let self = this
+    this.images = [
+       {
+          id: '23',
+          image: 'https://cdn.pixabay.com/photo/2015/12/12/15/24/amsterdam-1089646_1280.jpg',
+       },
+       {
+          id: '32',
+          image: "https://cdn.pixabay.com/photo/2016/02/17/23/03/usa-1206240_1280.jpg",
+       },
+       {
+          id: '45',
+          image: "https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_1280.jpg"
+       },
+    ]
+
+    setInterval(function(){ 
+        self.mainImageSrc = self.images[Math.floor(Math.random()*self.images.length)].image;
+    }, 2000);
+
+  }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -62,25 +52,35 @@
     box-sizing: border-box;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.9s ease;
-  overflow: hidden;
-  visibility: visible;
-  position: absolute;
-  width:100%;
-  opacity: 1;
+#cover-image {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 100vh 0;
+  justify-items: center;
+  align-items: center; 
+
+  .main-image {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center; 
+
+    img {
+      height: 100vh;
+      width: 100vw;
+      object-fit: cover;
+    }
+  }
+
+  .item {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center; 
+  }
 }
 
-.fade-enter,
-.fade-leave-to {
-  visibility: hidden;
-  width:100%;
-  opacity: 0;
-}
 
-img {
-  height:100vh;
-  object-fit: cover;
-}
 </style>

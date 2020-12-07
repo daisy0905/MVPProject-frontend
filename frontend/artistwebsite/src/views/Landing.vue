@@ -1,6 +1,6 @@
 <template>
     <div id="landing">
-        <h1>KEMIN TONG</h1>
+        <h1 @click="goToHome">KEMIN TONG</h1>
         <slider></slider>
     </div>
 </template>
@@ -12,7 +12,9 @@ import Slider from "../components/Slider.vue"
             Slider,
         },
         methods: {
-           
+           goToHome: function() {
+                this.$router.push("/home")
+            }
         },
     }
 </script>
@@ -25,7 +27,7 @@ import Slider from "../components/Slider.vue"
     box-sizing: border-box;
 }
 #landing {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
 
     h1 {

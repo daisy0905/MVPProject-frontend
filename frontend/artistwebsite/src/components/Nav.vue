@@ -10,10 +10,11 @@
         </div>
         <div v-if="display == false" id="nav-bar">
             <div></div>
-            <h2 class="nav-text" @click="goToBio">BIO</h2>
-            <h2 @click="goToPortfolio">PORTFOLIO</h2>
-            <h2 @click="goToInquiry">INQUIRY</h2>
-            <h2 @click="goToContact">CONTACT</h2>
+            <h2 id="home-page" class="nav-text" @click="goToHome">HOME</h2>
+            <h2 id="bio-page" class="nav-text" @click="goToBio">BIO</h2>
+            <h2 id="portfolio-page" @click="goToPortfolio">PORTFOLIO</h2>
+            <h2 id="inquiry-page" @click="goToInquiry">INQUIRY</h2>
+            <h2 id="contanct" @click="goToContact">CONTACT</h2>
             <div></div>
             <button @click="login">admin login</button>
             <div></div>
@@ -36,8 +37,25 @@
             hideNavBar: function() {
                 this.display = true;
             },
+            goToHome: function() {
+                document.getElementById("home-page").style.color = "orange";
+                setTimeout(()=>{this.$router.push("/home")}, 2000);
+            },
             goToBio: function() {
-                this.$router.push("/bio")
+                document.getElementById("bio-page").style.color = "orange";
+                setTimeout(()=>{this.$router.push("/bio")}, 2000);
+            },
+            goToPortfolio: function() {
+                document.getElementById("portfolio-page").style.color = "orange";
+                setTimeout(()=>{this.$router.push("/portfolio")}, 2000);
+            },
+            goToInquiry: function() {
+                document.getElementById("inquiry-page").style.color = "orange";
+                setTimeout(()=>{this.$router.push("/inquiry")}, 2000);
+            },
+            goToContact: function() {
+                document.getElementById("contact-page").style.color = "orange";
+                setTimeout(()=>{this.$router.push("/contact")}, 2000);
             }
         }
     }
@@ -58,6 +76,7 @@
     align-items: center;
     padding: 10px 0 0 0;
     margin-bottom: 1em; 
+    z-index: 100;
 }
 
 #header {

@@ -2,7 +2,20 @@
     <div id="bio">
         <navigation id="nav"></navigation>
         <div id="content">
-            <img id="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1000px-Apple_logo_black.svg.png" alt="">
+            <div id="unit-1">
+                <div></div>
+                <h4>EN</h4>
+                <h4>中文</h4>
+                <div></div>
+            </div>
+            <div id="unit-2">
+                <img id="image" src="../assets/portrait.jpg" alt="">
+            </div>
+            <div id="unit-3">
+                <h2>KEMIN TONG</h2>
+                <h3>Professional Artist</h3>
+                <p></p>
+            </div>
         </div>
     </div>
 </template>
@@ -40,18 +53,66 @@ import Navigation from "../components/Nav.vue"
 }
 
 #nav {
-  height: 8vh;
-  width: 100%;
+    height: 8vh;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
 
 #content {
-  min-height: 92vh;
-  width: 100%;
-  background-color: grey;
+    min-height: 92vh;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
 
-  img {
-      width: 250px;
-      height: 250px;
-  }
+    #unit-1 {
+        height: 10vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 40% 10% 10% 40%;
+        background-color: lightgrey;
+
+        h4 {
+            font-weight: bold; 
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.8rem;
+        }
+    }
+
+    #unit-2 {
+        height: 40vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+
+        img {
+            width: 200px;
+        }
+    }
+
+    #unit-3 {
+        min-height: 10vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+
+        h2 {
+            font-weight: bold; 
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.2rem;
+        }
+
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+        }
+    }
+
+  
 }
 </style>
