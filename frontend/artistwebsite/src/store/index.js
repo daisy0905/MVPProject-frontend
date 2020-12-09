@@ -41,6 +41,24 @@ export default new Vuex.Store({
       }
       return landscapes;
     },
+    getPortrait: function(state) {
+      let portraits = [];
+      for(let i=0; i<state.artworks.length; i++) {
+        if(state.artworks[i].category == "portrait") {
+          portraits.push(state.artworks[i]);
+        }
+      }
+      return portraits;
+    },
+    getOther: function(state) {
+      let others = [];
+      for(let i=0; i<state.artworks.length; i++) {
+        if(state.artworks[i].category == "other") {
+          others.push(state.artworks[i]);
+        }
+      }
+      return others;
+    },
     sliderImage: function(state) {
       let choseNum = []
       let indexArr = []

@@ -3,32 +3,30 @@
     <div id="slider-icon">
       <a class="icon" @click="prev" href="#">&#10094;</a>
       <div></div>
-      <div></div>
       <a class="icon" @click="next" href="#">&#10095;</a>
     </div>
     <div id="main-image" v-for="i in [currentIndex]" :key="i">
-      <img @click="goToHome" :src="mainImageSrc" />
+      <img :src="mainImageSrc" @click="getArtwork" />
     </div>
-    <!-- <div id="image-list">
-      <div v-for="img in images" class="item" :key="img.id">
-        <img :src="img.url" alt="" />
-      </div>
-    </div> -->
   </div>
 </template>
+
 <script>
+import cookies from "vue-cookies";
+import axios from "axios";
+
 export default {
-  name: "Images",
   data() {
     return {
       currentIndex: 1,
       mainImageSrc: "",
+      id: "",
     };
   },
   computed: {
     images() {
-      console.log(this.$store.getters.sliderImage);
-      return this.$store.getters.sliderImage;
+      console.log(this.$store.getters.getPortrait);
+      return this.$store.getters.getPortrait;
     },
   },
   methods: {
@@ -36,19 +34,55 @@ export default {
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex++) % this.images.length
       ].url;
+      this.getId();
     },
     prev: function () {
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex--) % this.images.length
       ].url;
+      this.getId();
     },
     created: function () {
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex) % this.images.length
       ].url;
     },
-    goToHome: function () {
-      this.$router.push("/home");
+    getId: function () {
+      for (let i = 0; i < this.images.length; i++) {
+        if (this.mainImageSrc == this.images[i].url) {
+          this.id = this.images[i].id;
+        }
+      }
+      return this.id;
+    },
+    getArtwork: function () {
+      axios
+        .request({
+          url: "http://127.0.0.1:5000/artwork",
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          params: {
+            id: this.id,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          cookies.set("name", response.data[0].name);
+          cookies.set("length", response.data[0].length);
+          cookies.set("width", response.data[0].width);
+          cookies.set("completed_at", response.data[0].completed_at);
+          cookies.set("category", response.data[0].category);
+          cookies.set("material", response.data[0].material);
+          cookies.set("status", response.data[0].status);
+          cookies.set("url", response.data[0].url);
+          cookies.set("id", response.data[0].id);
+          this.$router.push("/artwork");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   mounted() {
@@ -68,7 +102,7 @@ export default {
 }
 
 #cover-image {
-  min-height: 100vh;
+  height: 50vh;
   width: 100%;
   display: grid;
   justify-items: center;
@@ -80,9 +114,8 @@ export default {
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-columns: repeat(4, 1fr);
-    position: fixed;
-    top: 50vh;
+    grid-template-columns: 45% 10% 45%;
+    position: absolute;
     z-index: 100;
 
     .icon {
@@ -92,7 +125,7 @@ export default {
   }
 
   #main-image {
-    min-height: 100vh;
+    height: 50vh;
     width: 100%;
     display: grid;
     justify-items: center;

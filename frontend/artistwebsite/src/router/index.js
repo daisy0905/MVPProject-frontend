@@ -4,7 +4,7 @@ import Landing from "../views/Landing.vue"
 import Home from "../views/Home.vue";
 import Bio from "../views/Bio.vue";
 import Portfolio from "../views/Portfolio.vue";
-import Landscape from "../views/Landscape.vue";
+import Artwork from "../views/Artwork.vue";
 import UploadArtwork from "../views/Uploadartwork.vue"
 
 
@@ -32,9 +32,9 @@ const routes = [
     component: Portfolio
   },
   {
-    path: "/landscape",
-    name: "Landscape",
-    component: Landscape
+    path: "/artwork",
+    name: "Artwork",
+    component: Artwork
   },
   {
     path: "/uploadartwork",

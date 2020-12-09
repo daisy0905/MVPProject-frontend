@@ -1,17 +1,18 @@
 <template>
     <div id="landscape">
-        <navigation id="nav"></navigation>
-        <landscapes></landscapes>
+        <navigation></navigation>
+        <artwork-detail></artwork-detail>
     </div>
 </template>
 
 <script>
+import ArtworkDetail from '../components/ArtworkDetail.vue'
 import Navigation from "../components/Nav.vue"
-import Landscapes from "../components/Landscapes.vue"
+
     export default {
         components: {
             Navigation,
-            Landscapes
+            ArtworkDetail
         },
         mounted: function() {
             this.$store.dispatch("getAllArtworks")
@@ -28,7 +29,7 @@ import Landscapes from "../components/Landscapes.vue"
 }
 
 #landscape {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     display: grid;
     align-items: center;

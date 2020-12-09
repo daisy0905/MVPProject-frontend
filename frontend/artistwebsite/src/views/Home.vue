@@ -75,7 +75,6 @@ p {
   height: 30vh;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
-  text-align: center;
   top: 50vh;
   left: 25vw;
   color: white;

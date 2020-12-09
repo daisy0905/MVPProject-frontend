@@ -2,29 +2,40 @@
     <div id="portfolio">
         <navigation id="nav"></navigation>
         <div class="unit">
-            <img src="../assets/image_1.jpg" alt="">
+            <landscape-slider></landscape-slider>
             <h2 @click="landscape" class="animate__animated animate__bounce">LANDSCAPE</h2>
         </div>
         <div class="unit">
-            <img src="../assets/image_2.jpg" alt="">
+            <portrait-slider></portrait-slider>
             <h2 @click="portrait">PORTRAIT</h2>
         </div>
         <div class="unit">
-            <img src="../assets/image_3.jpg" alt="">
+            <other-slider></other-slider>
             <h2 @click="others">OTHERS</h2>
         </div>
     </div>
 </template>
 
 <script>
+import LandscapeSlider from '../components/LandscapeSlider.vue'
 import Navigation from "../components/Nav.vue"
+import OtherSlider from '../components/OtherSlider.vue'
+import PortraitSlider from '../components/PortraitSlider.vue'
     export default {
         components: {
             Navigation,
+                LandscapeSlider,
+                PortraitSlider,
+                OtherSlider,
         },
         methods: {
             landscape: function() {
                 this.$router.push("/landscape")
+            }
+        },
+        mounted () {
+            if(this.$store.state.artworks.length == 0) {
+                this.$store.dispatch("getAllArtworks")
             }
         },
     }
@@ -39,16 +50,15 @@ import Navigation from "../components/Nav.vue"
 }
 
 #portfolio {
-    height: 100vh;
+    min-height: 50vh;
     width: 100%;
     display: grid;
     align-items: center;
-    grid-template-rows: 1fr 1fr 1fr; 
 }
 
 .unit {
     width: 100%;
-    height: 100%;
+    height: 50vh;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -56,7 +66,7 @@ import Navigation from "../components/Nav.vue"
 
     img {
         width: 100%;
-        height: 30vh;
+        height: 50vh;
         object-fit: cover;
         opacity: 0.8;
     }
@@ -66,8 +76,9 @@ import Navigation from "../components/Nav.vue"
             font-family: Arial, Helvetica, sans-serif;
             font-size: 1.2rem;
             position: absolute;
-            color: black;
+            color: white;
             text-align: center;
+            text-shadow: 1px 1px 2px black;
         }
 }
 

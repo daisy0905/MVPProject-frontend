@@ -1,6 +1,6 @@
 <template>
     <div id="landing">
-        <h1 @click="goToHome">KEMIN TONG</h1>
+        <h1>KEMIN TONG</h1>
         <slider class="slider"></slider>
     </div>
 </template>
@@ -10,11 +10,6 @@ import Slider from "../components/Slider.vue"
     export default {
         components: {
             Slider,
-        },
-        methods: {
-           goToHome: function() {
-                this.$router.push("/home")
-            }
         },
         mounted () {
             if(this.$store.state.artworks.length == 0) {

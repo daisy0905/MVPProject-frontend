@@ -1,40 +1,40 @@
 <template>
-    <div id="bio">
-        <navigation id="nav"></navigation>
-        <div id="content">
-            <div id="unit-1">
-                <div></div>
-                <h4>EN</h4>
-                <h4>中文</h4>
-                <div></div>
-            </div>
-            <div id="unit-2">
-                <img id="image" src="../assets/portrait.jpg" alt="">
-            </div>
-            <div id="unit-3">
-                <h2>KEMIN TONG</h2>
-                <h3>Professional Artist</h3>
-                <p></p>
-            </div>
+<div id="bio">
+    <navigation id="nav"></navigation>
+    <div id="content">
+        <div id="unit-1">
+            <div></div>
+            <h4>EN</h4>
+            <h4>中文</h4>
+            <div></div>
+        </div>
+        <div id="unit-2">
+            <img id="image" src="../assets/portrait.jpg" alt="">
+        </div>
+        <div id="unit-3">
+            <h2>KEMIN TONG</h2>
+            <h3>Professional Artist</h3>
+            <p>Mr.Tong, Kemin was born in Zhuzhou, Hunan in 1955, and is living in Changsha, China. He is the Member of Chinese Artists Association, member of the Presidium of China Financial Artists Association, Vice President and Secretary General of Hunan Oil Painting Landscape Research Association, Deputy Director of Oil Painting Art Committee of Hunan Artists Association, Deputy Secretary General of Hunan Oil Painting Society, Hunan Contemporary Deputy Dean of the Oil Painting Academy, Secretary and Vice Chairman of the Party Branch of the Changsha Artists Association, the first director of the Oil Painting Committee of the Changsha Artists Association, the Honorary Chairman of the Hunan Financial Artists Association, and a special painter of the Xiangtan Qi Baishi Memorial Hall.</p>
         </div>
     </div>
+</div>
 </template>
 
 <script>
 import Navigation from "../components/Nav.vue"
-    export default {
-        components: {
-            Navigation,
-        },
-        methods: {
-            imgeMove: function() {
-                document.getElementById("image").style.position="absolute";
-                document.getElementById("image").style.left="5vw";
-                document.getElementById("image").style.width="150px";
-                
-            }
-        },
-    }
+export default {
+    components: {
+        Navigation,
+    },
+    methods: {
+        imgeMove: function () {
+            document.getElementById("image").style.position = "absolute";
+            document.getElementById("image").style.left = "5vw";
+            document.getElementById("image").style.width = "150px";
+
+        }
+    },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -46,10 +46,10 @@ import Navigation from "../components/Nav.vue"
 }
 
 #bio {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     display: grid;
-    align-items: center; 
+    align-items: center;
 }
 
 #nav {
@@ -76,7 +76,7 @@ import Navigation from "../components/Nav.vue"
         background-color: lightgrey;
 
         h4 {
-            font-weight: bold; 
+            font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 0.8rem;
         }
@@ -102,7 +102,7 @@ import Navigation from "../components/Nav.vue"
         align-items: center;
 
         h2 {
-            font-weight: bold; 
+            font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 1.2rem;
         }
@@ -111,8 +111,18 @@ import Navigation from "../components/Nav.vue"
             font-family: Arial, Helvetica, sans-serif;
             font-size: 1rem;
         }
+
+        p {
+            width: 70%;
+            min-height: 50vh;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.8rem;
+            text-align: justify;
+            line-height: 1.5em;
+            margin-top: 1em;
+
+        }
     }
 
-  
 }
 </style>

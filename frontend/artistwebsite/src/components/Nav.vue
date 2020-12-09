@@ -10,6 +10,7 @@
         </div>
         <div v-if="display == false" id="nav-bar">
             <div></div>
+            <h2 id="landing-page" class="nav-text" @click="goToLanding">LANDING</h2>
             <h2 id="home-page" class="nav-text" @click="goToHome">HOME</h2>
             <h2 id="bio-page" class="nav-text" @click="goToBio">BIO</h2>
             <h2 id="portfolio-page" @click="goToPortfolio">PORTFOLIO</h2>
@@ -17,6 +18,13 @@
             <h2 id="contanct" @click="goToContact">CONTACT</h2>
             <div></div>
             <button @click="login">admin login</button>
+            <div v-if="show == false" id="login">
+                <h4>Username</h4>
+                <input type="text" id="username-input" class="input" v-model="username">
+                <h4>Password</h4>
+                <input type="text" id="password-input" class="input" v-model="password">
+                <button>Login In</button>
+            </div>
             <div></div>
         </div>
     </div>
@@ -28,6 +36,9 @@
         data() {
             return {
                 display: true,
+                show: true,
+                username: "",
+                password: ""
             }
         },
         methods: {
@@ -36,6 +47,10 @@
             },
             hideNavBar: function() {
                 this.display = true;
+            },
+            goToLanding: function() {
+                document.getElementById("landing-page").style.color = "orange";
+                setTimeout(()=>{this.$router.push("/")}, 1000);
             },
             goToHome: function() {
                 document.getElementById("home-page").style.color = "orange";
@@ -56,6 +71,9 @@
             goToContact: function() {
                 document.getElementById("contact-page").style.color = "orange";
                 setTimeout(()=>{this.$router.push("/contact")}, 1000);
+            },
+            login: function() {
+                this.show =! this.show
             }
         }
     }
@@ -113,7 +131,7 @@
   height: 92vh;
   width: 40%;
   display: grid;
-  grid-template-rows: 15% repeat(4, 10%) 25% 5% 30%;
+  grid-template-rows: 15% repeat(6, 8%) 3% 8% 32%;
   justify-items: left;
   align-items: left;
   position: fixed;
@@ -137,7 +155,42 @@
     border: 1px solid black;
     box-shadow: 1px 1px 2px grey;
     font-weight: bold;
+    margin-left: 1.2em;
+  }
+
+  #login {
+    width: 70%;
+    height: 8vh;
+    display: grid;
+    justify-items: left;
+    align-items: center;
     margin-left: 1em;
+
+    h4 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        margin: 0.5em 0 0.5em 0;
+    }
+
+    .input {
+        width: 80%;
+        height: 3vh;
+        background-color: none;
+        border: none;
+        border-bottom: 1px solid #AAB8C2;
+        margin: 0 0 0.5em 0;
+        text-align: center;
+    }
+
+    button {
+        width: 80%;
+        height: 3vh;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        border: 1px solid grey;
+        box-shadow: none;
+        margin: 0.5em 0 0 0;
+    }
   }
 }
 
