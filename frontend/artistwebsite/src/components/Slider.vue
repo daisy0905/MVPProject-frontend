@@ -1,86 +1,97 @@
 <template>
   <div id="cover-image">
-    <div class="main-image">
-      <img :src="mainImageSrc">
+    <div id="slider-icon">
+      <a class="icon" @click="prev" href="#">&#10094;</a>
+      <div></div>
+      <div></div>
+      <a class="icon" @click="next" href="#">&#10095;</a>
     </div>
-    <div v-for="img in images" class="item" :key="img.id">
-      <img src="img.image" alt="">
+    <div id="main-image" v-for="i in [currentIndex]" :key="i">
+      <img :src="mainImageSrc" />
     </div>
+    <!-- <div id="image-list">
+      <div v-for="img in images" class="item" :key="img.id">
+        <img :src="img.url" alt="" />
+      </div>
+    </div> -->
   </div>
 </template>
 <script>
-  export default {
-    name: 'Images',
-  data () {
+export default {
+  name: "Images",
+  data() {
     return {
-      images: [],
-      mainImageSrc: null
-    }
+      currentIndex: 1,
+      mainImageSrc: ""
+    };
+  },
+  computed: {
+    images() {
+      console.log(this.$store.getters.sliderImage);
+      return this.$store.getters.sliderImage;
+    },
   },
   methods: {
+    next: function () {
+      this.mainImageSrc = this.images[Math.abs(this.currentIndex++) % this.images.length].url;;
+    },
+    prev: function () {
+      this.mainImageSrc = this.images[Math.abs(this.currentIndex--) % this.images.length].url;
+    },
+    created: function() {
+      this.mainImageSrc = this.images[Math.abs(this.currentIndex) % this.images.length].url;
+    }
   },
-  created () {
-    let self = this
-    this.images = [
-       {
-          id: '23',
-          image: 'https://cdn.pixabay.com/photo/2015/12/12/15/24/amsterdam-1089646_1280.jpg',
-       },
-       {
-          id: '32',
-          image: "https://cdn.pixabay.com/photo/2016/02/17/23/03/usa-1206240_1280.jpg",
-       },
-       {
-          id: '45',
-          image: "https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_1280.jpg"
-       },
-    ]
-
-    setInterval(function(){ 
-        self.mainImageSrc = self.images[Math.floor(Math.random()*self.images.length)].image;
-    }, 2000);
-
-  }
-  }
+  mounted () {
+    setTimeout(()=>{this.created()}, 300);
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 * {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #cover-image {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: grid;
-  grid-template-rows: 100vh 0;
   justify-items: center;
-  align-items: center; 
+  align-items: center;
 
-  .main-image {
-    height: 100%;
+  #slider-icon {
+    height: 6vh;
     width: 100%;
     display: grid;
     justify-items: center;
-    align-items: center; 
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    position: fixed;
+    top: 50vh;
+    z-index: 100;
 
-    img {
-      height: 100vh;
-      width: 100vw;
-      object-fit: cover;
+    .icon {
+      color: white;
+      text-decoration: none;
     }
   }
 
-  .item {
+  #main-image {
+    min-height: 100vh;
     width: 100%;
     display: grid;
     justify-items: center;
-    align-items: center; 
+    align-items: center;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 }
-
-
 </style>

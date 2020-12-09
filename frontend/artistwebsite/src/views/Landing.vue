@@ -1,7 +1,7 @@
 <template>
     <div id="landing">
         <h1 @click="goToHome">KEMIN TONG</h1>
-        <slider></slider>
+        <slider class="slider"></slider>
     </div>
 </template>
 
@@ -16,6 +16,11 @@ import Slider from "../components/Slider.vue"
                 this.$router.push("/home")
             }
         },
+        mounted () {
+            if(this.$store.state.artworks.length == 0) {
+                this.$store.dispatch("getAllArtworks")
+            };
+        },
     }
 </script>
 
@@ -27,15 +32,23 @@ import Slider from "../components/Slider.vue"
     box-sizing: border-box;
 }
 #landing {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 
     h1 {
         position: fixed;
         top: 50vh;
-        right: 25vw;
         z-index: 100;
         color: white;
+        left: 25vw;
+    }
+    
+    .slider {
+        min-height: 100vh;
+        width: 100%;
     }
 }
 </style>

@@ -71,22 +71,23 @@ export default {
 
 p {
   position: fixed;
-  width: 45%;
-  height: 45vh;
+  width: 50%;
+  height: 30vh;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
   text-align: center;
-  top: 52vh;
+  top: 50vh;
   left: 25vw;
   color: white;
   background-color: black;
   opacity: 0.7;
-  line-height: 1.5em;
+  line-height: 1.2em;
   text-align: justify;
   padding: 0.8em;
   display: grid;
   justify-items: center;
   align-items: center;
+  border: 1px solid white;
 }
 
 </style>

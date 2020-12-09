@@ -39,23 +39,23 @@
             },
             goToHome: function() {
                 document.getElementById("home-page").style.color = "orange";
-                setTimeout(()=>{this.$router.push("/home")}, 2000);
+                setTimeout(()=>{this.$router.push("/home")}, 1000);
             },
             goToBio: function() {
                 document.getElementById("bio-page").style.color = "orange";
-                setTimeout(()=>{this.$router.push("/bio")}, 2000);
+                setTimeout(()=>{this.$router.push("/bio")}, 1000);
             },
             goToPortfolio: function() {
                 document.getElementById("portfolio-page").style.color = "orange";
-                setTimeout(()=>{this.$router.push("/portfolio")}, 2000);
+                setTimeout(()=>{this.$router.push("/portfolio")}, 1000);
             },
             goToInquiry: function() {
                 document.getElementById("inquiry-page").style.color = "orange";
-                setTimeout(()=>{this.$router.push("/inquiry")}, 2000);
+                setTimeout(()=>{this.$router.push("/inquiry")}, 1000);
             },
             goToContact: function() {
                 document.getElementById("contact-page").style.color = "orange";
-                setTimeout(()=>{this.$router.push("/contact")}, 2000);
+                setTimeout(()=>{this.$router.push("/contact")}, 1000);
             }
         }
     }
