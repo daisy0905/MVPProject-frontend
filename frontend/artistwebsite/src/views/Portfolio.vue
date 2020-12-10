@@ -3,15 +3,15 @@
         <navigation id="nav"></navigation>
         <div class="unit">
             <landscape-slider></landscape-slider>
-            <h2 @click="landscape" class="animate__animated animate__bounce">LANDSCAPE</h2>
+            <h2 class="animate__animated animate__bounce">LANDSCAPE</h2>
         </div>
         <div class="unit">
             <portrait-slider></portrait-slider>
-            <h2 @click="portrait">PORTRAIT</h2>
+            <h2>PORTRAIT</h2>
         </div>
         <div class="unit">
             <other-slider></other-slider>
-            <h2 @click="others">OTHERS</h2>
+            <h2>OTHERS</h2>
         </div>
     </div>
 </template>
@@ -29,9 +29,7 @@ import PortraitSlider from '../components/PortraitSlider.vue'
                 OtherSlider,
         },
         methods: {
-            landscape: function() {
-                this.$router.push("/landscape")
-            }
+            
         },
         mounted () {
             if(this.$store.state.artworks.length == 0) {

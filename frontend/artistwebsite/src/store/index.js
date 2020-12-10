@@ -2,17 +2,21 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from 'axios'
 
-// import cookies from 'vue-cookies'
+import cookies from 'vue-cookies'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    artworks: []
+    artworks: [],
+    artwork: []
   },
   mutations: {
     updateAllArtworks: function(state, data) {
       state.artworks = data;
+    },
+    updateArtwork: function(state, data) {
+      state.artwork = data;
     },
   },
   actions: {
@@ -30,6 +34,23 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
+    getArtwork: function(context) {
+      axios.request({
+          url: "http://127.0.0.1:5000/artwork",
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          params: {
+              id: cookies.get("id")
+          }
+      }).then((response) => {
+          context.commit("updateArtwork", response.data),
+          console.log(response.data);
+      }).catch((error) => {
+          console.log(error)
+      })
+    }
   },
   getters: {
     getLandscape: function(state) {

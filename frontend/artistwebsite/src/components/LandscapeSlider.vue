@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import axios from "axios"
+// import axios from "axios"
 import cookies from "vue-cookies"
 export default {
     data() {
@@ -56,30 +56,9 @@ export default {
             return this.id
         },
         getArtwork: function () {
-            axios.request({
-                url: "http://127.0.0.1:5000/artwork",
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                params: {
-                    id: this.id
-                }
-            }).then((response) => {
-                console.log(response);
-                cookies.set("name", response.data[0].name)
-                cookies.set("length", response.data[0].length)
-                cookies.set("width", response.data[0].width)
-                cookies.set("completed_at", response.data[0].completed_at)
-                cookies.set("category", response.data[0].category)
-                cookies.set("material", response.data[0].material)
-                cookies.set("status", response.data[0].status)
-                cookies.set("url", response.data[0].url)
-                cookies.set("id", response.data[0].id)
-                this.$router.push("/artwork")
-            }).catch((error) => {
-                console.log(error);
-            })
+            cookies.set("id", this.id)
+            this.$store.dispatch("getArtwork");
+            setTimeout(()=>{this.$router.push("/artwork")}, 1000);
         },
     },
     mounted() {

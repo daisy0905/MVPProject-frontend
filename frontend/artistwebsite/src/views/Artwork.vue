@@ -15,7 +15,12 @@ import Navigation from "../components/Nav.vue"
             ArtworkDetail
         },
         mounted: function() {
-            this.$store.dispatch("getAllArtworks")
+            if(this.$store.state.artworks.length == 0) {
+                this.$store.dispatch("getAllArtworks")
+            };
+            if(this.$store.state.artwork.length == 0) {
+                this.$store.dispatch("getArtwork")
+            };
         }
     }
 </script>
