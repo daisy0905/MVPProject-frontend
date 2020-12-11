@@ -21,12 +21,13 @@ export default {
   name: "Images",
   data() {
     return {
-      currentIndex: 1,
+      currentIndex: 0,
       mainImageSrc: "",
     };
   },
   computed: {
     images() {
+      if(this.$store.getters.sliderImage == undefined) return
       console.log(this.$store.getters.sliderImage);
       return this.$store.getters.sliderImage;
     },
@@ -43,6 +44,7 @@ export default {
       ].url;
     },
     created: function () {
+      if(this.images == undefined) return
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex) % this.images.length
       ].url;

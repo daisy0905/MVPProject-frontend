@@ -6,21 +6,24 @@
         <a class="icon" @click="next" href="#">&#10095;</a>
     </div>
     <div id="main-image" v-for="i in [currentIndex]" :key="i">
-      <img :src="mainImageSrc" />
+      <img :src="mainImageSrc" @click="getArtwork"/>
     </div>
   </div>
 </template>
 <script>
+import cookies from "vue-cookies"
 export default {
   data() {
     return {
-      currentIndex: 1,
+      currentIndex: 0,
       mainImageSrc: "",
+      id: ""
     };
   },
   computed: {
     images() {
       console.log(this.$store.getters.getOther);
+      if(this.$store.getters.getOther == undefined) return
       return this.$store.getters.getOther;
     },
   },
@@ -29,17 +32,35 @@ export default {
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex++) % this.images.length
       ].url;
+      this.getId()
+      console.log(this.id)
     },
     prev: function () {
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex--) % this.images.length
       ].url;
+      this.getId()
+      console.log(this.id)
     },
     created: function () {
+      if(this.images[Math.abs(this.currentIndex) % this.images.length] == undefined) return
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex) % this.images.length
       ].url;
-    }
+    },
+    getId: function() {
+      for(let i=0; i<this.images.length; i++) {
+        if(this.mainImageSrc == this.images[i].url) {
+          this.id = this.images[i].id
+        }
+      }
+      return this.id
+    },
+    getArtwork: function () {
+      cookies.set("id", this.id)
+      this.$store.dispatch("getArtwork");
+      setTimeout(()=>{this.$router.push("/artwork")}, 1000);
+    },
   },
   mounted() {
     setTimeout(() => {

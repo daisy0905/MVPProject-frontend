@@ -25,6 +25,7 @@ export default {
     computed: {
         images() {
             console.log(this.$store.getters.getLandscape);
+            if(this.$store.getters.getLandscape == undefined) return
             return this.$store.getters.getLandscape;
         },
     },
@@ -43,6 +44,7 @@ export default {
             this.getId()
         },
         created: function () {
+            if(this.images[Math.abs(this.currentIndex) % this.images.length] == undefined) return
             this.mainImageSrc = this.images[
                 Math.abs(this.currentIndex) % this.images.length
             ].url;

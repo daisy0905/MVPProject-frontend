@@ -1,0 +1,120 @@
+<template>
+    <div class="artwork-card">
+        <div class="image">
+            <img :src="art.url" alt="">
+        </div>
+        <div class="description">
+            <h3>{{ art.name }}</h3>
+            <h4>{{ art.material }}</h4>
+            <h4>{{ art.length }} X {{ art.width }}</h4>
+            <h4>{{ art.completed_at }}</h4>
+            <h4>{{ art.category }}</h4>
+            <p>{{ art.status }}</p>
+        </div>
+    </div>
+</template>
+
+<script>
+// import cookies from 'vue-cookies'
+import axios from 'axios'
+
+    export default {
+        name: "artwork-card",
+        props: {
+           art: {
+                type: Object,
+                required: true
+            } 
+        },
+        methods: {
+            getArtworkCard: function() {
+                axios.request({
+                url: "http://127.0.0.1:5000/artwork",
+                   method: "GET",
+                   headers: {
+                    "Content-Type": "application/json",
+                   },
+                   params: {
+                       id: this.art.id
+                   }
+                }).then((response) => {
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(error);
+                })
+            },
+        },
+        computed: {
+            arts: function() {
+                return this.$store.state.artworks
+            }
+        },
+    }
+</script>
+
+<style lang="scss" scoped>
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.artwork-card {
+    height: 50vh;
+    width: 90%;
+    display: grid;
+    justify-items: center;
+    align-items: start; 
+    border: 1px solid #AAB8C2;
+    row-gap: 1vh;
+    margin: 0.5em;
+}
+
+.image {
+    height: 20vh;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: start;
+    margin-top: 1em;
+
+    img {
+        width: 80%;
+        object-fit: cover;
+
+    }
+}
+
+.description {
+    height: 25vh;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: start;
+
+    h3 {
+        font-weight: bold; 
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        margin-bottom: 0.5em;
+    }
+
+    h4 { 
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        margin: 0 0.5em 0 0.5em;
+        font-weight: normal;
+    }
+
+    p {
+        margin: 0.5em;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        text-align: center;
+        background-color: grey;
+        color: white;
+        padding: 0.5em;
+    }
+}
+</style>

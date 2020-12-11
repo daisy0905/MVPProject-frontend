@@ -10,20 +10,20 @@
         </div>
         <div v-if="display == false" id="nav-bar">
             <div></div>
-            <h2 id="landing-page" class="nav-text" @click="goToLanding">LANDING</h2>
-            <h2 id="home-page" class="nav-text" @click="goToHome">HOME</h2>
-            <h2 id="bio-page" class="nav-text" @click="goToBio">BIO</h2>
-            <h2 id="portfolio-page" @click="goToPortfolio">PORTFOLIO</h2>
-            <h2 id="contanct" @click="goToContact">CONTACT</h2>
+            <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">ARTWORK OVERVIEW</h2>
+            <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">ARTWORK STATUS</h2>
+            <h2 id="artworkupload-page" class="nav-text" @click="goToUpload">ARTWORK UPLOAD</h2>
+            <h2 id="inquiry-page" class="nav-text" @click="goToInquiry">INQUIRY REVIEW</h2>
+            <h2 id="visitorlist-page" @click="goToVisitors">VISITOR LIST</h2>
             <div></div>
-            <button @click="showInput">admin login</button>
-            <div v-if="show == false" id="login">
+            <button @click="showInput">admin logout</button>
+            <div v-if="show == false" id="logout">
                 <h4>Username</h4>
                 <input type="text" id="username-input" class="input" v-model="username">
                 <h4>Password</h4>
                 <input type="text" id="password-input" class="input" v-model="password">
-                <button @click="login">Login In</button>
-                <p>{{ loginStatus }}</p>
+                <button @click="logout">Login Out</button>
+                <p>{{ logoutStatus }}</p>
             </div>
             <div></div>
         </div>
@@ -32,14 +32,14 @@
 
 <script>
     export default {
-        name: "navigation",
+        name: "nav-admin",
         data() {
             return {
                 display: true,
                 show: true,
                 username: "",
                 password: "",
-                loginStatus: ""
+                logoutStatus: ""
             }
         },
         methods: {
@@ -49,36 +49,36 @@
             hideNavBar: function() {
                 this.display = true;
             },
-            goToLanding: function() {
-                document.getElementById("landing-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/")}, 1000);
+            goToArtworkOverview: function() {
+                document.getElementById("artworkoverview-page").style.color = "grey";
+                setTimeout(()=>{this.$router.push("/artworkoverview")}, 1000);
             },
-            goToHome: function() {
-                document.getElementById("home-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/home")}, 1000);
+            goToArtworkStatus: function() {
+                document.getElementById("artworkstatus-page").style.color = "grey";
+                // this.$store.dispatch("getAllArtworks");
+                setTimeout(()=>{this.$router.push("/artworkstatus")}, 1000);
             },
-            goToBio: function() {
-                document.getElementById("bio-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/bio")}, 1000);
+            goToUpload: function() {
+                document.getElementById("artworkupload-page").style.color = "grey";
+                setTimeout(()=>{this.$router.push("/artworkupload")}, 1000);
             },
-            goToPortfolio: function() {
-                document.getElementById("portfolio-page").style.color = "grey";
-                this.$store.dispatch("getAllArtworks");
-                setTimeout(()=>{this.$router.push("/portfolio")}, 2000);
+            goToInquiry: function() {
+                document.getElementById("inquiry-page").style.color = "grey";
+                setTimeout(()=>{this.$router.push("/inquiry")}, 1000);
             },
-            goToContact: function() {
-                document.getElementById("contact-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/contact")}, 1000);
+            goToVisitors: function() {
+                document.getElementById("visitorlist-page").style.color = "grey";
+                setTimeout(()=>{this.$router.push("/visitors")}, 1000);
             },
             showInput: function() {
                 this.show =! this.show
             },
-            login: function() {
+            logout: function() {
                 if(this.username == "tongkemin" && this.password == "kemin1018") {
-                    this.loginStatus = "Login Success!"
-                    setTimeout(()=>{this.$router.push("/artworkoverview")}, 1000)
+                    this.logoutStatus = "Log Out Success!"
+                    setTimeout(()=>{this.$router.push("/")}, 1000)
                 } else {
-                    this.loginStatus = "Login Failed!"
+                    this.logoutStatus = "Log Out Failed!"
                 }
             }
 
@@ -102,7 +102,7 @@
     padding: 10px 0 0 0;
     margin-bottom: 1em; 
     z-index: 100;
-    margin-bottom: 0.5em;
+    position: relative;
 }
 
 #header {
@@ -136,23 +136,25 @@
 }
 
 #nav-bar {
-  height: 92vh;
+  min-height: 90vh;
   width: 40%;
   display: grid;
-  grid-template-rows: 15% repeat(5, 10%) 3% 8% 32%;
+  grid-template-rows: 10% repeat(4, 12%) 3% 8% 8%;
   justify-items: left;
   align-items: left;
-  position: fixed;
-  right: 2vw;
+  position: absolute;
+  right: 0;
   top: 8vh;
-  background-color: white;
-  opacity: 0.8;
+  background-color: lightgrey;
 
   h2 {
+      width: 80%;
     font-weight: bold; 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     margin-left: 1em;
+    text-align: left;
+    line-height: 25px;
   }
 
   button {
@@ -166,9 +168,9 @@
     margin-left: 1.2em;
   }
 
-  #login {
+  #logout {
     width: 70%;
-    height: 8vh;
+    height: 5vh;
     display: grid;
     justify-items: left;
     align-items: center;

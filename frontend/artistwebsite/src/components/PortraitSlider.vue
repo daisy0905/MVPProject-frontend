@@ -18,7 +18,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      currentIndex: 1,
+      currentIndex: 0,
       mainImageSrc: "",
       id: "",
     };
@@ -26,6 +26,7 @@ export default {
   computed: {
     images() {
       console.log(this.$store.getters.getPortrait);
+      if(this.$store.getters.getPortrait == undefined) return
       return this.$store.getters.getPortrait;
     },
   },
@@ -43,6 +44,7 @@ export default {
       this.getId();
     },
     created: function () {
+      if(this.images[Math.abs(this.currentIndex) % this.images.length] == undefined) return
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex) % this.images.length
       ].url;

@@ -6,7 +6,8 @@ import Bio from "../views/Bio.vue";
 import Portfolio from "../views/Portfolio.vue";
 import Artwork from "../views/Artwork.vue";
 import UploadArtwork from "../views/Uploadartwork.vue"
-
+import ArtworkOverview from "../views/ArtworkOverview.vue"
+import ArtworkStatus from "../views/ArtworkStatus.vue"
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,16 @@ const routes = [
     path: "/uploadartwork",
     name: "UploadArtwork",
     component: UploadArtwork
+  },
+  {
+    path: "/artworkoverview",
+    name: "ArtworkOverview",
+    component: ArtworkOverview
+  },
+  {
+    path: "/artworkstatus",
+    name: "ArtworkStatus",
+    component: ArtworkStatus
   },
   
 ];

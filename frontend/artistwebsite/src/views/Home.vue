@@ -1,10 +1,16 @@
 <template>
   <div id="home">
     <navigation id="nav"></navigation>
+    <div id="unit-1">
+      <div></div>
+      <h4 id="english" @click="showEnglish">EN</h4>
+      <h4>中文</h4>
+      <div></div>
+    </div>
     <div id="content">
       <img src="../assets/artist.jpg" alt="" />
     </div>
-    <p>
+    <p v-if="show == true">
       In the process of repeatedly attacking the artistic heights, Mr. Tong, Kemin is
       a warrior with a stubborn and bloody nature; a teacher with a kind of
       wisdom and thought; a craftsman with meticulous craftsmanship. He is
@@ -27,12 +33,20 @@ export default {
       lastname: "",
       email: "",
       display: true,
+      show: false
     };
   },
   methods: {
     hideForm: function () {
       this.display = false;
     },
+    showEnglish: function() {
+      this.show = true;
+      document.getElementById("english").style.color = "yellow";
+    }
+  },
+  mounted () {
+    this.showEnglish();
   },
 };
 </script>
@@ -56,6 +70,22 @@ export default {
 #nav {
   height: 8vh;
   width: 100%;
+}
+
+#unit-1 {
+  height: 5vh;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 40% 10% 10% 40%;
+  background-color: lightgrey;
+
+  h4 {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+  }
 }
 
 #content {

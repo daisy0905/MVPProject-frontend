@@ -56,7 +56,7 @@ export default new Vuex.Store({
     getLandscape: function(state) {
       let landscapes = [];
       for(let i=0; i<state.artworks.length; i++) {
-        if(state.artworks[i].category == "landscape") {
+        if(state.artworks[i].category == "Landscape") {
           landscapes.push(state.artworks[i]);
         }
       }
@@ -65,7 +65,7 @@ export default new Vuex.Store({
     getPortrait: function(state) {
       let portraits = [];
       for(let i=0; i<state.artworks.length; i++) {
-        if(state.artworks[i].category == "portrait") {
+        if(state.artworks[i].category == "Portrait") {
           portraits.push(state.artworks[i]);
         }
       }
@@ -74,7 +74,7 @@ export default new Vuex.Store({
     getOther: function(state) {
       let others = [];
       for(let i=0; i<state.artworks.length; i++) {
-        if(state.artworks[i].category == "other") {
+        if(state.artworks[i].category == "Others") {
           others.push(state.artworks[i]);
         }
       }
@@ -95,5 +95,32 @@ export default new Vuex.Store({
       }
       return indexArr
     },
+    getAvailable: function(state) {
+      let availables = [];
+      for(let i=0; i<state.artworks.length; i++) {
+        if(state.artworks[i].status == "Available") {
+          availables.push(state.artworks[i]);
+        }
+      }
+      return availables;
+    },
+    getOnhold: function(state) {
+      let onholds = [];
+      for(let i=0; i<state.artworks.length; i++) {
+        if(state.artworks[i].status == "On hold") {
+          onholds.push(state.artworks[i]);
+        }
+      }
+      return onholds;
+    },
+    getSold: function(state) {
+      let solds = [];
+      for(let i=0; i<state.artworks.length; i++) {
+        if(state.artworks[i].status == "Sold") {
+          solds.push(state.artworks[i]);
+        }
+      }
+      return solds;
+    }
   }
 });

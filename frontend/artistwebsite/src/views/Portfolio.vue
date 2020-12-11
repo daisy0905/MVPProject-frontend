@@ -24,9 +24,9 @@ import PortraitSlider from '../components/PortraitSlider.vue'
     export default {
         components: {
             Navigation,
-                LandscapeSlider,
-                PortraitSlider,
-                OtherSlider,
+            LandscapeSlider,
+            PortraitSlider,
+            OtherSlider,
         },
         methods: {
             
@@ -52,6 +52,7 @@ import PortraitSlider from '../components/PortraitSlider.vue'
     width: 100%;
     display: grid;
     align-items: center;
+    row-gap: 0.5vh;
 }
 
 .unit {

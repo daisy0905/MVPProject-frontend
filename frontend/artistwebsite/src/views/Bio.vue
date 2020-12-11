@@ -67,7 +67,7 @@ export default {
     align-items: center;
 
     #unit-1 {
-        height: 10vh;
+        height: 5vh;
         width: 100%;
         display: grid;
         justify-items: center;
