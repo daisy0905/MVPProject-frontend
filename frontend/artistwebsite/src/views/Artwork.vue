@@ -1,12 +1,6 @@
 <template>
     <div id="landscape">
         <navigation></navigation>
-        <div id="unit-1">
-            <div></div>
-            <h4>EN</h4>
-            <h4>中文</h4>
-            <div></div>
-        </div>
         <artwork-detail></artwork-detail>
     </div>
 </template>
@@ -43,22 +37,7 @@ import Navigation from "../components/Nav.vue"
     min-height: 100vh;
     width: 100%;
     display: grid;
-    align-items: center;
-}
-
-#unit-1 {
-    height: 5vh;
-    width: 100%;
-    display: grid;
+    align-items: start;
     justify-items: center;
-    align-items: center;
-    grid-template-columns: 40% 10% 10% 40%;
-    background-color: lightgrey;
-
-    h4 {
-        font-weight: bold;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
-    }
 }
 </style>

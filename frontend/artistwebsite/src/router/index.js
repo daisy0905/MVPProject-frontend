@@ -8,6 +8,8 @@ import Artwork from "../views/Artwork.vue";
 import UploadArtwork from "../views/Uploadartwork.vue"
 import ArtworkOverview from "../views/ArtworkOverview.vue"
 import ArtworkStatus from "../views/ArtworkStatus.vue"
+import Enquiry from "../views/Enquiry.vue"
+import ArtworkList from "../views/ArtworkList.vue"
 
 Vue.use(VueRouter);
 
@@ -51,6 +53,16 @@ const routes = [
     path: "/artworkstatus",
     name: "ArtworkStatus",
     component: ArtworkStatus
+  },
+  {
+    path: "/enquiry",
+    name: "Enquiry",
+    component: Enquiry
+  },
+  {
+    path: "/artworklist",
+    name: "ArtworkList",
+    component: ArtworkList
   },
   
 ];

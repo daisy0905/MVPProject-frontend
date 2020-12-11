@@ -1,9 +1,15 @@
 <template>
   <div id="image">
+    <div id="unit-1">
+      <div></div>
+      <h4 id="english" @click="showEnglish">EN</h4>
+      <h4 id="chinese" @click="showChinese">中文</h4>
+      <div></div>
+    </div>
     <div id="search-bar">
       <div></div>
       <input type="text" class="search" v-model="content" />
-      <img
+      <img @click="getArtworkList"
         src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/search-512.png"
         alt="search icon"
       />
@@ -15,37 +21,35 @@
       </div>
       <div id="description">
         <h2>{{ name }}</h2>
-        <p>Size: {{ length }} X {{ width }}</p>
-        <p>Material: {{ material }}</p>
-        <p>Completed at: {{ completed_at }}</p>
+        <p>{{ length }} X {{ width }}</p>
+        <p>{{ material }}</p>
+        <p>{{ completed_at }}</p>
       </div>
     </div>
     <div id="status">
       <p @click="statusCheck">{{ status }}</p>
     </div>
-    <div id="btn-container">
-      <button @click="showEnquiry" class="btn-1">Enquiry</button>
-      <button class="btn-1" v-if="artStatus == true" @click="addToCart">
-        Add to Cart
-      </button>
-      <button v-else class="btn-2">Add to Cart</button>
+    <div v-if="display == true">
+      <div id="btn-container">
+        <button @click="showEnquiry" class="btn-1">Enquiry</button>
+        <button class="btn-1" v-if="artStatus == true" @click="addToCart">Add to Cart</button>
+        <button v-else class="btn-2">Add to Cart</button>
+      </div>
+      <div id="alert" v-if="show == true">
+        <button class="closebtn" @click="close">&times;</button>
+        <h4>{{ updateStatus }}</h4>
+      </div>
     </div>
-    <div id="alert" v-if="show == true">
-      <button class="closebtn" @click="close">&times;</button>
-      <h4>{{ updateStatus }}</h4>
-    </div>
-    <div v-if="display" id="enquiry-form" class="animate__animated animate__bounce">
-      <h4>Please leave your message, we will reply ASAP!</h4>
-      <h4>First Name</h4>
-      <input type="text" class="input" v-model="firstname" />
-      <h4>Last Name</h4>
-      <input type="text" class="input" v-model="lastname" />
-      <h4>Email</h4>
-      <input type="text" class="input" v-model="email" />
-      <h4>Message</h4>
-      <textarea id="message-input" v-model="message"></textarea>
-      <button @click="postEnquiry">Submit</button>
-      <p>{{ enquiryStatus }}</p>
+    <div v-if="display == false">
+      <div id="btn-container">
+        <button @click="showEnquiry" class="btn-1">询价</button>
+        <button class="btn-1" v-if="artStatus == true" @click="addToCart">下订单</button>
+        <button v-else class="btn-2">下订单</button>
+      </div>
+      <div id="alert" v-if="show == true">
+        <button class="closebtn" @click="close">&times;</button>
+        <h4>{{ updateStatus }}</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -61,12 +65,7 @@ export default {
       artStatus: true,
       updateStatus: "",
       show: false,
-      display: false,
-      firstname: "",
-      lastname: "",
-      email: "",
-      message: "",
-      enquiryStatus: "",
+      display: false
     };
   },
   methods: {
@@ -115,32 +114,22 @@ export default {
       document.getElementById("alert").style.display = "none";
     },
     showEnquiry: function() {
-        this.display =! this.display;
+        this.$router.push("/enquiry");
     },
-    postEnquiry: function() {
-        axios.request({
-          url: "http://127.0.0.1:5000/enquiry",
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: {
-            art_id: cookies.get("id"),
-            firstname: this.firstname,
-            lastname: this.lastname,
-            email: this.email,
-            message: this.message,
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          this.enquiryStatus = "Your enquiry has been submitted!";
-        })
-        .catch((error) => {
-          console.log(error);
-          this.enquiryStatus = "Failed to submit!";
-        });
-    }
+    showEnglish: function() {
+      this.display = true;
+      document.getElementById("english").style.color = "white";
+      document.getElementById("chinese").style.color = "black";
+    },
+    showChinese: function() {
+      this.display = false;
+      document.getElementById("chinese").style.color = "white";
+      document.getElementById("english").style.color = "black";
+    },
+    getArtworkList: function() {
+      cookies.set("artContent", this.content);
+      this.$router.push("/artworklist")
+    },
   },
   mounted() {
     this.$store.dispatch("getArtwork");
@@ -187,13 +176,29 @@ export default {
   min-height: 100vh;
   width: 100%;
   display: grid;
-  align-items: center;
+  align-items: start;
   justify-items: center;
-  position: relative;
+}
+
+#unit-1 {
+    min-height: 5vh;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 40% 10% 10% 40%;
+    background-color: lightgrey;
+
+    h4 {
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        margin: 0;
+    }
 }
 
 #search-bar {
-  height: 8vh;
+  min-height: 8vh;
   width: 100%;
   display: grid;
   align-items: center;
@@ -214,7 +219,7 @@ export default {
 }
 
 #content {
-  min-height: 50vh;
+  min-height: 40vh;
   width: 100%;
   display: grid;
   align-items: center;
@@ -222,7 +227,7 @@ export default {
 }
 
 #image-detail {
-  min-height: 40vh;
+  min-height: 20vh;
   width: 100%;
   display: grid;
   align-items: start;
@@ -235,7 +240,7 @@ export default {
 }
 
 #description {
-  height: 20vh;
+  min-height: 20vh;
   width: 100%;
   display: grid;
   align-items: center;
@@ -246,10 +251,11 @@ export default {
     width: 90%;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
     margin: 0;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
+    margin-top: 0.5em;
   }
 
   p {
@@ -279,7 +285,7 @@ export default {
 }
 
 #btn-container {
-  height: 20vh;
+  min-height: 20vh;
   width: 100%;
   display: grid;
   align-items: center;
@@ -336,64 +342,6 @@ export default {
     font-size: 0.8rem;
     text-align: center;
     margin: 0;
-  }
-}
-
-#enquiry-form {
-    width: 50%;
-    min-height: 50vh;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    background-color: white;
-    margin: 1em;
-    row-gap: 0.5vh;
-    position: absolute;
-    top: 20vh;
-    left: 20vw;
-    box-shadow: 2px 2px 2px darkgrey;
-    padding-top: 1em;
-
-  h4 {
-    width: 90%;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-    margin: 0.2em;
-  }
-
-  p {
-    width: 90%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.7rem;
-    text-align: center;
-    margin: 0.2em;
-  }
-
-  .input {
-    width: 80%;
-    height: 3vh;
-    border: 1px solid #aab8c2;
-    text-align: center;
-    margin: 0.2em;
-  }
-
-  #message-input {
-    width: 80%;
-    height: 15vh;
-    border: 1px solid #aab8c2;
-    text-align: center;
-    font-size: 0.8rem;
-  }
-
-  .button {
-    width: 40%;
-    height: 5vh;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-    border: 1px solid black;
-    box-shadow: 1px 1px 2px grey;
-    font-weight: bold;
   }
 }
 </style>
