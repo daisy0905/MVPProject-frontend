@@ -9,7 +9,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     artworks: [],
-    artwork: []
+    artwork: [],
+    enquiries: []
   },
   mutations: {
     updateAllArtworks: function(state, data) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     updateArtwork: function(state, data) {
       state.artwork = data;
+    },
+    updateAllEnquiry: function(state, data) {
+      state.enquiries = data;
     },
   },
   actions: {
@@ -50,13 +54,27 @@ export default new Vuex.Store({
       }).catch((error) => {
           console.log(error)
       })
+    },
+    getAllEnquiries: function(context) {
+      axios.request({
+          url: "http://127.0.0.1:5000/enquiry",
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+          },
+      }).then((response) => {
+          context.commit("updateAllEnquiry", response.data),
+          console.log(response.data);
+      }).catch((error) => {
+          console.log(error)
+      })
     }
   },
   getters: {
     getLandscape: function(state) {
       let landscapes = [];
       for(let i=0; i<state.artworks.length; i++) {
-        if(state.artworks[i].category == "Landscape") {
+        if(state.artworks[i].category == "Landscape 风景") {
           landscapes.push(state.artworks[i]);
         }
       }
@@ -65,7 +83,7 @@ export default new Vuex.Store({
     getPortrait: function(state) {
       let portraits = [];
       for(let i=0; i<state.artworks.length; i++) {
-        if(state.artworks[i].category == "Portrait") {
+        if(state.artworks[i].category == "Portrait 人物") {
           portraits.push(state.artworks[i]);
         }
       }
@@ -74,7 +92,7 @@ export default new Vuex.Store({
     getOther: function(state) {
       let others = [];
       for(let i=0; i<state.artworks.length; i++) {
-        if(state.artworks[i].category == "Others") {
+        if(state.artworks[i].category == "Others 其它") {
           others.push(state.artworks[i]);
         }
       }

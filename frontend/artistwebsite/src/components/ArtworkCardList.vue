@@ -1,6 +1,6 @@
 <template>
     <div>
-        <artwork-card class="artworks" v-for="art in arts" :key="art.id" :art="art"></artwork-card>
+        <artwork-card class="artworks" v-for="art in arts" :key="art.id" :art="art" @deleteArt="deleteArt"></artwork-card>
     </div>
 </template>
 
@@ -13,6 +13,16 @@ import ArtworkCard from '../components/ArtworkCard.vue'
         components: {
             ArtworkCard
             
+        },
+        methods: {
+            deleteArt: function(data) {
+                console.log(data)
+                for(let i=0; i<this.$store.state.artworks.length; i++) {
+                    if(this.$store.state.artworks[i].id == data) {
+                        this.$store.state.artworks.splice(i, 1)
+                    }
+                }
+            }
         },
         computed: {
             arts: function() {

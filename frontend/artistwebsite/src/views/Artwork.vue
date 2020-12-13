@@ -1,6 +1,7 @@
 <template>
     <div id="landscape">
         <navigation></navigation>
+        <nav-ch></nav-ch>
         <artwork-detail></artwork-detail>
     </div>
 </template>
@@ -13,6 +14,11 @@ import Navigation from "../components/Nav.vue"
         components: {
             Navigation,
             ArtworkDetail
+        },
+        data() {
+            return {
+                display: false
+            }
         },
         mounted: function() {
             if(this.$store.state.artworks.length == 0) {

@@ -7,13 +7,8 @@
       <a class="icon" @click="next" href="#">&#10095;</a>
     </div>
     <div id="main-image" v-for="i in [currentIndex]" :key="i">
-      <img @click="goToHome" :src="mainImageSrc" />
+      <img v-if="mainImageSrc != ''" @click="goToHome" :src="mainImageSrc" />
     </div>
-    <!-- <div id="image-list">
-      <div v-for="img in images" class="item" :key="img.id">
-        <img :src="img.url" alt="" />
-      </div>
-    </div> -->
   </div>
 </template>
 <script>
@@ -54,9 +49,12 @@ export default {
     },
   },
   mounted() {
-    setTimeout(() => {
+    let interval = setInterval(() => {
+      if(this.mainImageSrc != "") {
+        clearInterval(interval)
+      }
       this.created();
-    }, 300);
+    }, 500);
   },
 };
 </script>

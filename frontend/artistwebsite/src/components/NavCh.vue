@@ -2,7 +2,7 @@
     <div id="nav">
         <div id="header">
             <div></div>
-            <h3>KEMIN TONG</h3>
+            <h3 @click="goToLanding">KEMIN TONG</h3>
             <div class="icon">
                 <img v-if="display" @click="displayNavBar" src="../assets/hamburger-menu-icon.png" alt="nav icon">
                 <img v-else @click="hideNavBar" src="../assets/hamburger-menu-icon-open.png" alt="nav icon">
@@ -10,20 +10,19 @@
         </div>
         <div v-if="display == false" id="nav-bar">
             <div></div>
-            <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">ARTWORK OVERVIEW</h2>
-            <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">ARTWORK STATUS</h2>
-            <h2 id="artworkupload-page" class="nav-text" @click="goToUpload">ARTWORK UPLOAD</h2>
-            <h2 id="enquiry-page" class="nav-text" @click="goToEnquiry">ENQUIRY REVIEW</h2>
-            <h2 id="visitorlist-page" @click="goToVisitors">VISITOR LIST</h2>
+            <h2 id="home-page" class="nav-text" @click="goToHome">主页</h2>
+            <h2 id="bio-page" class="nav-text" @click="goToBio">个人简介</h2>
+            <h2 id="portfolio-page" @click="goToPortfolio">作品集</h2>
+            <h2 id="contanct" @click="goToContact">与我联系</h2>
             <div></div>
-            <button @click="showInput">admin logout</button>
-            <div v-if="show == false" id="logout">
-                <h4>Username</h4>
+            <button @click="showInput">管理员登录</button>
+            <div v-if="show == false" id="login">
+                <h4>用户名</h4>
                 <input type="text" id="username-input" class="input" v-model="username">
-                <h4>Password</h4>
+                <h4>密码</h4>
                 <input type="text" id="password-input" class="input" v-model="password">
-                <button @click="logout">Login Out</button>
-                <p>{{ logoutStatus }}</p>
+                <button @click="login">登录</button>
+                <p>{{ loginStatus }}</p>
             </div>
             <div></div>
         </div>
@@ -32,14 +31,14 @@
 
 <script>
     export default {
-        name: "nav-admin",
+        name: "navigation",
         data() {
             return {
                 display: true,
                 show: true,
                 username: "",
                 password: "",
-                logoutStatus: ""
+                loginStatus: ""
             }
         },
         methods: {
@@ -49,36 +48,35 @@
             hideNavBar: function() {
                 this.display = true;
             },
-            goToArtworkOverview: function() {
-                document.getElementById("artworkoverview-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/artworkoverview")}, 1000);
+            goToLanding: function() {
+                setTimeout(()=>{this.$router.push("/")}, 500);
             },
-            goToArtworkStatus: function() {
-                document.getElementById("artworkstatus-page").style.color = "grey";
-                // this.$store.dispatch("getAllArtworks");
-                setTimeout(()=>{this.$router.push("/artworkstatus")}, 1000);
+            goToHome: function() {
+                document.getElementById("home-page").style.color = "grey";
+                setTimeout(()=>{this.$router.push("/home")}, 1000);
             },
-            goToUpload: function() {
-                document.getElementById("artworkupload-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/uploadartwork")}, 1000);
+            goToBio: function() {
+                document.getElementById("bio-page").style.color = "grey";
+                setTimeout(()=>{this.$router.push("/bio")}, 1000);
             },
-            goToEnquiry: function() {
-                document.getElementById("enquiry-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/enquiryreview")}, 1000);
+            goToPortfolio: function() {
+                document.getElementById("portfolio-page").style.color = "grey";
+                this.$store.dispatch("getAllArtworks");
+                setTimeout(()=>{this.$router.push("/portfolio")}, 1000);
             },
-            goToVisitors: function() {
-                document.getElementById("visitorlist-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/visitors")}, 1000);
+            goToContact: function() {
+                document.getElementById("contact-page").style.color = "grey";
+                setTimeout(()=>{this.$router.push("/contact")}, 1000);
             },
             showInput: function() {
                 this.show =! this.show
             },
-            logout: function() {
+            login: function() {
                 if(this.username == "tongkemin" && this.password == "kemin1018") {
-                    this.logoutStatus = "Log Out Success!"
-                    setTimeout(()=>{this.$router.push("/")}, 1000)
+                    this.loginStatus = "Login Success!"
+                    setTimeout(()=>{this.$router.push("/artworkoverview")}, 1000)
                 } else {
-                    this.logoutStatus = "Log Out Failed!"
+                    this.loginStatus = "Login Failed!"
                 }
             }
 
@@ -100,9 +98,9 @@
     display: grid;
     align-items: center;
     padding: 10px 0 0 0;
-    margin-bottom: 0.5em; 
+    margin-bottom: 1em; 
     z-index: 100;
-    position: relative;
+    margin-bottom: 0.5em;
 }
 
 #header {
@@ -136,25 +134,23 @@
 }
 
 #nav-bar {
-  min-height: 90vh;
+  height: 92vh;
   width: 40%;
   display: grid;
-  grid-template-rows: 10% repeat(4, 12%) 3% 8% 8%;
+  grid-template-rows: 15% repeat(4, 10%) 3% 8% 32%;
   justify-items: left;
   align-items: left;
   position: absolute;
-  right: 0;
-  top: 8vh;
-  background-color: lightgrey;
+  right: 2vw;
+  top: 10vh;
+  background-color: white;
+  opacity: 0.8;
 
   h2 {
-      width: 80%;
     font-weight: bold; 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     margin-left: 1em;
-    text-align: left;
-    line-height: 25px;
   }
 
   button {
@@ -168,9 +164,9 @@
     margin-left: 1.2em;
   }
 
-  #logout {
+  #login {
     width: 70%;
-    height: 5vh;
+    height: 8vh;
     display: grid;
     justify-items: left;
     align-items: center;

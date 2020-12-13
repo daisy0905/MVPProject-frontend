@@ -11,26 +11,14 @@
             <h4>{{ art.category }}</h4>
             <p>{{ art.status }}</p>
         </div>
-        <div class="icon">
-            <div></div>
-            <img @click="showForm" src="../assets/edit-image-icon.png" alt="">
-            <img @click="deleteArt" class="icon" src="../assets/delete-icon.png" alt="delete icon">
-            <div></div>
-        </div>
-        <update-artwork :artId="art.id" id="update-form" v-if="display == true" @update="update"></update-artwork>
     </div>
 </template>
 
 <script>
-import UpdateArtwork from '../components/UpdateArtwork.vue';
-// import cookies from 'vue-cookies'
 import axios from 'axios'
 
     export default {
         name: "artwork-card",
-        components: {
-            UpdateArtwork,
-        },
         data() {
             return {
                 display: false
@@ -58,33 +46,6 @@ import axios from 'axios'
                 }).catch((error) => {
                     console.log(error);
                 })
-            },
-            showForm: function() {
-                this.display =! this.display;
-            },
-            update: function(data) {
-                for(let i=0; i<this.$store.state.artworks.length; i++) {
-                    if(this.$store.state.artworks[i].id == data.id) {
-                        this.$store.state.artworks.splice(i, 1, data)
-                    }
-                }
-            },
-            deleteArt: function() {
-                axios.request({
-                    url: "http://127.0.0.1:5000/artwork",
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    data: {
-                        id: this.art.id
-                    }
-                }).then((response) => {
-                    console.log(response);
-                    this.$emit("deleteArt", this.art.id)
-                }).catch((error) => {
-                    console.log(error);
-                }) 
             }
         },
         computed: {
@@ -163,27 +124,5 @@ import axios from 'axios'
         color: white;
         padding: 0.5em;
     }
-}
-
-.icon {
-    width: 90%;
-    height: 7vh;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: 20% 30% 30% 20%;
-
-    img {
-        width: 30px;
-        height: 30px;
-    }
-}
-
-#update-form {
-    width: 85%;
-    height: 75vh;
-    position: fixed;
-    top: 15vh;
-    background-color: white;
 }
 </style>

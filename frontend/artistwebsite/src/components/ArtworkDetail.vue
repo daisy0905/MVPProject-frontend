@@ -136,7 +136,8 @@ export default {
     // this.statusCheck();
     setTimeout(() => {
       this.statusCheck();
-    }, 500);
+    }, 500),
+    this.showChinese()
   },
   computed: {
     name() {
@@ -317,7 +318,7 @@ export default {
 
 #alert {
   height: 5vh;
-  width: 80%;
+  width: 40vw;
   background-color: lightgrey;
 
   .closebtn {

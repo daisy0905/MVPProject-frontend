@@ -2,7 +2,7 @@
     <div id="nav">
         <div id="header">
             <div></div>
-            <h3>KEMIN TONG</h3>
+            <h3 @click="goToLanding">KEMIN TONG</h3>
             <div class="icon">
                 <img v-if="display" @click="displayNavBar" src="../assets/hamburger-menu-icon.png" alt="nav icon">
                 <img v-else @click="hideNavBar" src="../assets/hamburger-menu-icon-open.png" alt="nav icon">
@@ -10,7 +10,6 @@
         </div>
         <div v-if="display == false" id="nav-bar">
             <div></div>
-            <h2 id="landing-page" class="nav-text" @click="goToLanding">LANDING</h2>
             <h2 id="home-page" class="nav-text" @click="goToHome">HOME</h2>
             <h2 id="bio-page" class="nav-text" @click="goToBio">BIO</h2>
             <h2 id="portfolio-page" @click="goToPortfolio">PORTFOLIO</h2>
@@ -50,8 +49,7 @@
                 this.display = true;
             },
             goToLanding: function() {
-                document.getElementById("landing-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/")}, 1000);
+                setTimeout(()=>{this.$router.push("/")}, 500);
             },
             goToHome: function() {
                 document.getElementById("home-page").style.color = "grey";
@@ -64,7 +62,7 @@
             goToPortfolio: function() {
                 document.getElementById("portfolio-page").style.color = "grey";
                 this.$store.dispatch("getAllArtworks");
-                setTimeout(()=>{this.$router.push("/portfolio")}, 2000);
+                setTimeout(()=>{this.$router.push("/portfolio")}, 1000);
             },
             goToContact: function() {
                 document.getElementById("contact-page").style.color = "grey";
@@ -139,12 +137,12 @@
   height: 92vh;
   width: 40%;
   display: grid;
-  grid-template-rows: 15% repeat(5, 10%) 3% 8% 32%;
+  grid-template-rows: 15% repeat(4, 10%) 3% 8% 32%;
   justify-items: left;
   align-items: left;
-  position: fixed;
+  position: absolute;
   right: 2vw;
-  top: 8vh;
+  top: 10vh;
   background-color: white;
   opacity: 0.8;
 

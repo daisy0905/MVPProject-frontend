@@ -25,7 +25,7 @@ export default {
     computed: {
         images() {
             console.log(this.$store.getters.getLandscape);
-            if(this.$store.getters.getLandscape == undefined) return
+            if(this.$store.getters.getLandscape == []) return
             return this.$store.getters.getLandscape;
         },
     },

@@ -3,27 +3,18 @@
         <div v-for="image in images" class="item" :key="image.id">
             <img :src="image.url" alt="">
             <h4>{{ image.name }}</h4>
-            <img class="icon" @click="editArtwork" src="../assets/edit-icon.png" alt="edit icon">
-            <img class="icon" @click="deleteArtwork" src="../assets/delete-icon.png" alt="delete icon">
         </div>
     </div>
 </template>
 
 <script>
+// import axios from "axios"
     export default {
         name: "available",
         computed: {
             images() {
                 console.log(this.$store.getters.getAvailable);
                 return this.$store.getters.getAvailable;
-            }
-        },
-        methods: {
-            editArtwork: function() {
-                // cookies.set("id", this.image.id)
-            },
-            deleteArtwork: function() {
-
             }
         },
     }
@@ -52,7 +43,7 @@
     display: grid;
     justify-items: left;
     align-items: center;
-    grid-template-columns: 2fr 3fr 0.5fr 0.5fr;
+    grid-template-columns: 1.5fr 4fr;
     border-bottom: 1px solid lightgrey;
 
     h4 { 
@@ -64,7 +55,7 @@
     }
 
     img {
-        height: 100%;
+        height: 90%;
     }
 
    .icon {

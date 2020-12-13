@@ -1,7 +1,7 @@
 <template>
     <div id="artwork-list">
         <nav-admin></nav-admin>
-        <artwork-card-list id="artworks"></artwork-card-list>
+        <artwork-card-list class="artworks"></artwork-card-list>
     </div>
 </template>
 
@@ -9,11 +9,22 @@
 import ArtworkCardList from '../components/ArtworkCardList.vue'
 import NavAdmin from "../components/NavAdmin.vue"
 
+
     export default {
         components: {
             NavAdmin,
-            ArtworkCardList
+            ArtworkCardList,
             
+        },
+        data() {
+            return {
+                display: false
+            }
+        },
+        methods: {
+            updateArtwork: function() {
+                this.display =! this.display
+            },
         },
         mounted () {
             this.$store.dispatch("getAllArtworks");
@@ -34,17 +45,15 @@ import NavAdmin from "../components/NavAdmin.vue"
     width: 100%;
     display: grid;
     justify-items: center;
-    align-items: center;
+    align-items: start;
 }
-#artworks {
-        min-height: 60vh;
+.artworks {
+        min-height: 100vh;
         width: 100%;
         display: grid;
         justify-items: center;
         align-items: center; 
-        grid-template-columns: 1fr 1fr;
-        column-gap: 1vw;
         margin-top: 1em;
         row-gap: 1vh;
-    }
+}
 </style>

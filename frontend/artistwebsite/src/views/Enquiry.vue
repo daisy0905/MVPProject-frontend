@@ -1,7 +1,9 @@
 <template>
   <div id="enquiry">
         <div id="header">
-            <div></div>
+            <div class="icon">
+              <img @click="backToArtwork" src="../assets/left-arrow-icon.png" alt="nav icon">
+            </div>
             <h3>KEMIN TONG</h3>
             <div></div>
         </div>
@@ -57,6 +59,7 @@ export default {
       phone_number: "",
       message: "",
       enquiryStatus: "",
+      review: 0,
       display: false
     }
   },
@@ -85,6 +88,7 @@ export default {
             email: this.email,
             phone_number: this.phone_number,
             message: this.message,
+            review: this.review
           },
         })
         .then((response) => {
@@ -96,7 +100,13 @@ export default {
           console.log(error);
           this.enquiryStatus = "Failed to submit!";
         });
+    },
+    backToArtwork: function() {
+      this.$router.push("/artwork")
     }
+  },
+  mounted () {
+    this.showChinese();
   },
 };
 </script>
@@ -118,6 +128,36 @@ export default {
     row-gap: 0.5vh;
 }
 
+#header {
+  height: 8vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 70% 10%;
+  justify-items: center;
+  align-items: center;
+  border-bottom: 1px solid darkgrey; 
+
+  .icon {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center; 
+
+    img {
+      height: 25px;
+      object-fit: cover;
+    }
+  }
+
+  h3 {
+    font-weight: bold; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 5px;
+  }
+}
+
 #unit-1 {
     height: 5vh;
     width: 100%;
@@ -132,23 +172,6 @@ export default {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
     }
-}
-
-#header {
-  height: 8vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 10% 70% 20%;
-  justify-items: center;
-  align-items: center;
-  border-bottom: 1px solid darkgrey; 
-
-  h3 {
-    font-weight: bold; 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 5px;
-  }
 }
 
 #enquiry-form {

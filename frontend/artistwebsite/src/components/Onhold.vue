@@ -3,8 +3,6 @@
         <div v-for="image in images" class="item" :key="image.id">
             <img :src="image.url" alt="">
             <h4>{{ image.name }}</h4>
-            <img class="icon" @click="editArtwork" src="../assets/edit-icon.png" alt="edit icon">
-            <img class="icon" @click="deleteArtwork" src="../assets/delete-icon.png" alt="delete icon">
         </div>
     </div>
 </template>
@@ -17,15 +15,7 @@
                 console.log(this.$store.getters.getOnhold);
                 return this.$store.getters.getOnhold;
             }
-        },
-        methods: {
-            editArtwork: function() {
-                // cookies.set("id", this.image.id)
-            },
-            deleteArtwork: function() {
-
-            }
-        },
+        }
     }
 </script>
 
@@ -52,7 +42,7 @@
     display: grid;
     justify-items: left;
     align-items: center;
-    grid-template-columns: 2fr 3fr 0.5fr 0.5fr;
+    grid-template-columns: 1.5fr 4fr;
     border-bottom: 1px solid lightgrey;
 
     h4 { 
@@ -64,12 +54,7 @@
     }
 
     img {
-        height: 100%;
-    }
-
-    .icon {
-        width: 20px;
-        height: 20px;
+        height: 90%;
     }
 }
 </style>

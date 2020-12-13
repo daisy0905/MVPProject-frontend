@@ -1,12 +1,5 @@
 <template>
     <div id="upload">
-        <div id="header">
-            <div class="icon">
-              <img @click="backToArtworkOverview" src="../assets/left-arrow-icon.png" alt="nav icon">
-            </div>
-            <h3>KEMIN TONG</h3>
-            <div></div>
-        </div>
         <div id="unit-1">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -33,7 +26,7 @@
         </div>
         <div class="submit-btn" v-if="display == true">
             <div></div>
-            <button @click="uploadArtwork">Upload</button>
+            <button @click="updateArtwork">Update</button>
             <div></div>
         </div>
         <div class="upload-form" v-if="display == false">
@@ -56,7 +49,7 @@
         </div>
         <div class="submit-btn" v-if="display == false">
             <div></div>
-            <button @click="uploadArtwork">上传作品</button>
+            <button @click="updateArtwork">更新作品</button>
             <div></div>
         </div>
         <h3>{{ uploadStatus }}</h3>
@@ -80,6 +73,12 @@ import axios from "axios"
                 display: false
             }
         },
+        props: {
+            artId: {
+                type: Number,
+                required: true
+            }
+        },
         methods: {
             showEnglish: function() {
                 this.display = true;
@@ -91,14 +90,15 @@ import axios from "axios"
                 document.getElementById("chinese").style.color = "white";
                 document.getElementById("english").style.color = "black";
             },
-            uploadArtwork: function() {
+            updateArtwork: function() {
                 axios.request({
                     url: "http://127.0.0.1:5000/artwork",
-                    method: "POST",
+                    method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     data: {
+                        id: this.artId,
                         name: this.name,
                         length: this.length,
                         width: this.width,
@@ -110,14 +110,12 @@ import axios from "axios"
                     }
                 }).then((response) => {
                     console.log(response);
+                    this.$emit("update", response.data)
                     this.uploadStatus = "Success";
                 }).catch((error) => {
                     console.log(error);
                     this.uploadStatus = "Error";
                 }) 
-            },
-            backToArtworkOverview: function() {
-                this.$router.push("/artworkoverview")
             }
         },
         mounted () {
@@ -135,7 +133,7 @@ import axios from "axios"
 }
 
 #upload {
-    min-height: 100vh;
+    height: 70vh;
     width: 100%;
     display: grid;
     align-items: center;
@@ -145,23 +143,10 @@ import axios from "axios"
   height: 8vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 20% 70% 10%;
+  grid-template-columns: 20% 60% 20%;
   justify-items: center;
   align-items: center;
   border-bottom: 1px solid darkgrey; 
-
-  .icon {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center; 
-
-    img {
-      height: 25px;
-      object-fit: cover;
-    }
-  }
 
   h3 {
     font-weight: bold; 
@@ -189,7 +174,7 @@ import axios from "axios"
 }
 
 .upload-form {
-    min-height: 50vh;
+    min-height: 30vh;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -216,7 +201,6 @@ import axios from "axios"
     }
 }
 .submit-btn {
-    height: 20vh;
     width: 100%;
     display: grid;
     justify-items: center;
