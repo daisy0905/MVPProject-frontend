@@ -1,82 +1,33 @@
 <template>
     <div id="upload">
-        <div id="header">
-            <div class="icon">
-              <img @click="backToArtworkOverview" src="../assets/left-arrow-icon.png" alt="nav icon">
-            </div>
-            <h3>KEMIN TONG</h3>
-            <div></div>
-        </div>
+        <nav-admin v-if="display == true"></nav-admin>
+        <nav-admin-ch v-if="display == false"></nav-admin-ch>
         <div id="unit-1">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
             <h4 id="chinese" @click="showChinese">中文</h4>
             <div></div>
         </div>
-        <div class="upload-form" v-if="display == true">
-            <h3>Name</h3>
-            <input type="text" id="name-input" class="input" v-model="name">
-            <h3>Length</h3>
-            <input type="text" id="length-input" class="input" v-model="length">
-            <h3>Width</h3>
-            <input type="text" id="width-input" class="input" v-model="width">
-            <h3>Completed at</h3>
-            <input type="text" id="completed-input" class="input" v-model="completed_at">
-            <h3>Material</h3>
-            <input type="text" id="material-input" class="input" v-model="material">
-            <h3>Category</h3>
-            <input type="text" id="category-input" class="input" v-model="category">
-            <h3>Status</h3>
-            <input type="text" id="status-input" class="input" v-model="status">
-            <h3>Image URL</h3>
-            <input type="text" id="url-input" class="input" v-model="url">
-        </div>
-        <div class="submit-btn" v-if="display == true">
-            <div></div>
-            <button @click="uploadArtwork">Upload</button>
-            <div></div>
-        </div>
-        <div class="upload-form" v-if="display == false">
-            <h3>名称</h3>
-            <input type="text" id="name-input" class="input" v-model="name">
-            <h3>长</h3>
-            <input type="text" id="length-input" class="input" v-model="length">
-            <h3>宽</h3>
-            <input type="text" id="width-input" class="input" v-model="width">
-            <h3>完成时间</h3>
-            <input type="text" id="completed-input" class="input" v-model="completed_at">
-            <h3>材料</h3>
-            <input type="text" id="material-input" class="input" v-model="material">
-            <h3>类别</h3>
-            <input type="text" id="category-input" class="input" v-model="category">
-            <h3>状态</h3>
-            <input type="text" id="status-input" class="input" v-model="status">
-            <h3>作品链接</h3>
-            <input type="text" id="url-input" class="input" v-model="url">
-        </div>
-        <div class="submit-btn" v-if="display == false">
-            <div></div>
-            <button @click="uploadArtwork">上传作品</button>
-            <div></div>
-        </div>
-        <h3>{{ uploadStatus }}</h3>
+        <upload-form v-if="display == true"></upload-form>
+        <upload-form-ch v-if="display == false"></upload-form-ch>
     </div>
 </template>
 
 <script>
-import axios from "axios"
+import NavAdmin from "../components/NavAdmin.vue"
+import NavAdminCh from "../components/NavAdminCh.vue"
+import UploadForm from '../components/UploadForm.vue'
+import UploadFormCh from "../components/UploadFormCh"
     export default {
+        components: {
+            NavAdmin,
+            NavAdminCh,
+            UploadForm,
+            UploadFormCh
+            
+        },
         data() {
             return {
-                name: "",
-                length: "",
-                width: "",
-                completed_at: "",
-                material: "",
-                category: "",
-                status: "",
-                url: "",
-                uploadStatus: "",
                 display: false
             }
         },
@@ -91,34 +42,6 @@ import axios from "axios"
                 document.getElementById("chinese").style.color = "white";
                 document.getElementById("english").style.color = "black";
             },
-            uploadArtwork: function() {
-                axios.request({
-                    url: "http://127.0.0.1:5000/artwork",
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    data: {
-                        name: this.name,
-                        length: this.length,
-                        width: this.width,
-                        completed_at: this.completed_at,
-                        material: this.material,
-                        category: this.category,
-                        status: this.status,
-                        url: this.url,
-                    }
-                }).then((response) => {
-                    console.log(response);
-                    this.uploadStatus = "Success";
-                }).catch((error) => {
-                    console.log(error);
-                    this.uploadStatus = "Error";
-                }) 
-            },
-            backToArtworkOverview: function() {
-                this.$router.push("/artworkoverview")
-            }
         },
         mounted () {
             this.showChinese();
@@ -135,40 +58,10 @@ import axios from "axios"
 }
 
 #upload {
-    min-height: 100vh;
+    min-height: 80vh;
     width: 100%;
     display: grid;
     align-items: center;
-}
-
-#header {
-  height: 8vh;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 20% 70% 10%;
-  justify-items: center;
-  align-items: center;
-  border-bottom: 1px solid darkgrey; 
-
-  .icon {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center; 
-
-    img {
-      height: 25px;
-      object-fit: cover;
-    }
-  }
-
-  h3 {
-    font-weight: bold; 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 5px;
-  }
 }
 
 #unit-1 {
@@ -179,7 +72,6 @@ import axios from "axios"
     align-items: center;
     grid-template-columns: 40% 10% 10% 40%;
     background-color: lightgrey;
-    margin-top: 0.5em;
 
     h4 {
         font-weight: bold;
@@ -187,66 +79,4 @@ import axios from "axios"
         font-size: 0.8rem;
     }
 }
-
-.upload-form {
-    min-height: 50vh;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    align-items: center;
-    margin-top: 0.5em;
-
-    h3 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-        font-size: 1rem;
-        text-align: center;
-    }
-
-    .input {
-        width: 70%;
-        height: 4vh;
-        background-color: #E1E8ED;
-        border: 1px solid #AAB8C2;
-        margin: 0 0 1em 0;
-        border-bottom: 2px solid darkgrey;
-        text-align: center;
-        font-size: 0.8rem;
-    }
-}
-.submit-btn {
-    height: 20vh;
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: 35% 30% 35%;
-    margin-top: 2em;
-
-    button {
-        width: 100%;
-        height: 5vh;
-        border: 1px solid black; 
-        border-radius: 1em;
-        background-color: white;
-        font-size: 0.8rem;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-        padding: 0 0.5em 0 0.5em;
-
-        :hover {
-            background-color: darkgrey;
-            color: white;
-        }
-    }
-}
-
-h3 {
-    height: 5vh;
-    font-weight: bold; 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 5px;
-  }
 </style>

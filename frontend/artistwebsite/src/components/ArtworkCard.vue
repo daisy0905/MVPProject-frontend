@@ -13,7 +13,7 @@
         </div>
         <div class="icon">
             <div></div>
-            <img @click="showForm" src="../assets/edit-image-icon.png" alt="">
+            <img @click="showForm" src="../assets/edit-image-icon.png" alt="edit image icon">
             <img @click="deleteArt" class="icon" src="../assets/delete-icon.png" alt="delete icon">
             <div></div>
         </div>
@@ -113,6 +113,7 @@ import axios from 'axios'
     border: 1px solid #AAB8C2;
     row-gap: 1vh;
     margin: 0.5em;
+    position: relative;
 }
 
 .image {
@@ -166,7 +167,7 @@ import axios from 'axios'
 }
 
 .icon {
-    width: 90%;
+    width: 100%;
     height: 7vh;
     display: grid;
     justify-items: center;
@@ -176,14 +177,14 @@ import axios from 'axios'
     img {
         width: 30px;
         height: 30px;
+        filter: grayscale(80%);
     }
 }
 
 #update-form {
     width: 85%;
-    height: 75vh;
-    position: fixed;
-    top: 15vh;
+    height: 60vh;
+    position: absolute;
     background-color: white;
 }
 </style>

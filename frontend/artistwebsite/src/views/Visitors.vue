@@ -1,5 +1,5 @@
 <template>
-    <div id="artwork-list">
+    <div id="visitors">
         <nav-admin v-if="display == true"></nav-admin>
         <nav-admin-ch v-if="display == false"></nav-admin-ch>
         <div id="unit-1">
@@ -8,21 +8,20 @@
             <h4 id="chinese" @click="showChinese">中文</h4>
             <div></div>
         </div>
-        <artwork-card-list class="artworks"></artwork-card-list>
+        <visitor-list></visitor-list>
     </div>
 </template>
 
 <script>
-import ArtworkCardList from '../components/ArtworkCardList.vue'
+// import axios from "axios"
 import NavAdmin from "../components/NavAdmin.vue"
 import NavAdminCh from "../components/NavAdminCh.vue"
-
+import VisitorList from '../components/VisitorList.vue'
     export default {
         components: {
             NavAdmin,
             NavAdminCh,
-            ArtworkCardList,
-            
+            VisitorList,
         },
         data() {
             return {
@@ -42,8 +41,7 @@ import NavAdminCh from "../components/NavAdminCh.vue"
             },
         },
         mounted () {
-            this.$store.dispatch("getAllArtworks");
-            this.showChinese()
+            this.showChinese();
         },
     }
 </script>
@@ -56,11 +54,10 @@ import NavAdminCh from "../components/NavAdminCh.vue"
     box-sizing: border-box;
 }
 
-#artwork-list {
-    min-height: 100vh;
+#visitors {
+    min-height: 80vh;
     width: 100%;
     display: grid;
-    justify-items: center;
     align-items: start;
 }
 
@@ -77,17 +74,6 @@ import NavAdminCh from "../components/NavAdminCh.vue"
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
-        margin: 0;
     }
-}
-
-.artworks {
-        min-height: 100vh;
-        width: 100%;
-        display: grid;
-        justify-items: center;
-        align-items: center; 
-        margin-top: 1em;
-        row-gap: 1vh;
 }
 </style>

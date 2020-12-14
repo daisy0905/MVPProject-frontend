@@ -1,236 +1,226 @@
 <template>
-    <div id="upload">
-        <div id="unit-1">
-            <div></div>
-            <h4 id="english" @click="showEnglish">EN</h4>
-            <h4 id="chinese" @click="showChinese">中文</h4>
-            <div></div>
-        </div>
-        <div class="upload-form" v-if="display == true">
-            <h3>Name</h3>
-            <input type="text" id="name-input" class="input" v-model="name">
-            <h3>Length</h3>
-            <input type="text" id="length-input" class="input" v-model="length">
-            <h3>Width</h3>
-            <input type="text" id="width-input" class="input" v-model="width">
-            <h3>Completed at</h3>
-            <input type="text" id="completed-input" class="input" v-model="completed_at">
-            <h3>Material</h3>
-            <input type="text" id="material-input" class="input" v-model="material">
-            <h3>Category</h3>
-            <input type="text" id="category-input" class="input" v-model="category">
-            <h3>Status</h3>
-            <input type="text" id="status-input" class="input" v-model="status">
-            <h3>Image URL</h3>
-            <input type="text" id="url-input" class="input" v-model="url">
-        </div>
-        <div class="submit-btn" v-if="display == true">
-            <div></div>
-            <button @click="updateArtwork">Update</button>
-            <div></div>
-        </div>
-        <div class="upload-form" v-if="display == false">
-            <h3>名称</h3>
-            <input type="text" id="name-input" class="input" v-model="name">
-            <h3>长</h3>
-            <input type="text" id="length-input" class="input" v-model="length">
-            <h3>宽</h3>
-            <input type="text" id="width-input" class="input" v-model="width">
-            <h3>完成时间</h3>
-            <input type="text" id="completed-input" class="input" v-model="completed_at">
-            <h3>材料</h3>
-            <input type="text" id="material-input" class="input" v-model="material">
-            <h3>类别</h3>
-            <input type="text" id="category-input" class="input" v-model="category">
-            <h3>状态</h3>
-            <input type="text" id="status-input" class="input" v-model="status">
-            <h3>作品链接</h3>
-            <input type="text" id="url-input" class="input" v-model="url">
-        </div>
-        <div class="submit-btn" v-if="display == false">
-            <div></div>
-            <button @click="updateArtwork">更新作品</button>
-            <div></div>
-        </div>
-        <h3>{{ uploadStatus }}</h3>
+  <div id="upload">
+    <div id="unit-1">
+      <div></div>
+      <h4 id="english" @click="showEnglish">EN</h4>
+      <h4 id="chinese" @click="showChinese">中文</h4>
+      <div></div>
     </div>
+    <div class="upload-form" v-if="display == true">
+      <h3>Name</h3>
+      <input type="text" class="input" v-model="name" />
+      <h3>Length</h3>
+      <input type="text" class="input" v-model="length" />
+      <h3>Width</h3>
+      <input type="text" class="input" v-model="width" />
+      <h3>Completed at</h3>
+      <input type="text" class="input" v-model="completed_at" />
+      <h3>Material</h3>
+      <input type="text" class="input" v-model="material" />
+      <h3>Category</h3>
+      <input type="text" class="input" v-model="category" />
+      <h3>Status</h3>
+      <input type="text" class="input" v-model="status" />
+      <h3>Image URL</h3>
+      <input type="text" class="input" v-model="url" />
+    </div>
+    <div class="submit-btn" v-if="display == true">
+      <div></div>
+      <button @click="updateArtwork">Update</button>
+      <div></div>
+    </div>
+    <div class="upload-form" v-if="display == false">
+      <h3>名称</h3>
+      <input type="text" class="input" v-model="name" />
+      <h3>长</h3>
+      <input type="text" class="input" v-model="length" />
+      <h3>宽</h3>
+      <input type="text" class="input" v-model="width" />
+      <h3>完成时间</h3>
+      <input type="text" class="input" v-model="completed_at" />
+      <h3>材料</h3>
+      <input type="text" class="input" v-model="material" />
+      <h3>类别</h3>
+      <input type="text" class="input" v-model="category" />
+      <h3>状态</h3>
+      <input type="text" class="input" v-model="status" />
+      <h3>作品链接</h3>
+      <input type="text" class="input" v-model="url" />
+    </div>
+    <div class="submit-btn" v-if="display == false">
+      <div></div>
+      <button @click="updateArtwork">更新作品</button>
+      <div></div>
+    </div>
+    <h3>{{ uploadStatus }}</h3>
+  </div>
 </template>
 
 <script>
-import axios from "axios"
-    export default {
-        data() {
-            return {
-                name: "",
-                length: "",
-                width: "",
-                completed_at: "",
-                material: "",
-                category: "",
-                status: "",
-                url: "",
-                uploadStatus: "",
-                display: false
-            }
-        },
-        props: {
-            artId: {
-                type: Number,
-                required: true
-            }
-        },
-        methods: {
-            showEnglish: function() {
-                this.display = true;
-                document.getElementById("english").style.color = "white";
-                document.getElementById("chinese").style.color = "black";
-            },
-            showChinese: function() {
-                this.display = false;
-                document.getElementById("chinese").style.color = "white";
-                document.getElementById("english").style.color = "black";
-            },
-            updateArtwork: function() {
-                axios.request({
-                    url: "http://127.0.0.1:5000/artwork",
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    data: {
-                        id: this.artId,
-                        name: this.name,
-                        length: this.length,
-                        width: this.width,
-                        completed_at: this.completed_at,
-                        material: this.material,
-                        category: this.category,
-                        status: this.status,
-                        url: this.url,
-                    }
-                }).then((response) => {
-                    console.log(response);
-                    this.$emit("update", response.data)
-                    this.uploadStatus = "Success";
-                }).catch((error) => {
-                    console.log(error);
-                    this.uploadStatus = "Error";
-                }) 
-            }
-        },
-        mounted () {
-            this.showChinese();
-        },
-    }
+import axios from "axios";
+export default {
+  data() {
+    return {
+      name: "",
+      length: "",
+      width: "",
+      completed_at: "",
+      material: "",
+      category: "",
+      status: "",
+      url: "",
+      uploadStatus: "",
+      display: false,
+    };
+  },
+  props: {
+    artId: {
+      type: Number,
+      required: true,
+    },
+  },
+  methods: {
+    showEnglish: function () {
+      this.display = true;
+      document.getElementById("english").style.color = "white";
+      document.getElementById("chinese").style.color = "black";
+    },
+    showChinese: function () {
+      this.display = false;
+      document.getElementById("chinese").style.color = "white";
+      document.getElementById("english").style.color = "black";
+    },
+    updateArtwork: function () {
+      axios
+        .request({
+          url: "http://127.0.0.1:5000/artwork",
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: {
+            id: this.artId,
+            name: this.name,
+            length: this.length,
+            width: this.width,
+            completed_at: this.completed_at,
+            material: this.material,
+            category: this.category,
+            status: this.status,
+            url: this.url,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          this.$emit("update", response.data);
+          this.uploadStatus = "Success";
+        })
+        .catch((error) => {
+          console.log(error);
+          this.uploadStatus = "Error";
+        });
+    },
+  },
+  mounted() {
+    this.showChinese();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 * {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #upload {
-    height: 70vh;
-    width: 100%;
-    display: grid;
-    align-items: center;
-}
-
-#header {
-  height: 8vh;
+  height: 70vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 20% 60% 20%;
-  justify-items: center;
   align-items: center;
-  border-bottom: 1px solid darkgrey; 
-
-  h3 {
-    font-weight: bold; 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 5px;
-  }
 }
 
 #unit-1 {
-    height: 5vh;
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: 40% 10% 10% 40%;
-    background-color: lightgrey;
-    margin-top: 0.5em;
+  height: 5vh;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 40% 10% 10% 40%;
+  margin-top: 0.5em;
 
-    h4 {
-        font-weight: bold;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
-    }
+  h4 {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+  }
 }
 
 .upload-form {
-    min-height: 30vh;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    align-items: center;
-    margin-top: 0.5em;
+  min-height: 20vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  margin-top: 0.5em;
+  background-color: lightgrey;
+  padding: 1em 0 1em 0;
 
-    h3 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-        font-size: 1rem;
-        text-align: center;
-    }
+  h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    letter-spacing: 1px;
+  }
 
-    .input {
-        width: 70%;
-        height: 4vh;
-        background-color: #E1E8ED;
-        border: 1px solid #AAB8C2;
-        margin: 0 0 1em 0;
-        border-bottom: 2px solid darkgrey;
-        text-align: center;
-        font-size: 0.8rem;
-    }
+  .input {
+    width: 70%;
+    height: 3vh;
+    background-color: #e1e8ed;
+    border: 1px solid #aab8c2;
+    margin: 0 0 1em 0;
+    border-bottom: 2px solid darkgrey;
+    text-align: center;
+    font-size: 0.8rem;
+  }
 }
 .submit-btn {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 35% 30% 35%;
+  background-color: lightgrey;
+  padding: 1em 0 1em 0;
+
+  button {
     width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: 35% 30% 35%;
-    margin-top: 2em;
+    height: 5vh;
+    border: 1px solid black;
+    border-radius: 1em;
+    background-color: white;
+    font-size: 0.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 0 0.5em 0 0.5em;
 
-    button {
-        width: 100%;
-        height: 5vh;
-        border: 1px solid black; 
-        border-radius: 1em;
-        background-color: white;
-        font-size: 0.8rem;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-        padding: 0 0.5em 0 0.5em;
-
-        :hover {
-            background-color: darkgrey;
-            color: white;
-        }
+    :hover {
+      background-color: darkgrey;
+      color: white;
     }
+  }
 }
 
 h3 {
-    height: 5vh;
-    font-weight: bold; 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    letter-spacing: 5px;
-  }
+  height: 5vh;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 5px;
+  background-color: lightgrey;
+}
 </style>

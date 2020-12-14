@@ -8,17 +8,29 @@
             <h4 id="chinese" @click="showChinese">中文</h4>
             <div></div>
         </div>
-        <div class="unit">
+        <div v-if="display == true" class="unit">
             <landscape-slider></landscape-slider>
-            <h2 class="animate__animated animate__bounce">LANDSCAPE</h2>
+            <h2>LANDSCAPE</h2>
         </div>
-        <div class="unit">
+        <div v-if="display == true" class="unit">
             <portrait-slider></portrait-slider>
             <h2>PORTRAIT</h2>
         </div>
-        <div class="unit">
+        <div v-if="display == true" class="unit">
             <other-slider></other-slider>
             <h2>OTHERS</h2>
+        </div>
+        <div v-if="display == false" class="unit">
+            <landscape-slider></landscape-slider>
+            <h2>风&nbsp;景</h2>
+        </div>
+        <div v-if="display == false" class="unit">
+            <portrait-slider></portrait-slider>
+            <h2>人&nbsp;物</h2>
+        </div>
+        <div v-if="display == false" class="unit">
+            <other-slider></other-slider>
+            <h2>其&nbsp;它</h2>
         </div>
     </div>
 </template>

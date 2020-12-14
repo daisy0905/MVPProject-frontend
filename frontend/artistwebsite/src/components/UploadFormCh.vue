@@ -1,26 +1,26 @@
 <template>
     <div>
         <div id="upload-form">
-            <h3>Name</h3>
+            <h3>名称</h3>
             <input type="text" id="name-input" class="input" v-model="name">
-            <h3>Length</h3>
+            <h3>长</h3>
             <input type="text" id="length-input" class="input" v-model="length">
-            <h3>Width</h3>
+            <h3>宽</h3>
             <input type="text" id="width-input" class="input" v-model="width">
-            <h3>Completed at</h3>
+            <h3>完成时间</h3>
             <input type="text" id="completed-input" class="input" v-model="completed_at">
-            <h3>Material</h3>
+            <h3>材料</h3>
             <input type="text" id="material-input" class="input" v-model="material">
-            <h3>Category</h3>
+            <h3>类别</h3>
             <input type="text" id="category-input" class="input" v-model="category">
-            <h3>Status</h3>
+            <h3>状态</h3>
             <input type="text" id="status-input" class="input" v-model="status">
-            <h3>Image URL</h3>
+            <h3>作品链接</h3>
             <input type="text" id="url-input" class="input" v-model="url">
         </div>
         <div class="submit-btn">
             <div></div>
-            <button @click="uploadArtwork">Upload</button>
+            <button @click="uploadArtwork">上传作品</button>
             <div></div>
         </div>
         <h3>{{ uploadStatus }}</h3>
@@ -143,5 +143,5 @@ h3 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     letter-spacing: 5px;
-  }
+}
 </style>

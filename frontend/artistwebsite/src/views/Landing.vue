@@ -34,8 +34,8 @@ import Slider from "../components/Slider.vue"
     align-items: center;
 
     h1 {
-        position: fixed;
-        top: 50vh;
+        position: absolute;
+        top: 49vh;
         z-index: 100;
         color: white;
         left: 25vw;

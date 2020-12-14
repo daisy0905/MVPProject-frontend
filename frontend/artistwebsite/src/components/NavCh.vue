@@ -10,10 +10,10 @@
         </div>
         <div v-if="display == false" id="nav-bar">
             <div></div>
-            <h2 id="home-page" class="nav-text" @click="goToHome">主页</h2>
+            <h2 id="home-page" class="nav-text" @click="goToHome">首页</h2>
             <h2 id="bio-page" class="nav-text" @click="goToBio">个人简介</h2>
             <h2 id="portfolio-page" @click="goToPortfolio">作品集</h2>
-            <h2 id="contanct" @click="goToContact">与我联系</h2>
+            <h2 id="contact-page" @click="goToContact">与我联系</h2>
             <div></div>
             <button @click="showInput">管理员登录</button>
             <div v-if="show == false" id="login">

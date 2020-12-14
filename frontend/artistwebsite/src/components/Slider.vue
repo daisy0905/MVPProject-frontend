@@ -7,7 +7,8 @@
       <a class="icon" @click="next" href="#">&#10095;</a>
     </div>
     <div id="main-image" v-for="i in [currentIndex]" :key="i">
-      <img v-if="mainImageSrc != ''" @click="goToHome" :src="mainImageSrc" />
+      <img class="color" v-if="mainImageSrc != ''" @click="goToHome" :src="mainImageSrc" />
+      <img class="black-and-white" v-if="mainImageSrc != ''" @click="goToHome" :src="mainImageSrc" />
     </div>
   </div>
 </template>
@@ -81,8 +82,8 @@ export default {
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(4, 1fr);
-    position: fixed;
-    top: 50vh;
+    position: absolute;
+    top: 48vh;
     z-index: 100;
 
     .icon {
@@ -92,16 +93,24 @@ export default {
   }
 
   #main-image {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     display: grid;
     justify-items: center;
     align-items: center;
+    grid-template-rows: 50% 50%;
 
-    img {
+    .color {
       height: 100%;
       width: 100%;
       object-fit: cover;
+    }
+
+    .black-and-white {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
     }
   }
 }

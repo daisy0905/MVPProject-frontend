@@ -11,6 +11,9 @@ import ArtworkStatus from "../views/ArtworkStatus.vue"
 import Enquiry from "../views/Enquiry.vue"
 import ArtworkList from "../views/ArtworkList.vue"
 import EnquiryReview from "../views/EnquiryReview.vue"
+import Contact from "../views/Contact.vue"
+import Visitors from "../views/Visitors.vue"
+
 
 Vue.use(VueRouter);
 
@@ -41,6 +44,11 @@ const routes = [
     component: Artwork
   },
   {
+    path: "/contact",
+    name: "Contact",
+    component: Contact
+  },
+  {
     path: "/uploadartwork",
     name: "UploadArtwork",
     component: UploadArtwork
@@ -69,6 +77,11 @@ const routes = [
     path: "/enquiryreview",
     name: "EnquiryReview",
     component: EnquiryReview
+  },
+  {
+    path: "/visitors",
+    name: "Visitors",
+    component: Visitors
   },
   
 ];
