@@ -23,8 +23,8 @@
                 <input type="text" id="password-input" class="input" v-model="password">
                 <button @click="login">Login In</button>
                 <p>{{ loginStatus }}</p>
+                <div></div>
             </div>
-            <div></div>
         </div>
     </div>
 </template>
@@ -134,10 +134,10 @@
 }
 
 #nav-bar {
-  height: 92vh;
+  min-height: 100vh;
   width: 40%;
   display: grid;
-  grid-template-rows: 15% repeat(4, 10%) 3% 8% 32%;
+  grid-template-rows: 15% repeat(4, 10%) 3% 8% 40%;
   justify-items: left;
   align-items: left;
   position: absolute;

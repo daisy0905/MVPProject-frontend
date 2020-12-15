@@ -180,7 +180,7 @@ export default {
   .input {
     width: 70%;
     height: 3vh;
-    background-color: #e1e8ed;
+    background-color: white;
     border: 1px solid #aab8c2;
     margin: 0 0 1em 0;
     border-bottom: 2px solid darkgrey;

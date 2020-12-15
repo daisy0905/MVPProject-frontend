@@ -74,7 +74,7 @@
                 this.show =! this.show
             },
             logout: function() {
-                if(this.username == "tongkemin" && this.password == "kemin1018") {
+                if(this.username == "daisy0905" && this.password == "felix1101") {
                     this.logoutStatus = "Log Out Success!"
                     setTimeout(()=>{this.$router.push("/")}, 1000)
                 } else {
@@ -136,7 +136,7 @@
 }
 
 #nav-bar {
-  min-height: 90vh;
+  min-height: 100vh;
   width: 40%;
   display: grid;
   grid-template-rows: 10% repeat(4, 12%) 3% 8% 8%;

@@ -72,7 +72,7 @@
                 this.show =! this.show
             },
             login: function() {
-                if(this.username == "tongkemin" && this.password == "kemin1018") {
+                if(this.username == "daisy0905" && this.password == "felix1101") {
                     this.loginStatus = "Login Success!"
                     setTimeout(()=>{this.$router.push("/artworkoverview")}, 1000)
                 } else {
@@ -134,7 +134,7 @@
 }
 
 #nav-bar {
-  height: 92vh;
+  min-height: 100vh;
   width: 40%;
   display: grid;
   grid-template-rows: 15% repeat(4, 10%) 3% 8% 32%;

@@ -13,7 +13,7 @@
         </div>
         <div v-if="display == true" id="unit-3">
             <div class="item">
-                <img src="../assets/phone-icon.jpg" alt="phone icon">
+                <img src="../assets/phone-icon.png" alt="phone icon">
                 <h4>13908484972</h4>
             </div>
             <div class="item">
@@ -21,7 +21,7 @@
                 <h4>kemin1018@163.com</h4>
             </div>
             <div class="item">
-                <img src="../assets/wechat-icon.jpg" alt="weChat icon">
+                <img src="../assets/wechat-icon.png" alt="weChat icon">
                 <h4>TK17Tk17</h4>
             </div>
             <div class="item">
@@ -45,7 +45,7 @@
         </div>
          <div v-if="display == false" id="unit-3">
             <div class="item">
-                <img src="../assets/phone-icon.jpg" alt="phone icon">
+                <img src="../assets/phone-icon.png" alt="phone icon">
                 <h4>13908484972</h4>
             </div>
             <div class="item">
@@ -53,7 +53,7 @@
                 <h4>kemin1018@163.com</h4>
             </div>
             <div class="item">
-                <img src="../assets/wechat-icon.jpg" alt="weChat icon">
+                <img src="../assets/wechat-icon.png" alt="weChat icon">
                 <h4>TK17Tk17</h4>
             </div>
             <div class="item">
@@ -204,8 +204,8 @@ import axios from "axios"
         grid-template-columns: 20% 80%;
 
         img {
-            width:30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             object-fit: cover;
         }
 

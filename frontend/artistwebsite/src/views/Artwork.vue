@@ -44,7 +44,7 @@
         </div>
         <div v-if="display == false">
             <div id="btn-container">
-                <button @click="showEnquiry" class="btn-1">留言</button>
+                <button @click="showEnquiry" class="btn-1">询价</button>
                 <button class="btn-1" v-if="artStatus == true" @click="addToCart">下订单</button>
                 <button v-else class="btn-2">下订单</button>
             </div>

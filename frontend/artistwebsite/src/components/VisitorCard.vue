@@ -1,26 +1,22 @@
 <template>
     <div class="visitor">
         <div class="visitor-card">
-            <div id="item">
-                <div></div>
-                <img @click="showContact" src="../assets/profile-icon.png" alt="profile icon">
-                <h4>{{ visitor.lastname }} {{visitor.firstname}}</h4>
+            <div class="name" @click="showContact">
+                <img src="../assets/profile-icon.png" alt="phone icon">
+                <h3>{{ visitor.lastname }} {{visitor.firstname}}</h3>
             </div>
             <div class="container" v-if="display == true">
                 <div class="item">
-                    <div></div>
                     <img src="../assets/phone-icon.png" alt="phone icon">
                     <p>{{ visitor.phone_number }}</p>
                 </div>
                 <div class="item">
-                    <div></div>
                     <img src="../assets/email-icon.png" alt="email icon">
                     <p>{{ visitor.email }}</p>
                 </div>
                 <div class="item">
-                    <div></div>
-                    <img src="../assets/wechat-icon.jpg" alt="weChat icon">
-                    <p>WeChat: {{ visitor.wechat }}</p>
+                    <img src="../assets/wechat-icon.png" alt="weChat icon">
+                    <p>{{ visitor.wechat }}</p>
                 </div>
             </div>
         </div>
@@ -60,44 +56,46 @@
     min-height: 5vh;
     width: 100%;
     display: grid;
-    justify-items: left;
+    justify-items: center;
     align-items: start;
+    margin-top: 1em;
 }
 
 .visitor-card {
     min-height: 5vh;
     width: 100%;
     display: grid;
-    justify-items: left;
+    justify-items: center;
     align-items: start;
 
-    #item {
+    .name {
         height: 5vh;
-        width: 100%;
+        width: 80%;
         display: grid;
         justify-items: left;
         align-items: center;
-        grid-template-columns: 20% 20% 60%;
+        grid-template-columns: 15% 85%;
+        border-bottom: 1px solid grey;
 
         img {
             width: 20px;
             height: 20px;
         }
 
-        h4 {
+        h3 {
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 0.8rem;
+            font-size: 1rem;
             padding: 0.5em;
-            text-align: left;
-            font-weight: bold;
+            text-align: center;
+            font-weight: normal;
         }
     }
 
     .container {
     min-height: 5vh;
-    width: 100%;
+    width: 80%;
     display: grid;
-    justify-items: left;
+    justify-items: center;
     align-items: start;
 
     .item {
@@ -106,7 +104,7 @@
         display: grid;
         justify-items: left;
         align-items: center;
-        grid-template-columns: 20% 20% 60%;
+        grid-template-columns: 15% 85%;
 
         img {
             width: 20px;

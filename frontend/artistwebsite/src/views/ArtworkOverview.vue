@@ -21,8 +21,7 @@ import NavAdminCh from "../components/NavAdminCh.vue"
         components: {
             NavAdmin,
             NavAdminCh,
-            ArtworkCardList,
-            
+            ArtworkCardList
         },
         data() {
             return {

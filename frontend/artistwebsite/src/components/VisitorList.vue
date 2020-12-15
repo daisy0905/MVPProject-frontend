@@ -44,5 +44,6 @@ import axios from "axios"
     display: grid;
     justify-items: center;
     align-items: start;
+    grid-template-columns: 1fr 1fr;
 }
 </style>

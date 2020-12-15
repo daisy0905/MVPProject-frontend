@@ -111,8 +111,8 @@ export default {
 .text {
   position: absolute;
   width: 70%;
-  height: 10vh;
-  top: 52vh;
+  height: 5vh;
+  top: 55vh;
   left: 18vw;
   display: grid;
   justify-items: center;
@@ -120,10 +120,10 @@ export default {
 
   p {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: white;
     text-align: center;
-    padding: 1em 0.5em 1em 0.5em;
+    padding: 0.5em;
     letter-spacing: 5px;
     text-shadow: 1px 1px 1px black;
     font-weight: bold;
