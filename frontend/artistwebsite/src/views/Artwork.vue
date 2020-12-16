@@ -362,4 +362,90 @@ import axios from "axios";
     margin: 0;
   }
 }
+
+@media only screen and (min-width: 600px) {
+    #unit-1 {
+
+        h4 {
+        font-size: 1.2rem;
+    }
+}
+
+#search-bar {
+
+  .search {
+    height: 4vh;
+    font-size: 1.2rem;
+  }
+
+  img {
+    width: 30px;
+  }
+}
+
+// #content {
+//   min-height: 40vh;
+//   width: 100%;
+//   display: grid;
+//   align-items: center;
+//   justify-items: center;
+// }
+
+// #image-detail {
+//   min-height: 20vh;
+//   width: 100%;
+//   display: grid;
+//   align-items: start;
+//   justify-items: center;
+
+//   img {
+//     width: 90%;
+//     vertical-align: super;
+//   }
+// }
+
+#description {
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+#status {
+    height: 8vh;
+
+  p {
+        width: 25vw;
+        font-size: 1.5rem;
+  }
+}
+
+#btn-container {
+
+  .btn-1 {
+    font-size: 1.2rem;
+  }
+
+  .btn-2 {
+    font-size: 1.2rem;
+  }
+}
+
+#alert {
+
+  .closebtn {
+    width: 15%;
+    font-size: 50px;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+}
+
+}
 </style>

@@ -9,23 +9,28 @@
             </div>
         </div>
         <div v-if="display == false" id="nav-bar">
-            <div></div>
-            <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">作品总览</h2>
-            <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">作品在售情况</h2>
-            <h2 id="artworkupload-page" class="nav-text" @click="goToUpload">新作上传</h2>
-            <h2 id="enquiry-page" class="nav-text" @click="goToEnquiry">访客留言</h2>
-            <h2 id="visitorlist-page" @click="goToVisitors">访客信息总览</h2>
-            <div></div>
-            <button @click="showInput">管理员退出</button>
-            <div v-if="show == false" id="logout">
-                <h4>用户名</h4>
-                <input type="text" id="username-input" class="input" v-model="username">
-                <h4>密码</h4>
-                <input type="text" id="password-input" class="input" v-model="password">
-                <button @click="logout">退出</button>
-                <p>{{ logoutStatus }}</p>
+            <div id="nav-unit-1">
+                <div></div>
+                <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">作品总览</h2>
+                <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">作品在售情况</h2>
+                <h2 id="artworkupload-page" class="nav-text" @click="goToUpload">新作上传</h2>
+                <h2 id="enquiry-page" class="nav-text" @click="goToEnquiry">访客留言</h2>
+                <h2 id="visitorlist-page" @click="goToVisitors">访客信息总览</h2>
+                <div></div>
             </div>
+            <div id="nav-unit-2">
+                <button id="login-btn" @click="showInput">管理员退出</button>
+                <div v-if="show == false" id="logout">
+                    <h4>用户名</h4>
+                    <input type="text" id="username-input" class="input" v-model="username">
+                    <h4>密码</h4>
+                    <input type="text" id="password-input" class="input" v-model="password">
+                    <button @click="logout">退出</button>
+                    <p>{{ logoutStatus }}</p>
+                </div>
             <div></div>
+            </div>
+            
         </div>
     </div>
 </template>
@@ -136,77 +141,95 @@
 }
 
 #nav-bar {
-  min-height: 90vh;
-  width: 40%;
+  min-height: 22vh;
+  width: 100%;
   display: grid;
-  grid-template-rows: 10% repeat(4, 12%) 3% 8% 8%;
+  grid-template-columns: 1fr 1fr;
   justify-items: left;
   align-items: left;
   position: absolute;
   right: 0;
-  top: 8vh;
-  background-color: lightgrey;
+  top: 15vh;
+  background-color: black;
+  opacity: 0.7;
 
-  h2 {
-      width: 80%;
-    font-weight: bold; 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    margin-left: 1em;
-    text-align: left;
-    line-height: 25px;
-  }
-
-  button {
-    width: 25vw;
-    height: 5vh;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-    border: 1px solid black;
-    box-shadow: 1px 1px 2px grey;
-    font-weight: bold;
-    margin-left: 1.2em;
-  }
-
-  #logout {
-    width: 70%;
-    height: 5vh;
+  #nav-unit-1 {
+    height: 100%;
+    width: 100%;
     display: grid;
     justify-items: left;
-    align-items: center;
-    margin-left: 1em;
+    align-items: left;
+    row-gap: 1vh;
+  }
 
-    h4 {
+  h2 {
+    font-weight: bold; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    margin-left: 2em;
+    color: white;
+  }
+
+  #nav-unit-2 {
+    width: 100%;
+    display: grid;
+    justify-items: right;
+    align-items: left;
+    margin-top: 1em;
+
+    #login-btn {
+        width: 50%;
+        height: 3vh;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
-        margin: 0.5em 0 0.5em 0;
+        border: 1px solid white;
+        box-shadow: 1px 1px 2px grey;
+        font-weight: bold;
+        margin-right: 1em;
     }
 
-    .input {
-        width: 80%;
-        height: 3vh;
-        background-color: none;
-        border: none;
-        border-bottom: 1px solid black;
-        margin: 0 0 0.5em 0;
-        text-align: center;
-    }
+    #logout {
+        width: 70%;
+        display: grid;
+        justify-items: right;
+        align-items: center;
+        margin-right: 1em;
 
-    button {
-        width: 80%;
-        height: 3vh;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
-        border: 1px solid grey;
-        box-shadow: none;
-        margin: 0.5em 0 0 0;
-    }
+        h4 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.6rem;
+            margin: 0.5em 0 0.5em 0;
+            color: white;
+            font-weight: normal;
+        }
 
-    p {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.6rem;
-        margin: 1em 0 0.5em 0;
-        text-align: center;
+        .input {
+            width: 70%;
+            height: 3vh;
+            background-color: none;
+            border: none;
+            border-bottom: 1px solid black;
+            margin: 0 0 0.5em 0;
+            text-align: center;
+        }
+
+        button {
+            width: 70%;
+            height: 3vh;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.8rem;
+            border: 1px solid grey;
+            box-shadow: none;
+            margin: 0.5em 0 0 0;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.6rem;
+            margin: 1em 0 0.5em 0;
+            text-align: center;
+            color: white;
+        }
     }
   }
 }

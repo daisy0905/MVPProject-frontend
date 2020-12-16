@@ -76,13 +76,6 @@ import PortraitSlider from '../components/PortraitSlider.vue'
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 #portfolio {
     min-height: 50vh;
     width: 100%;
@@ -115,13 +108,6 @@ import PortraitSlider from '../components/PortraitSlider.vue'
     align-items: center;
     position: relative;
 
-    img {
-        width: 100%;
-        height: 50vh;
-        object-fit: cover;
-        opacity: 0.8;
-    }
-
     h2 {
             font-weight: bold; 
             font-family: Arial, Helvetica, sans-serif;
@@ -133,5 +119,19 @@ import PortraitSlider from '../components/PortraitSlider.vue'
         }
 }
 
+@media only screen and (min-width: 600px) {
+    #unit-1 {
 
+        h4 {
+        font-size: 1.2rem;
+    }
+    }
+    .unit {
+
+        h2 {
+            font-size: 2rem;
+        
+        }
+    }
+}
 </style>

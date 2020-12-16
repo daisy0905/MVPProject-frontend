@@ -9,23 +9,27 @@
             </div>
         </div>
         <div v-if="display == false" id="nav-bar">
-            <div></div>
-            <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">ARTWORK OVERVIEW</h2>
-            <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">ARTWORK STATUS</h2>
-            <h2 id="artworkupload-page" class="nav-text" @click="goToUpload">ARTWORK UPLOAD</h2>
-            <h2 id="enquiry-page" class="nav-text" @click="goToEnquiry">ENQUIRY REVIEW</h2>
-            <h2 id="visitorlist-page" @click="goToVisitors">VISITOR LIST</h2>
-            <div></div>
-            <button @click="showInput">admin logout</button>
-            <div v-if="show == false" id="logout">
-                <h4>Username</h4>
-                <input type="text" id="username-input" class="input" v-model="username">
-                <h4>Password</h4>
-                <input type="text" id="password-input" class="input" v-model="password">
-                <button @click="logout">Login Out</button>
-                <p>{{ logoutStatus }}</p>
+            <div id="nav-unit-1">
+                <div></div>
+                <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">ARTWORK OVERVIEW</h2>
+                <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">ARTWORK STATUS</h2>
+                <h2 id="artworkupload-page" class="nav-text" @click="goToUpload">ARTWORK UPLOAD</h2>
+                <h2 id="enquiry-page" class="nav-text" @click="goToEnquiry">ENQUIRY REVIEW</h2>
+                <h2 id="visitorlist-page" @click="goToVisitors">VISITOR LIST</h2>
+                <div></div>
             </div>
-            <div></div>
+            <div id="nav-unit-2">
+                <button id="login-btn" @click="showInput">admin logout</button>
+                <div v-if="show == false" id="logout">
+                    <h4>Username</h4>
+                    <input type="text" id="username-input" class="input" v-model="username">
+                    <h4>Password</h4>
+                    <input type="text" id="password-input" class="input" v-model="password">
+                    <button @click="logout">Login Out</button>
+                    <p>{{ logoutStatus }}</p>
+                </div>
+                <div></div>
+            </div>
         </div>
     </div>
 </template>
@@ -136,54 +140,70 @@
 }
 
 #nav-bar {
-  min-height: 100vh;
-  width: 40%;
+  min-height: 22vh;
+  width: 100%;
   display: grid;
-  grid-template-rows: 10% repeat(4, 12%) 3% 8% 8%;
+  grid-template-columns: 1fr 1fr;
   justify-items: left;
   align-items: left;
   position: absolute;
   right: 0;
-  top: 8vh;
-  background-color: lightgrey;
+  top: 15vh;
+  background-color: black;
+  opacity: 0.7;
 
-  h2 {
-      width: 80%;
-    font-weight: bold; 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    margin-left: 1em;
-    text-align: left;
-    line-height: 25px;
-  }
-
-  button {
-    width: 25vw;
-    height: 5vh;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-    border: 1px solid black;
-    box-shadow: 1px 1px 2px grey;
-    font-weight: bold;
-    margin-left: 1.2em;
-  }
-
-  #logout {
-    width: 70%;
-    height: 5vh;
+  #nav-unit-1 {
+    height: 100%;
+    width: 100%;
     display: grid;
     justify-items: left;
-    align-items: center;
-    margin-left: 1em;
+    align-items: left;
+    row-gap: 1vh;
+  }
+
+  h2 {
+    font-weight: bold; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    margin-left: 2em;
+    color: white;
+  }
+
+  #nav-unit-2 {
+    width: 100%;
+    display: grid;
+    justify-items: right;
+    align-items: left;
+    margin-top: 1em;
+
+    #login-btn {
+        width: 50%;
+        height: 3vh;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        border: 1px solid white;
+        box-shadow: 1px 1px 2px grey;
+        font-weight: bold;
+        margin-right: 1em;
+    }
+
+    #logout {
+        width: 70%;
+        display: grid;
+        justify-items: right;
+        align-items: center;
+        margin-right: 1em;
 
     h4 {
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         margin: 0.5em 0 0.5em 0;
+        color: white;
+        font-weight: normal;
     }
 
     .input {
-        width: 80%;
+        width: 70%;
         height: 3vh;
         background-color: none;
         border: none;
@@ -193,7 +213,7 @@
     }
 
     button {
-        width: 80%;
+        width: 70%;
         height: 3vh;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
@@ -207,7 +227,9 @@
         font-size: 0.6rem;
         margin: 1em 0 0.5em 0;
         text-align: center;
+        color: white;
     }
+  }
   }
 }
 

@@ -46,4 +46,15 @@ import Slider from "../components/Slider.vue"
         width: 100%;
     }
 }
+
+@media only screen and (min-width: 600px) {
+
+    #landing {
+        h1 {
+            font-size: 3rem;
+            top: 48vh;
+            left: 28vw;
+        }
+    }
+}
 </style>

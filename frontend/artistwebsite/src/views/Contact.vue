@@ -8,71 +8,93 @@
             <h4 id="chinese" @click="showChinese">中文</h4>
             <div></div>
         </div>
-        <div id="unit-2">
-            <img src="../assets/studio.jpg" alt="the image of studio">
-        </div>
-        <div v-if="display == true" id="unit-3">
-            <div class="item">
-                <img src="../assets/phone-icon.png" alt="phone icon">
-                <h4>13908484972</h4>
+        <div id="container-1">
+            <div id="unit-2">
+                <img src="../assets/studio.jpg" alt="the image of studio">
             </div>
-            <div class="item">
-                <img src="../assets/email-icon.png" alt="email icon">
-                <h4>kemin1018@163.com</h4>
+            <div v-if="display == true" id="unit-3">
+                <div class="item">
+                    <img src="../assets/phone-icon.png" alt="phone icon">
+                    <h4>13908484972</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/email-icon.png" alt="email icon">
+                    <h4>kemin1018@163.com</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/wechat-icon.png" alt="weChat icon">
+                    <h4>TK17Tk17</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/address-icon.png" alt="address icon">
+                    <p>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</p>
+                </div>
             </div>
-            <div class="item">
-                <img src="../assets/wechat-icon.png" alt="weChat icon">
-                <h4>TK17Tk17</h4>
-            </div>
-            <div class="item">
-                <img src="../assets/address-icon.png" alt="address icon">
-                <p>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</p>
+            <div v-if="display == false" id="unit-3">
+                <div class="item">
+                    <img src="../assets/phone-icon.png" alt="phone icon">
+                    <h4>13908484972</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/email-icon.png" alt="email icon">
+                    <h4>kemin1018@163.com</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/wechat-icon.png" alt="weChat icon">
+                    <h4>TK17Tk17</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/address-icon.png" alt="address icon">
+                    <p>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</p>
+                </div>
             </div>
         </div>
         <div v-if="display == true" id="contact-form">
             <h4>STAY IN TOUCH!</h4>
-            <p>Last Name</p>
-            <input type="text" class="input" v-model="lastname">
-            <p>First Name</p>
-            <input type="text" class="input" v-model="firstname">
-            <p>Phone Number</p>
-            <input type="text" class="input" v-model="phone">
-            <p>Email</p>
-            <input type="text" class="input" v-model="email">
-            <p>WeChat ID</p>
-            <input type="text" class="input" v-model="wechat">
+            <div class="box">
+                <p>Last Name</p>
+                <input type="text" class="input" v-model="lastname">
+            </div>
+            <div class="box">
+                <p>First Name</p>
+                <input type="text" class="input" v-model="firstname">
+            </div>
+            <div class="box">
+                <p>Phone Number</p>
+                <input type="text" class="input" v-model="phone">
+            </div>
+            <div class="box">
+                <p>Email</p>
+                <input type="text" class="input" v-model="email">
+            </div>
+            <div class="box">
+                <p>WeChat ID</p>
+                <input type="text" class="input" v-model="wechat">
+            </div>
             <button @click="createContact">Submit</button>
-        </div>
-         <div v-if="display == false" id="unit-3">
-            <div class="item">
-                <img src="../assets/phone-icon.png" alt="phone icon">
-                <h4>13908484972</h4>
-            </div>
-            <div class="item">
-                <img src="../assets/email-icon.png" alt="email icon">
-                <h4>kemin1018@163.com</h4>
-            </div>
-            <div class="item">
-                <img src="../assets/wechat-icon.png" alt="weChat icon">
-                <h4>TK17Tk17</h4>
-            </div>
-            <div class="item">
-                <img src="../assets/address-icon.png" alt="address icon">
-                <p>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</p>
-            </div>
         </div>
         <div v-if="display == false" id="contact-form">
             <h4>保持联系！</h4>
-            <p>姓</p>
-            <input type="text" class="input" v-model="lastname">
-            <p>名</p>
-            <input type="text" class="input" v-model="firstname">
-            <p>电话</p>
-            <input type="text" class="input" v-model="phone">
-            <p>邮箱</p>
-            <input type="text" class="input" v-model="email">
-            <p>微信</p>
-            <input type="text" class="input" v-model="wechat">
+            <div class="box">
+                <p>姓</p>
+                <input type="text" class="input" v-model="lastname">
+            </div>
+            <div class="box">
+                <p>名</p>
+                <input type="text" class="input" v-model="firstname">
+            </div>
+            <div class="box">
+                <p>电话</p>
+                <input type="text" class="input" v-model="phone">
+            </div>
+            <div class="box">
+                <p>邮箱</p>
+                <input type="text" class="input" v-model="email">
+            </div>
+            <div class="box">
+                <p>微信</p>
+                <input type="text" class="input" v-model="wechat">
+            </div>
             <button @click="createContact">提交</button>
         </div>
         <p>{{ submitStatus }}</p>
@@ -141,15 +163,7 @@ import axios from "axios"
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 #contact-page {
-    min-height: 100vh;
     width: 100%;
     display: grid;
     align-items: start;
@@ -173,9 +187,17 @@ import axios from "axios"
     }
 }
 
-#unit-2 {
+#container-1 {
     min-height: 30vh;
     width: 80%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 1em;
+}
+#unit-2 {
+    min-height: 30vh;
+    width: 100%;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -238,29 +260,37 @@ import axios from "axios"
   padding: 1em 0 1em 0;
 }
 
-  h4 {
+h4 {
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     margin: 1em 0 1em 0;
-  }
+}
 
-  p {
-    width: 90%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-    text-align: center;
-  }
+.box {
+    width: 100%;
+    height: 10vh;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 
-  .input {
-    width: 60%;
-    height: 3vh;
-    border: 1px solid #aab8c2;
-    margin: 0 0 1em 0;
-    text-align: center;
-  }
+    p {
+        width: 90%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        text-align: center;
+    }
 
-  button {
+    .input {
+        width: 60%;
+        height: 3vh;
+        border: 1px solid #aab8c2;
+        margin: 0 0 1em 0;
+        text-align: center;
+    }
+}
+
+button {
     width: 25vw;
     height: 5vh;
     font-family: Arial, Helvetica, sans-serif;
@@ -268,6 +298,99 @@ import axios from "axios"
     border: 1px solid black;
     box-shadow: 1px 1px 2px grey;
     font-weight: bold;
-  }
+}
 
+@media only screen and (min-width: 600px) {
+#contact-page {
+    min-height: 50vh;
+}
+
+#unit-1 {
+
+  h4 {
+    font-size: 1.2rem;
+  }
+}
+
+#container-1 {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2vw;
+}
+
+#unit-3 {
+    .item {
+        height: 7vh;
+
+        img {
+            width: 30px;
+            height: 30px;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            width: 100%;
+            font-size: 1rem;
+          
+        }
+    }
+}
+
+#contact-form {
+  width: 50%;
+  min-height: 20vh;
+  display: grid;
+  justify-items: center;
+  align-items: right;
+  row-gap: 0.8vh;
+  margin: 2em 0 1em 0;
+  padding: 1em 0 1em 0;
+}
+
+h4 {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    margin: 1em 0 1em 0;
+}
+
+.box {
+    width: 100%;
+    height: 5vh;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 20% 80%;
+
+    p {
+        width: 90%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .input {
+        width: 60%;
+        height: 3vh;
+        border: 1px solid #aab8c2;
+        margin: 0 0 1em 0;
+        text-align: center;
+    }
+}
+
+button {
+    width: 25vw;
+    height: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    border: 1px solid black;
+    box-shadow: 1px 1px 2px grey;
+    font-weight: bold;
+}
+}
 </style>

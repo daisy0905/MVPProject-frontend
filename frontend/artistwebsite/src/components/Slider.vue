@@ -93,7 +93,7 @@ export default {
   }
 
   #main-image {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     display: grid;
     justify-items: center;
@@ -113,5 +113,14 @@ export default {
       filter: grayscale(100%);
     }
   }
+}
+
+@media only screen and (min-width: 600px) {
+   #slider-icon {
+    .icon {
+      font-size: 2rem;
+    }
+  }
+    
 }
 </style>

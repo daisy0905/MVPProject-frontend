@@ -78,13 +78,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 #bio {
   min-height: 100vh;
   width: 100%;
@@ -150,6 +143,7 @@ export default {
     h3 {
       font-family: Arial, Helvetica, sans-serif;
       font-size: 1rem;
+      margin-top: 0.5em;
     }
 
     p {
@@ -159,8 +153,51 @@ export default {
       font-size: 0.8rem;
       text-align: justify;
       line-height: 1.5em;
-      margin-top: 1em;
+      margin: 1em 0 1em 0;
     }
   }
+}
+
+@media only screen and (min-width: 600px) {
+  #bio {
+  width: 100%;
+  min-height: 30vh;
+  display: grid;
+  align-items: center;
+}
+
+#unit-1 {
+
+  h4 {
+    font-size: 1.2rem;
+  }
+}
+
+#content {
+  min-height: 30vh;
+  margin-top: 1em;
+
+  #unit-2 {
+    img {
+      width: 300px;
+    }
+  }
+
+  .unit-3 {
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      width: 60%;
+      font-size: 1.2rem;
+    }
+  }
+}
 }
 </style>

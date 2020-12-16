@@ -9,21 +9,25 @@
             </div>
         </div>
         <div v-if="display == false" id="nav-bar">
-            <div></div>
-            <h2 id="home-page" class="nav-text" @click="goToHome">HOME</h2>
-            <h2 id="bio-page" class="nav-text" @click="goToBio">BIO</h2>
-            <h2 id="portfolio-page" @click="goToPortfolio">PORTFOLIO</h2>
-            <h2 id="contact-page" @click="goToContact">CONTACT</h2>
-            <div></div>
-            <button @click="showInput">admin login</button>
-            <div v-if="show == false" id="login">
-                <h4>Username</h4>
-                <input type="text" id="username-input" class="input" v-model="username">
-                <h4>Password</h4>
-                <input type="text" id="password-input" class="input" v-model="password">
-                <button @click="login">Login In</button>
-                <p>{{ loginStatus }}</p>
+            <div id="nav-unit-1">
                 <div></div>
+                <h2 id="home-page" class="nav-text" @click="goToHome">HOME</h2>
+                <h2 id="bio-page" class="nav-text" @click="goToBio">BIO</h2>
+                <h2 id="portfolio-page" @click="goToPortfolio">PORTFOLIO</h2>
+                <h2 id="contact-page" @click="goToContact">CONTACT</h2>
+                <div></div>
+            </div>
+            <div id="nav-unit-2">
+                <button id="login-btn" @click="showInput">admin login</button>
+                <div v-if="show == false" id="login">
+                    <h4>Username</h4>
+                    <input type="text" id="username-input" class="input" v-model="username">
+                    <h4>Password</h4>
+                    <input type="text" id="password-input" class="input" v-model="password">
+                    <button @click="login">Login In</button>
+                    <p>{{ loginStatus }}</p>
+                    <div></div>
+                </div>
             </div>
         </div>
     </div>
@@ -85,12 +89,6 @@
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 #nav {
     height: 8vh;
@@ -134,52 +132,69 @@
 }
 
 #nav-bar {
-  min-height: 100vh;
-  width: 40%;
+  min-height: 22vh;
+  width: 100%;
   display: grid;
-  grid-template-rows: 15% repeat(4, 10%) 3% 8% 40%;
+  grid-template-columns: 1fr 1fr;
   justify-items: left;
   align-items: left;
   position: absolute;
-  right: 2vw;
-  top: 10vh;
-  background-color: white;
-  opacity: 0.8;
+  top: 15vh;
+  background-color: black;
+  opacity: 0.7;
+
+  #nav-unit-1 {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-items: left;
+    align-items: left;
+    row-gap: 1vh;
+  }
 
   h2 {
     font-weight: bold; 
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    margin-left: 1em;
-  }
-
-  button {
-    width: 25vw;
-    height: 5vh;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8rem;
-    border: 1px solid black;
-    box-shadow: 1px 1px 2px grey;
-    font-weight: bold;
-    margin-left: 1.2em;
+    margin-left: 2em;
+    color: white;
   }
 
-  #login {
-    width: 70%;
-    height: 8vh;
+  #nav-unit-2 {
+    width: 100%;
     display: grid;
-    justify-items: left;
-    align-items: center;
-    margin-left: 1em;
+    justify-items: right;
+    align-items: left;
+    margin-top: 1em;
+
+    #login-btn {
+        width: 50%;
+        height: 3vh;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        border: 1px solid white;
+        box-shadow: 1px 1px 2px grey;
+        font-weight: bold;
+        margin-right: 1em;
+    }
+
+    #login {
+        width: 70%;
+        display: grid;
+        justify-items: right;
+        align-items: center;
+        margin-right: 1em;
 
     h4 {
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         margin: 0.5em 0 0.5em 0;
+        color: white;
+        font-weight: normal;
     }
 
     .input {
-        width: 80%;
+        width: 70%;
         height: 3vh;
         background-color: none;
         border: none;
@@ -189,7 +204,7 @@
     }
 
     button {
-        width: 80%;
+        width: 70%;
         height: 3vh;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
@@ -203,8 +218,72 @@
         font-size: 0.6rem;
         margin: 1em 0 0.5em 0;
         text-align: center;
+        color: white;
     }
   }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+
+#header {
+
+  .icon {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center; 
+
+    img {
+      height: 30px;
+      object-fit: cover;
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+#nav-bar {
+  top: 14.5vh;
+
+  h2 {
+    font-size: 1.2rem;
+    margin-left: 2em;
+    color: white;
+  }
+
+  #nav-unit-2 {
+    width: 100%;
+    justify-items: right;
+
+    #login-btn {
+        width: 42%;
+        font-size: 1rem;
+        margin-right: 2.5em;
+    }
+
+    #login {
+        width: 60%;
+        justify-items: right;
+        margin-right: 2.5em;
+
+        h4 {
+            font-size: 1rem;
+        }
+
+        button {
+            font-size: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+    }
+  }
+}
 }
 
 </style>

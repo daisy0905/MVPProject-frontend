@@ -61,13 +61,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 #home {
   height: 100vh;
   width: 100%;
@@ -105,6 +98,7 @@ export default {
     width: 100%;
     height: 92vh;
     object-fit: cover;
+    margin-top: 0.3em;
   }
 }
 
@@ -128,5 +122,30 @@ export default {
     text-shadow: 1px 1px 1px black;
     font-weight: bold;
   }
+}
+
+@media only screen and (min-width: 600px) {
+#unit-1 {
+
+  h4 {
+    font-size: 1.2rem;
+  }
+}
+
+#content {
+  
+
+  img {
+    margin-top: 0.6em;
+  }
+}
+
+.text {
+
+  p {
+    font-size: 2rem;
+  }
+}
+
 }
 </style>

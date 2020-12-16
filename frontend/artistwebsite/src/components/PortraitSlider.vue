@@ -140,4 +140,30 @@ export default {
     }
   }
 }
+
+@media only screen and (min-width: 600px) {
+    #cover-image {
+
+    #slider-icon {
+
+        .icon {
+            font-size: 1.5rem;
+        }
+    }
+
+    #main-image {
+        height: 50vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+}
 </style>
