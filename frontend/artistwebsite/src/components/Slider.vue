@@ -117,11 +117,24 @@ export default {
 }
 
 @media only screen and (min-width: 600px) {
-   #slider-icon {
+  #cover-image {
+
+  #slider-icon-1 {
+    left: -42vw;
+
     .icon {
-      font-size: 2rem;
+      font-size: 3rem;
     }
   }
+
+  #slider-icon-2 {
+    right: -37vw;
+
+    .icon {
+      font-size: 3rem;
+    }
+  }
+}
     
 }
 </style>

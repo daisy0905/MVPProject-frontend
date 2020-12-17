@@ -56,11 +56,32 @@ import Slider from "../components/Slider.vue"
 @media only screen and (min-width: 600px) {
 
     #landing {
-        h1 {
-            font-size: 3rem;
-            top: 48vh;
-            left: 28vw;
-        }
+
+    #title-1 {
+        position: absolute;
+        top: 13vh;
+        z-index: 100;
+        color: white;
+        transform: rotate(90deg);
+        font-size: 3em;
+        left: -18vw;
+        text-shadow: 1px 1px 1px black;
     }
+    
+    .slider {
+        width: 120%;
+    }
+
+    #title-2 {
+        position: fixed;
+        z-index: 100;
+        color: white;
+        transform: rotate(-90deg);
+        font-size: 3em;
+        right: -7.5vw;
+        bottom: 13vh;
+        text-shadow: 1px 1px 1px black;
+    }
+}
 }
 </style>
