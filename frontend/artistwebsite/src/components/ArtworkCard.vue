@@ -125,7 +125,7 @@ import axios from 'axios'
     margin-top: 1em;
 
     img {
-        width: 80%;
+        width: 90%;
         object-fit: cover;
 
     }
@@ -182,9 +182,57 @@ import axios from 'axios'
 }
 
 #update-form {
-    width: 85%;
-    height: 60vh;
+    width: 90%;
+    min-height: 40vh;
     position: absolute;
-    background-color: white;
+    background-color: lightgrey;
+    box-shadow: 1px 1px 1px black;
+    bottom: 15vh;
+}
+
+@media only screen and (min-width: 600px) {
+
+.image {
+    margin-top: 2em;
+
+}
+
+.description {
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    h4 { 
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+}
+
+.icon {
+    width: 100%;
+    height: 7vh;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 20% 30% 30% 20%;
+
+    img {
+        width: 40px;
+        height: 40px;
+        filter: grayscale(80%);
+    }
+}
+
+// #update-form {
+//     width: 90%;
+//     height: 60vh;
+//     position: absolute;
+//     top: 0.5vh;
+//     background-color: white;
+// }
 }
 </style>

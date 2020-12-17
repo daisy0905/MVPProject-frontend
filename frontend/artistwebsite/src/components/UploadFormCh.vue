@@ -75,73 +75,92 @@ import axios from "axios"
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    #upload-form {
+        min-height: 40vh;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: left;
+        align-items: left;
+        margin-top: 3em;
 
-#upload-form {
-    min-height: 50vh;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    align-items: center;
-    margin-top: 0.5em;
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            text-align: left;
+            letter-spacing: 2px;
+            margin-left: 2em;
+        }
+
+        .input {
+            width: 80%;
+            height: 4vh;
+            background-color: #E1E8ED;
+            border: 1px solid #AAB8C2;
+            margin: 0 0 1em 0;
+            border-bottom: 2px solid darkgrey;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+    }
+    .submit-btn {
+        height: 20vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 35% 30% 35%;
+
+        button {
+            width: 100%;
+            height: 5vh;
+            border: 1px solid black; 
+            border-radius: 1em;
+            background-color: white;
+            font-size: 0.8rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            padding: 0 0.5em 0 0.5em;
+
+            :hover {
+                background-color: darkgrey;
+                color: white;
+            }
+        }
+    }
 
     h3 {
+        height: 5vh;
+        font-weight: bold; 
         font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
         font-size: 1rem;
-        text-align: center;
-        letter-spacing: 2px;
+        letter-spacing: 5px;
+    }
+
+@media only screen and (min-width: 600px) {
+#upload-form {
+        margin-top: 4em;
+
+    h3 {
+        font-size: 1.2rem;
+        margin-left: 3em;
     }
 
     .input {
-        width: 70%;
-        height: 4vh;
-        background-color: #E1E8ED;
-        border: 1px solid #AAB8C2;
-        margin: 0 0 1em 0;
-        border-bottom: 2px solid darkgrey;
-        text-align: center;
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 }
 .submit-btn {
-    height: 20vh;
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: 35% 30% 35%;
-    margin-top: 2em;
 
     button {
-        width: 100%;
-        height: 5vh;
-        border: 1px solid black; 
-        border-radius: 1em;
-        background-color: white;
-        font-size: 0.8rem;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-        padding: 0 0.5em 0 0.5em;
-
-        :hover {
-            background-color: darkgrey;
-            color: white;
-        }
+        width: 90%;
+        font-size: 1.2rem;
     }
 }
 
 h3 {
-    height: 5vh;
-    font-weight: bold; 
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
-    letter-spacing: 5px;
+  }
 }
 </style>

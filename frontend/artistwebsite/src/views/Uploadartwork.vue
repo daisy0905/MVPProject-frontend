@@ -2,7 +2,7 @@
     <div id="upload">
         <nav-admin v-if="display == true"></nav-admin>
         <nav-admin-ch v-if="display == false"></nav-admin-ch>
-        <div id="unit-1">
+        <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
             <h4 id="chinese" @click="showChinese">中文</h4>
@@ -64,7 +64,7 @@ import UploadFormCh from "../components/UploadFormCh"
     align-items: center;
 }
 
-#unit-1 {
+#en-ch {
     height: 5vh;
     width: 100%;
     display: grid;
@@ -78,5 +78,14 @@ import UploadFormCh from "../components/UploadFormCh"
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
     }
+}
+
+@media only screen and (min-width: 600px) {
+    #en-ch {
+
+      h4 {
+      font-size: 1.2rem;
+    }
+  }
 }
 </style>

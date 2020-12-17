@@ -2,7 +2,7 @@
     <div id="landscape">
         <navigation v-if="display == true"></navigation>
         <nav-ch v-if="display == false"></nav-ch>
-        <div id="unit-1">
+        <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
             <h4 id="chinese" @click="showChinese">中文</h4>
@@ -198,7 +198,7 @@ import axios from "axios";
     justify-items: center;
 }
 
-#unit-1 {
+#en-ch {
     min-height: 5vh;
     width: 100%;
     display: grid;
@@ -285,7 +285,7 @@ import axios from "axios";
 
 #status {
   height: 5vh;
-  width: 50%;
+  width: 25vw;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -293,7 +293,7 @@ import axios from "axios";
   p {
     background-color: grey;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 0;
     padding: 0.5em 0.8em 0.5em 0.8em;
     color: white;
@@ -364,12 +364,12 @@ import axios from "axios";
 }
 
 @media only screen and (min-width: 600px) {
-    #unit-1 {
+  #en-ch {
 
-        h4 {
-        font-size: 1.2rem;
+      h4 {
+      font-size: 1.2rem;
     }
-}
+  }
 
 #search-bar {
 
@@ -382,27 +382,6 @@ import axios from "axios";
     width: 30px;
   }
 }
-
-// #content {
-//   min-height: 40vh;
-//   width: 100%;
-//   display: grid;
-//   align-items: center;
-//   justify-items: center;
-// }
-
-// #image-detail {
-//   min-height: 20vh;
-//   width: 100%;
-//   display: grid;
-//   align-items: start;
-//   justify-items: center;
-
-//   img {
-//     width: 90%;
-//     vertical-align: super;
-//   }
-// }
 
 #description {
 

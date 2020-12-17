@@ -1,6 +1,6 @@
 <template>
     <div class="visitors">
-        <visitor-card v-for="visitor in visitors" :key="visitor.id" :visitor="visitor"></visitor-card>
+        <visitor-card v-for="visitor in visitors" :key="visitor.id" :visitor="visitor" @deleteVisitor="deleteVisitor"></visitor-card>
     </div>
 </template>
 
@@ -30,6 +30,14 @@ import axios from "axios"
                    console.log(error)
                 })
             },
+            deleteVisitor: function(data) {
+                console.log(data)
+                for(let i=0; i<this.visitors.length; i++) {
+                    if(this.visitors[i].id == data) {
+                        this.visitors.splice(i, 1)
+                    }
+                }
+            }
         },
         mounted () {
             this.getVisitors();
@@ -40,7 +48,6 @@ import axios from "axios"
 <style lang="scss" scoped>
 .visitors {
     width: 100%;
-    min-height: 100vh;
     display: grid;
     justify-items: center;
     align-items: start;

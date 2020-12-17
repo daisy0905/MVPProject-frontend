@@ -21,13 +21,6 @@
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .available-list {
     min-height: 50vh;
     width: 100%;
@@ -57,10 +50,19 @@
     img {
         height: 90%;
     }
+}
 
-   .icon {
-        width: 20px;
-        height: 20px;
+@media only screen and (min-width: 600px) {
+    .item {
+        height: 15vh;
+
+        h4 { 
+            font-size: 1.2rem;
+        }
+
+        img {
+            height: 90%;
+        }
     }
 }
 </style>

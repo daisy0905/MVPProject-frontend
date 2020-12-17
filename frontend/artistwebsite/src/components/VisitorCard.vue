@@ -4,6 +4,7 @@
             <div class="name" @click="showContact">
                 <img src="../assets/profile-icon.png" alt="phone icon">
                 <h3>{{ visitor.lastname }} {{visitor.firstname}}</h3>
+                <img @click="deleteVisitor" class="icon" src="../assets/delete-icon-2.png" alt="delete icon">
             </div>
             <div class="container" v-if="display == true">
                 <div class="item">
@@ -24,6 +25,7 @@
 </template>
 
 <script>
+import axios from "axios"
     export default {
         props: {
             visitor: {
@@ -40,20 +42,30 @@
             showContact: function() {
                 this.display =! this.display
             },
+            deleteVisitor: function() {
+                axios.request({
+                    url: "http://127.0.0.1:5000/visitor",
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    data: {
+                        id: this.visitor.id
+                    }
+                }).then((response) => {
+                    console.log(response);
+                    this.$emit("deleteVisitor", this.visitor.id)
+                }).catch((error) => {
+                    console.log(error);
+                }) 
+            }
         },
     }
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .visitor {
-    min-height: 5vh;
     width: 100%;
     display: grid;
     justify-items: center;
@@ -62,7 +74,6 @@
 }
 
 .visitor-card {
-    min-height: 5vh;
     width: 100%;
     display: grid;
     justify-items: center;
@@ -74,7 +85,7 @@
         display: grid;
         justify-items: left;
         align-items: center;
-        grid-template-columns: 15% 85%;
+        grid-template-columns: 15% 70% 15%;
         border-bottom: 1px solid grey;
 
         img {
@@ -92,7 +103,6 @@
     }
 
     .container {
-    min-height: 5vh;
     width: 80%;
     display: grid;
     justify-items: center;
@@ -120,7 +130,42 @@
         }
     }
     }
-
 }
 
+@media only screen and (min-width: 600px) {
+
+    .visitor-card {
+
+        .name {
+
+            img {
+                width: 30px;
+                height: 30px;
+            }
+
+            h3 {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 1.2rem;
+                padding: 0.5em;
+                text-align: center;
+                font-weight: normal;
+            }
+        }
+
+        .container {
+
+            .item {
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+
+                p {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
 </style>

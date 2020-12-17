@@ -149,7 +149,7 @@
     display: grid;
     justify-items: left;
     align-items: left;
-    row-gap: 1vh;
+    row-gap: 1em;
   }
 
   h2 {
@@ -175,7 +175,7 @@
         border: 1px solid white;
         box-shadow: 1px 1px 2px grey;
         font-weight: bold;
-        margin-right: 1em;
+        margin-right: 2em;
     }
 
     #login {
@@ -237,7 +237,6 @@
 
     img {
       height: 30px;
-      object-fit: cover;
     }
   }
 
@@ -251,13 +250,9 @@
 
   h2 {
     font-size: 1.2rem;
-    margin-left: 2em;
-    color: white;
   }
 
   #nav-unit-2 {
-    width: 100%;
-    justify-items: right;
 
     #login-btn {
         width: 42%;
@@ -267,7 +262,6 @@
 
     #login {
         width: 60%;
-        justify-items: right;
         margin-right: 2.5em;
 
         h4 {

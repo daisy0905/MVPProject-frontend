@@ -2,7 +2,7 @@
     <div id="status-list">
         <nav-admin v-if="display == true"></nav-admin>
         <nav-admin-ch v-if="display == false"></nav-admin-ch>
-        <div id="unit-1">
+        <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
             <h4 id="chinese" @click="showChinese">中文</h4>
@@ -116,7 +116,7 @@ import Sold from '../components/Sold.vue'
     align-items: left;
 }
 
-#unit-1 {
+#en-ch {
     height: 5vh;
     width: 100%;
     display: grid;
@@ -172,5 +172,28 @@ import Sold from '../components/Sold.vue'
     display: grid;
     justify-items: center;
     align-items: start;
+}
+
+@media only screen and (min-width: 600px) {
+    #en-ch {
+
+      h4 {
+      font-size: 1.2rem;
+    }
+  }
+
+  #container-1 {
+
+    .art-status {
+
+        h5 {
+            font-size: 1rem;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+    }
+}
 }
 </style>

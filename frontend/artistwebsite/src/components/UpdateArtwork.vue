@@ -1,6 +1,6 @@
 <template>
   <div id="upload">
-    <div id="unit-1">
+    <div id="en-ch">
       <div></div>
       <h4 id="english" @click="showEnglish">EN</h4>
       <h4 id="chinese" @click="showChinese">中文</h4>
@@ -128,21 +128,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 #upload {
-  height: 70vh;
+  height: 65vh;
   width: 100%;
   display: grid;
   align-items: center;
 }
 
-#unit-1 {
+#en-ch {
   height: 5vh;
   width: 100%;
   display: grid;
@@ -163,16 +157,16 @@ export default {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  row-gap: 1vh;
   justify-items: center;
   align-items: center;
   margin-top: 0.5em;
-  background-color: lightgrey;
-  padding: 1em 0 1em 0;
+  padding-top: 1em;
 
   h3 {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-align: center;
     letter-spacing: 1px;
   }
@@ -182,7 +176,6 @@ export default {
     height: 3vh;
     background-color: white;
     border: 1px solid #aab8c2;
-    margin: 0 0 1em 0;
     border-bottom: 2px solid darkgrey;
     text-align: center;
     font-size: 0.8rem;
@@ -194,7 +187,6 @@ export default {
   justify-items: center;
   align-items: center;
   grid-template-columns: 35% 30% 35%;
-  background-color: lightgrey;
   padding: 1em 0 1em 0;
 
   button {
@@ -216,11 +208,42 @@ export default {
 }
 
 h3 {
-  height: 5vh;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   letter-spacing: 5px;
-  background-color: lightgrey;
+}
+
+@media only screen and (min-width: 600px) {
+  #en-ch {
+
+    h4 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .upload-form {
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    .input {
+      font-size: 1rem;
+    }
+  }
+  .submit-btn {
+    width: 90%;
+
+    button {
+      width: 90%;
+      font-size: 1rem;
+      height: 4vh;
+    }
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
 }
 </style>

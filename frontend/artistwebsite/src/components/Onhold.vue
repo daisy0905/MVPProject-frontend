@@ -57,4 +57,18 @@
         height: 90%;
     }
 }
+
+@media only screen and (min-width: 600px) {
+    .item {
+        height: 15vh;
+
+        h4 { 
+            font-size: 1.2rem;
+        }
+
+        img {
+            height: 90%;
+        }
+    }
+}
 </style>

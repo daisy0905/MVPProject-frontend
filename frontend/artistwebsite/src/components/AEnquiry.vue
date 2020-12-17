@@ -81,21 +81,12 @@ import axios from "axios"
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .enquiry-card {
-    min-height: 10vh;
     width: 100%;
     display: grid;
     justify-items: center;
     align-items: start; 
-    row-gap: 1vh;
-    margin: 0.5em;
+    row-gap: 2vh;
     border-bottom: 1px solid lightgrey;
 }
 
@@ -104,7 +95,7 @@ import axios from "axios"
     width: 100%;
     display: grid;
     justify-items: center;
-    align-items: start; 
+    align-items: center; 
     grid-template-columns: 30% 70%;
 }
 
@@ -116,7 +107,7 @@ import axios from "axios"
     align-items: center; 
 
     img {
-        width: 50px;
+        height: 90%;
     }
 }
 
@@ -134,6 +125,7 @@ import axios from "axios"
         justify-items: center;
         align-items: start;
         grid-template-columns: 80% 20%;
+        margin-top: 0.5em;
 
         h4 {
             width: 100%;
@@ -161,7 +153,6 @@ import axios from "axios"
     width: 90%;
     display: grid;
     align-items: start;
-    margin-top: 1em;
 
     .title {
         height: 5vh;
@@ -169,14 +160,15 @@ import axios from "axios"
         display: grid;
         justify-items: left;
         align-items: start;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 45% 55%;
 
         h4 {
             width: 60%;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 0.8rem;
-            margin-top: 0.5em;
+            margin: 0.5em 0 0 0.5em;
+            text-align: left;
         }
 
         .contact {
@@ -202,8 +194,62 @@ import axios from "axios"
         font-size: 0.8rem;
         margin: 0;
         text-align: left;
-        margin-left: 1.5em;
+        margin-left: 0.5em;
     }
 }
 
+@media only screen and (min-width: 600px) {
+    .container-1 {
+        height: 12vh;
+   
+    }
+
+    .image {
+
+        img {
+            height: 90%;
+        }
+    }
+
+.description {
+
+    .unit-1 {
+
+
+        h4 {
+            font-size: 1.3rem;
+        }
+
+        img {
+            width: 15px;
+        }
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+}
+
+.container-2 {
+
+    .title {
+        h4 {
+            font-size: 1.2rem;
+            margin: 0.5em 0 0 1em;
+        }
+
+        .contact {
+            h4 {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    p {
+        font-size: 1.2rem;
+        margin: 0.5em 0 0 1em;
+    }
+}
+
+}
 </style>

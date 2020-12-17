@@ -159,7 +159,7 @@
     display: grid;
     justify-items: left;
     align-items: left;
-    row-gap: 1vh;
+    row-gap: 1em;
   }
 
   h2 {
@@ -185,7 +185,7 @@
         border: 1px solid white;
         box-shadow: 1px 1px 2px grey;
         font-weight: bold;
-        margin-right: 1em;
+        margin-right: 2em;
     }
 
     #logout {
@@ -193,7 +193,7 @@
         display: grid;
         justify-items: right;
         align-items: center;
-        margin-right: 1em;
+        margin-right: 2em;
 
         h4 {
             font-family: Arial, Helvetica, sans-serif;
@@ -234,4 +234,54 @@
   }
 }
 
+@media only screen and (min-width: 600px) {
+
+#header {
+
+  .icon {
+
+    img {
+      height: 30px;
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+#nav-bar {
+  top: 14.5vh;
+
+  h2 {
+   
+    font-size: 1.2rem;
+  }
+
+    #nav-unit-2 {
+
+        #login-btn {
+            width: 42%;
+            font-size: 1rem;
+        }
+
+        #logout {
+            width: 60%;
+            margin-right: 2.5em;
+
+            h4 {
+                font-size: 1rem;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+}
 </style>

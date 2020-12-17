@@ -7,7 +7,7 @@
             <h3>KEMIN TONG</h3>
             <div></div>
         </div>
-        <div id="unit-1">
+        <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
             <h4 id="chinese" @click="showChinese">中文</h4>
@@ -132,7 +132,7 @@ export default {
   height: 8vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 20% 70% 10%;
+  grid-template-columns: 10% 80% 10%;
   justify-items: center;
   align-items: center;
   border-bottom: 1px solid darkgrey; 
@@ -145,7 +145,7 @@ export default {
     align-items: center; 
 
     img {
-      height: 25px;
+      height: 20px;
       object-fit: cover;
     }
   }
@@ -158,7 +158,7 @@ export default {
   }
 }
 
-#unit-1 {
+#en-ch {
     height: 5vh;
     width: 100%;
     display: grid;
@@ -226,5 +226,46 @@ export default {
     font-weight: bold;
     margin-top: 1em;
   }
+}
+
+@media only screen and (min-width: 600px) {
+
+#header {
+
+  .icon {
+
+    img {
+      height: 30px;
+      object-fit: cover;
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+#en-ch {
+
+    h4 {
+        font-size: 1.2rem;
+    }
+}
+
+#enquiry-form {
+    width: 60%;
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}
 }
 </style>

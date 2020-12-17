@@ -2,54 +2,94 @@
     <div id="contact-page">
         <navigation v-if="display == true"></navigation>
         <nav-ch v-if="display == false"></nav-ch>
-        <div id="unit-1">
+        <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
             <h4 id="chinese" @click="showChinese">中文</h4>
             <div></div>
         </div>
-        <div id="container-1">
-            <div id="unit-2">
-                <img src="../assets/studio.jpg" alt="the image of studio">
+        <div id="unit-1">
+            <div></div>
+            <h2>I'D LOVE TO HEAR FROM YOU</h2>
+            <div></div>
+        </div>
+        <div v-if="display == true" class="contact-mobile">
+            <div class="item">
+                <img src="../assets/phone-icon.png" alt="phone icon">
+                <h4>13908484972</h4>
             </div>
-            <div v-if="display == true" id="unit-3">
-                <div class="item">
-                    <img src="../assets/phone-icon.png" alt="phone icon">
-                    <h4>13908484972</h4>
-                </div>
-                <div class="item">
-                    <img src="../assets/email-icon.png" alt="email icon">
-                    <h4>kemin1018@163.com</h4>
-                </div>
-                <div class="item">
-                    <img src="../assets/wechat-icon.png" alt="weChat icon">
-                    <h4>TK17Tk17</h4>
-                </div>
-                <div class="item">
-                    <img src="../assets/address-icon.png" alt="address icon">
-                    <p>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</p>
-                </div>
+            <div class="item">
+                <img src="../assets/email-icon.png" alt="email icon">
+                <h4>kemin1018@163.com</h4>
             </div>
-            <div v-if="display == false" id="unit-3">
-                <div class="item">
-                    <img src="../assets/phone-icon.png" alt="phone icon">
-                    <h4>13908484972</h4>
-                </div>
-                <div class="item">
-                    <img src="../assets/email-icon.png" alt="email icon">
-                    <h4>kemin1018@163.com</h4>
-                </div>
-                <div class="item">
-                    <img src="../assets/wechat-icon.png" alt="weChat icon">
-                    <h4>TK17Tk17</h4>
-                </div>
-                <div class="item">
-                    <img src="../assets/address-icon.png" alt="address icon">
-                    <p>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</p>
-                </div>
+            <div class="item">
+                <img src="../assets/wechat-icon.png" alt="weChat icon">
+                <h4>TK17Tk17</h4>
+            </div>
+            <div class="item">
+                <img src="../assets/address-icon.png" alt="address icon">
+                <h4>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</h4>
             </div>
         </div>
-        <div v-if="display == true" id="contact-form">
+        <div v-if="display == false" class="contact-mobile">
+            <div class="item">
+                <img src="../assets/phone-icon.png" alt="phone icon">
+                <h4>13908484972</h4>
+            </div>
+            <div class="item">
+                <img src="../assets/email-icon.png" alt="email icon">
+                <h4>kemin1018@163.com</h4>
+            </div>
+            <div class="item">
+                <img src="../assets/wechat-icon.png" alt="weChat icon">
+                <h4>TK17Tk17</h4>
+            </div>
+            <div class="item">
+                <img src="../assets/address-icon.png" alt="address icon">
+                <h4>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</h4>
+            </div>
+        </div>
+        <div v-if="display == true" class="contact-tablet">
+            <div class="item-tablet">
+                <div class="item">
+                    <img src="../assets/phone-icon.png" alt="phone icon">
+                    <h4>13908484972</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/email-icon.png" alt="email icon">
+                    <h4>kemin1018@163.com</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/wechat-icon.png" alt="weChat icon">
+                    <h4>TK17Tk17</h4>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/address-icon.png" alt="address icon">
+                <h4>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</h4>
+            </div>
+        </div>
+        <div v-if="display == false" class="contact-tablet">
+            <div class="item-tablet">
+                <div class="item">
+                    <img src="../assets/phone-icon.png" alt="phone icon">
+                    <h4>13908484972</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/email-icon.png" alt="email icon">
+                    <h4>kemin1018@163.com</h4>
+                </div>
+                <div class="item">
+                    <img src="../assets/wechat-icon.png" alt="weChat icon">
+                    <h4>TK17Tk17</h4>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/address-icon.png" alt="address icon">
+                <h4>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</h4>
+            </div>
+        </div>
+        <div v-if="display == true" class="contact-form">
             <h4>STAY IN TOUCH!</h4>
             <div class="box">
                 <p>Last Name</p>
@@ -72,8 +112,9 @@
                 <input type="text" class="input" v-model="wechat">
             </div>
             <button @click="createContact">Submit</button>
+            <p>{{ submitStatus }}</p>
         </div>
-        <div v-if="display == false" id="contact-form">
+        <div v-if="display == false" class="contact-form">
             <h4>保持联系！</h4>
             <div class="box">
                 <p>姓</p>
@@ -96,8 +137,16 @@
                 <input type="text" class="input" v-model="wechat">
             </div>
             <button @click="createContact">提交</button>
+            <p>{{ submitStatus }}</p>
         </div>
-        <p>{{ submitStatus }}</p>
+        <div v-if="display == true" class="unit-2">
+            <h3>TONG'S ART STUDIO</h3>
+            <img src="../assets/studio.jpg" alt="the image of studio">
+        </div>
+        <div v-if="display == false" class="unit-2">
+            <h3>童柯敏工作室</h3>
+            <img src="../assets/studio.jpg" alt="the image of studio">
+        </div>
     </div>
 </template>
 
@@ -170,7 +219,7 @@ import axios from "axios"
     justify-items: center;
 }
 
-#unit-1 {
+#en-ch {
     height: 5vh;
     width: 100%;
     display: grid;
@@ -187,29 +236,33 @@ import axios from "axios"
     }
 }
 
-#container-1 {
-    min-height: 30vh;
-    width: 80%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    margin-top: 1em;
-}
-#unit-2 {
-    min-height: 30vh;
+#unit-1 {
     width: 100%;
+    height: 30vh;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background: url(../assets/studio-2.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
     display: grid;
-    justify-items: center;
     align-items: center;
-    margin-top: 1em;
+    justify-content: center;
+    grid-template-columns: 15% 70% 15%;
 
-    img {
-        width: 100%;
+    h2 {
+        color: white;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.5rem;
+        margin: 0;
+        text-align: center;
+        text-shadow: 1px 1px 1px black;
     }
 }
 
-#unit-3 {
-    min-height: 20vh;
+.contact-mobile {
+    min-height: 30vh;
     width: 80%;
     display: grid;
     justify-items: center;
@@ -218,16 +271,15 @@ import axios from "axios"
     row-gap: 1vh;
 
     .item {
-        height: 5vh;
+        height: 10vh;
         width: 100%;
         display: grid;
-        justify-items: left;
+        justify-items: center;
         align-items: center;
-        grid-template-columns: 20% 80%;
 
         img {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             object-fit: cover;
         }
 
@@ -235,22 +287,17 @@ import axios from "axios"
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 0.8rem;
-            margin: 0;
-            text-align: left;
-        }
-
-        p {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 0.8rem;
-            margin: 0;
-            text-align: left;
+            margin: 0.5em;
         }
     }
 }
 
-#contact-form {
+.contact-tablet {
+    display: none;
+}
+
+.contact-form {
   width: 80%;
-  min-height: 20vh;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -258,139 +305,188 @@ import axios from "axios"
   margin: 2em 0 1em 0;
   background-color: lightgrey;
   padding: 1em 0 1em 0;
+  background-color: lightgrey;
 }
 
 h4 {
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 1em 0 1em 0;
 }
 
 .box {
     width: 100%;
-    height: 10vh;
+    height: 5vh;
     display: grid;
     justify-items: center;
     align-items: center;
+    grid-template-columns: 40% 60%;
 
     p {
         width: 90%;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
-        text-align: center;
+        text-align: left;
+        margin-left: 3em;
     }
 
     .input {
         width: 60%;
         height: 3vh;
         border: 1px solid #aab8c2;
-        margin: 0 0 1em 0;
         text-align: center;
     }
 }
 
 button {
     width: 25vw;
-    height: 5vh;
+    height: 3vh;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8rem;
     border: 1px solid black;
     box-shadow: 1px 1px 2px grey;
     font-weight: bold;
+    margin-top: 1em;
 }
 
-@media only screen and (min-width: 600px) {
-#contact-page {
+p {
+    width: 70%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+}
+
+.unit-2 {
     min-height: 50vh;
-}
-
-#unit-1 {
-
-  h4 {
-    font-size: 1.2rem;
-  }
-}
-
-#container-1 {
+    width: 80%;
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 2vw;
+    margin-top: 1em;
+
+    h3 {
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        margin-bottom: 0.5em;
+    }
+
+    img {
+        width: 100%;
+        margin-bottom: 1em;
+    }
 }
 
-#unit-3 {
+@media only screen and (min-width: 600px) {
+#en-ch {
+
+    h4 {
+        font-size: 1.2rem;
+    }
+}
+#unit-1 {
+    height: 40vh;
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+.contact-mobile {
+    display: none;
+}
+
+.contact-tablet {
+    min-height: 20vh;
+    width: 80%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 1em;
+
+
+    .item-tablet {
+        width: 100%;
+        height: 10vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+
+        .item {
+
+            img {
+                width: 40px;
+                height: 40px;
+            }
+
+            h4 {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
     .item {
-        height: 7vh;
 
         img {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
         }
 
         h4 {
             font-size: 1.2rem;
         }
-
-        p {
-            width: 100%;
-            font-size: 1rem;
-          
-        }
     }
 }
 
-#contact-form {
-  width: 50%;
-  min-height: 20vh;
-  display: grid;
-  justify-items: center;
-  align-items: right;
-  row-gap: 0.8vh;
+.contact-form {
+  width: 60%;
   margin: 2em 0 1em 0;
-  padding: 1em 0 1em 0;
 }
 
 h4 {
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin: 1em 0 1em 0;
 }
 
 .box {
-    width: 100%;
-    height: 5vh;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: 20% 80%;
 
     p {
-        width: 90%;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
-        text-align: center;
-    }
-
-    .input {
-        width: 60%;
-        height: 3vh;
-        border: 1px solid #aab8c2;
-        margin: 0 0 1em 0;
-        text-align: center;
+        font-size: 1rem;
     }
 }
 
 button {
-    width: 25vw;
-    height: 5vh;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-    border: 1px solid black;
-    box-shadow: 1px 1px 2px grey;
-    font-weight: bold;
+    font-size: 1rem;
+    width: 20vw;
+}
+
+p {
+    font-size: 1rem;
+}
+
+.unit-2 {
+    width: 60%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 1em;
+
+    h3 {
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 0.5em;
+    }
+
+    img {
+        width: 100%;
+        height: 40vh;
+        object-fit: cover;
+        margin-bottom: 1em;
+    }
 }
 }
 </style>

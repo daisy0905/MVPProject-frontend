@@ -75,32 +75,26 @@ import axios from "axios"
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 #upload-form {
-    min-height: 50vh;
+    min-height: 40vh;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    align-items: center;
-    margin-top: 0.5em;
+    justify-items: left;
+    align-items: left;
+    margin-top: 3em;
 
     h3 {
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         font-size: 1rem;
-        text-align: center;
+        text-align: left;
         letter-spacing: 2px;
+        margin-left: 2em;
     }
 
     .input {
-        width: 70%;
+        width: 80%;
         height: 4vh;
         background-color: #E1E8ED;
         border: 1px solid #AAB8C2;
@@ -117,7 +111,6 @@ import axios from "axios"
     justify-items: center;
     align-items: center;
     grid-template-columns: 35% 30% 35%;
-    margin-top: 2em;
 
     button {
         width: 100%;
@@ -141,7 +134,33 @@ h3 {
     height: 5vh;
     font-weight: bold; 
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
+    font-size: 0.8rem;
     letter-spacing: 5px;
   }
+
+@media only screen and (min-width: 600px) {
+    #upload-form {
+        margin-top: 4em;
+
+    h3 {
+        font-size: 1.2rem;
+        margin-left: 3em;
+    }
+
+    .input {
+        font-size: 1rem;
+    }
+}
+.submit-btn {
+
+    button {
+        width: 90%;
+        font-size: 1.2rem;
+    }
+}
+
+h3 {
+    font-size: 1rem;
+  }
+}
 </style>
