@@ -55,13 +55,6 @@ import SearchedArtwordCard from '../components/SearchedArtwordCard.vue'
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 #artwork-list {
     min-height: 100vh;
     width: 100%;
@@ -75,7 +68,7 @@ import SearchedArtwordCard from '../components/SearchedArtwordCard.vue'
   height: 8vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 20% 70% 10%;
+  grid-template-columns: 10% 80% 10%;
   justify-items: center;
   align-items: center;
   border-bottom: 1px solid darkgrey; 
@@ -88,7 +81,7 @@ import SearchedArtwordCard from '../components/SearchedArtwordCard.vue'
     align-items: center; 
 
     img {
-      height: 25px;
+      height: 20px;
       object-fit: cover;
     }
   }
@@ -105,4 +98,21 @@ import SearchedArtwordCard from '../components/SearchedArtwordCard.vue'
     min-height: 50vh;
 }
 
+@media only screen and (min-width: 600px) {
+
+    #header {
+
+        .icon {
+
+            img {
+                height: 30px;
+                object-fit: cover;
+            }
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+    }
+}
 </style>

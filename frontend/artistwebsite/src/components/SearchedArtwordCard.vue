@@ -58,12 +58,6 @@ import axios from 'axios'
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .artwork-card {
     min-height: 70vh;
@@ -85,7 +79,7 @@ import axios from 'axios'
     margin-top: 1em;
 
     img {
-        width: 80%;
+        width: 90%;
         object-fit: cover;
 
     }
@@ -123,6 +117,29 @@ import axios from 'axios'
         background-color: grey;
         color: white;
         padding: 0.5em;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+    .image {
+        margin-top: 2em;
+
+    }
+
+    .description {
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        h4 { 
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
     }
 }
 </style>

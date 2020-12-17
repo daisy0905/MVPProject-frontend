@@ -1,10 +1,10 @@
 <template>
   <div id="cover-image">
-    <div id="slider-icon">
-      <a class="icon" @click="prev" href="#">&#10094;</a>
-      <div></div>
-      <div></div>
+    <div id="slider-icon-1">
       <a class="icon" @click="next" href="#">&#10095;</a>
+    </div>
+    <div id="slider-icon-2">
+      <a class="icon" @click="prev" href="#">&#10094;</a>
     </div>
     <div id="main-image" v-for="i in [currentIndex]" :key="i">
       <img class="color" v-if="mainImageSrc != ''" @click="goToHome" :src="mainImageSrc" />
@@ -61,55 +61,56 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 #cover-image {
-  min-height: 100vh;
   width: 100%;
   display: grid;
   justify-items: center;
   align-items: center;
 
-  #slider-icon {
+  #slider-icon-1 {
     height: 6vh;
     width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: repeat(4, 1fr);
     position: absolute;
-    top: 48vh;
+    left: -40vw;
     z-index: 100;
 
     .icon {
       color: white;
       text-decoration: none;
+      font-size: 2rem;
+      text-shadow: 1px 1px 1px black;
+    }
+  }
+
+  #slider-icon-2 {
+    height: 6vh;
+    width: 100%;
+    position: fixed;
+    right: -35vw;
+    bottom: 25vh;
+    z-index: 100;
+
+    .icon {
+      color: white;
+      text-decoration: none;
+      font-size: 2rem;
+      text-shadow: 1px 1px 1px black;
     }
   }
 
   #main-image {
-    min-height: 100vh;
     width: 100%;
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 1fr 1fr;
 
     .color {
-      height: 100%;
       width: 100%;
-      object-fit: cover;
     }
 
     .black-and-white {
-      height: 100%;
       width: 100%;
-      object-fit: cover;
       filter: grayscale(100%);
     }
   }

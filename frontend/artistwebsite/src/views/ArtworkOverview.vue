@@ -48,13 +48,6 @@ import NavAdminCh from "../components/NavAdminCh.vue"
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 #artwork-list {
     min-height: 100vh;
     width: 100%;

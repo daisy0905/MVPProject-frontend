@@ -2,7 +2,7 @@
   <div id="home">
     <navigation v-if="show == true" id="nav"></navigation>
     <nav-ch v-if="show == false"></nav-ch>
-    <div id="unit-1">
+    <div id="en-ch">
       <div></div>
       <h4 id="english" @click="showEnglish">EN</h4>
       <h4 id="chinese" @click="showChinese">中文</h4>
@@ -74,7 +74,7 @@ export default {
   width: 100%;
 }
 
-#unit-1 {
+#en-ch {
   height: 5vh;
   width: 100%;
   display: grid;

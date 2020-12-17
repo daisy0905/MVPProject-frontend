@@ -1,7 +1,8 @@
 <template>
     <div id="landing">
-        <h1>KEMIN TONG</h1>
+        <h1 id="title-1">TONG KEMIN</h1>
         <slider class="slider"></slider>
+        <h1 id="title-2">TONG KEMIN</h1>
     </div>
 </template>
 
@@ -20,30 +21,35 @@ import Slider from "../components/Slider.vue"
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 #landing {
-    min-height: 100vh;
     width: 100%;
     display: grid;
     justify-items: center;
     align-items: center;
 
-    h1 {
+    #title-1 {
         position: absolute;
-        top: 49vh;
+        top: 13vh;
         z-index: 100;
         color: white;
-        left: 25vw;
+        transform: rotate(90deg);
+        font-size: 2em;
+        left: -25vw;
+        text-shadow: 1px 1px 1px black;
     }
     
     .slider {
-        min-height: 100vh;
-        width: 100%;
+        width: 120%;
+    }
+
+    #title-2 {
+        position: fixed;
+        z-index: 100;
+        color: white;
+        transform: rotate(-90deg);
+        right: -14vw;
+        bottom: 13vh;
+        text-shadow: 1px 1px 1px black;
     }
 }
 

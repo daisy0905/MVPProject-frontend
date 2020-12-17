@@ -97,13 +97,6 @@ import axios from 'axios'
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .artwork-card {
     min-height: 70vh;
     width: 90%;
@@ -226,13 +219,5 @@ import axios from 'axios'
         filter: grayscale(80%);
     }
 }
-
-// #update-form {
-//     width: 90%;
-//     height: 60vh;
-//     position: absolute;
-//     top: 0.5vh;
-//     background-color: white;
-// }
 }
 </style>
