@@ -91,4 +91,17 @@ import NavAdminCh from "../components/NavAdminCh.vue"
     }
   }
 }
+
+@media only screen and (min-width: 1024px) {
+    .artworks {
+        min-height: 100vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center; 
+        row-gap: 1vh;
+        grid-template-columns: 1fr 1fr;
+}
+}
+
 </style>

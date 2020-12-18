@@ -6,50 +6,27 @@
       <h4 id="chinese" @click="showChinese">中文</h4>
       <div></div>
     </div>
-    <div class="upload-form" v-if="display == true">
-      <h3>Name</h3>
+    <div class="upload-form">
+      <h3><span v-if="display">Name</span><span v-else>名称</span></h3>
       <input type="text" class="input" v-model="name" />
-      <h3>Length</h3>
+      <h3><span v-if="display">Length</span><span v-else>长</span></h3>
       <input type="text" class="input" v-model="length" />
-      <h3>Width</h3>
+      <h3><span v-if="display">Width</span><span v-else>宽</span></h3>
       <input type="text" class="input" v-model="width" />
-      <h3>Completed at</h3>
+      <h3><span v-if="display">Completed at</span><span v-else>完成年份</span></h3>
       <input type="text" class="input" v-model="completed_at" />
-      <h3>Material</h3>
+      <h3><span v-if="display">Material</span><span v-else>材料</span></h3>
       <input type="text" class="input" v-model="material" />
-      <h3>Category</h3>
+      <h3><span v-if="display">Category</span><span v-else>主题</span></h3>
       <input type="text" class="input" v-model="category" />
-      <h3>Status</h3>
+      <h3><span v-if="display">Status</span><span v-else>状态</span></h3>
       <input type="text" class="input" v-model="status" />
-      <h3>Image URL</h3>
+      <h3><span v-if="display">Image URL</span><span v-else>画作图片</span></h3>
       <input type="text" class="input" v-model="url" />
     </div>
-    <div class="submit-btn" v-if="display == true">
+    <div class="submit-btn">
       <div></div>
-      <button @click="updateArtwork">Update</button>
-      <div></div>
-    </div>
-    <div class="upload-form" v-if="display == false">
-      <h3>名称</h3>
-      <input type="text" class="input" v-model="name" />
-      <h3>长</h3>
-      <input type="text" class="input" v-model="length" />
-      <h3>宽</h3>
-      <input type="text" class="input" v-model="width" />
-      <h3>完成时间</h3>
-      <input type="text" class="input" v-model="completed_at" />
-      <h3>材料</h3>
-      <input type="text" class="input" v-model="material" />
-      <h3>类别</h3>
-      <input type="text" class="input" v-model="category" />
-      <h3>状态</h3>
-      <input type="text" class="input" v-model="status" />
-      <h3>作品链接</h3>
-      <input type="text" class="input" v-model="url" />
-    </div>
-    <div class="submit-btn" v-if="display == false">
-      <div></div>
-      <button @click="updateArtwork">更新作品</button>
+      <button @click="updateArtwork"><span v-if="display">Update</span><span v-else>更新</span></button>
       <div></div>
     </div>
     <h3>{{ uploadStatus }}</h3>
@@ -233,7 +210,51 @@ h3 {
     }
   }
   .submit-btn {
-    width: 90%;
+
+    button {
+      width: 90%;
+      font-size: 1rem;
+      height: 4vh;
+    }
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  #en-ch {
+    height: 2vh;
+    h4 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .upload-form {
+    min-height: 15vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    row-gap: 0.5vh;
+    justify-items: center;
+    align-items: center;
+    margin-top: 0.5em;
+    // padding-top: 1em;
+
+    h3 {
+      font-size: 1rem;
+      text-align: right;
+    }
+
+    .input {
+      width: 50%;
+      height: 2.5vh;
+      font-size: 1rem;
+    }
+  }
+  .submit-btn {
+    padding: 1em 0 0 0;
 
     button {
       width: 90%;

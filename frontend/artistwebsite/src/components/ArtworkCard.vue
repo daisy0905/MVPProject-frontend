@@ -178,9 +178,9 @@ import axios from 'axios'
     width: 90%;
     min-height: 40vh;
     position: absolute;
-    background-color: lightgrey;
-    box-shadow: 1px 1px 1px black;
-    bottom: 15vh;
+    background-color: white;
+    // box-shadow: 1px 1px 1px black;
+    bottom: 10vh;
 }
 
 @media only screen and (min-width: 600px) {
@@ -219,5 +219,108 @@ import axios from 'axios'
         filter: grayscale(80%);
     }
 }
+}
+
+@media only screen and (min-width: 1024px) {
+    .artwork-card {
+        // width: 100%;
+        height: 50vh;
+        row-gap: 0;
+        justify-items: center;
+        align-items: center;
+        border: 0;
+        position: relative;
+        grid-template-columns: 90% 10%;
+        background-color: lightgrey;
+
+         &:hover {
+            cursor: pointer;
+        }
+
+        &:hover > .description {
+            opacity: 0.9;
+            box-shadow: 5px 5px 7px grey;
+            top: 0vh;
+            transition: all 0.25s ease-in-out;
+        }
+    }
+
+    .image {
+        width: auto;
+        height: 90%;
+        row-gap: 0;
+        padding: 0;
+        margin-top: 0;
+        
+        img {
+            width: auto;
+            height: 100%;
+            padding-top: 0;
+        }
+    }
+
+    .description {
+        width: 85%;
+        height: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        opacity: 0;
+        padding: 10px;
+        position: absolute;
+        z-index: 40;
+        background-color: white;
+        box-shadow: 0px 0px 0px grey;
+        top: 0;
+        left: 0vw;
+
+        h4 {
+            width: 90%;
+            padding: 0;
+        }
+
+            
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            width: 50%;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+    }
+
+    .icon {
+        width: 100%;
+        height: 40vh;
+        display: grid;
+        justify-items: left;
+        align-items: end;
+        z-index: 100;
+        grid-template-columns: 100%;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 2em;
+
+        img {
+            width: 40px;
+            height: 40px;
+            filter: grayscale(80%);
+        
+        }
+    }
+    #update-form {
+        width: 85%;
+        height: 20vh;
+        position: absolute;
+        background-color: white;
+        box-shadow: none;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+
+    }
+
 }
 </style>
