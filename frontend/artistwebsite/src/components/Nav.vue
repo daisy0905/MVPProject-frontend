@@ -139,9 +139,10 @@
   justify-items: left;
   align-items: left;
   position: absolute;
-  top: 15vh;
+  top: 14vh;
   background-color: black;
   opacity: 0.7;
+  z-index: 100;
 
   #nav-unit-1 {
     height: 100%;
@@ -162,6 +163,7 @@
 
   #nav-unit-2 {
     width: 100%;
+    height: 8vh;
     display: grid;
     justify-items: right;
     align-items: left;

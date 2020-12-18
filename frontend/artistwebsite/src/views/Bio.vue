@@ -1,7 +1,8 @@
 <template>
   <div id="bio">
-    <page-navigation v-if="display == true" id="nav"></page-navigation>
-    <nav-ch v-if="display == false"></nav-ch>
+    <page-navigation v-if="display == true" id="nav-en"></page-navigation>
+    <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
+    <nav-desktop id="nav-desktop"></nav-desktop>
     <div id="en-ch">
       <div></div>
       <h4 id="english" @click="showEnglish">EN</h4>
@@ -12,10 +13,11 @@
       <div id="unit-2">
         <img id="image" src="../assets/portrait.jpg" alt="" />
       </div>
-      <div class="unit-3" v-if="display == true">
-        <h2>KEMIN TONG</h2>
-        <h3>Professional Artist</h3>
+      <div class="unit-3">
+        <h2><span v-if="display">TONG KEMIN</span><span v-else>童柯敏</span></h2>
+        <h3><span v-if="display">Professional Artist</span><span v-else>职业油画家</span></h3>
         <p>
+          <span v-if="display">
           Mr.Tong, Kemin was born in Zhuzhou, Hunan in 1955, and is living in
           Changsha, China. He is the Member of Chinese Artists Association,
           member of the Presidium of China Financial Artists Association, Vice
@@ -28,13 +30,10 @@
           Committee of the Changsha Artists Association, the Honorary Chairman
           of the Hunan Financial Artists Association, and a special painter of
           the Xiangtan Qi Baishi Memorial Hall.
-        </p>
-      </div>
-      <div class="unit-3" v-if="display == false">
-        <h2>童柯敏</h2>
-        <h3>职业油画家</h3>
-        <p>
+          </span>
+          <span v-else>
           1955年出生于湖南株洲，定居长沙。当过工人、军人，1988年转业到中国农业银行湖南省分行，2001年从农行长沙分行内退，2015年正式退休。中国美术家协会会员、中国金融美术家协会主席团成员，湖南省油画风景研究会副会长兼秘书长、湖南省美术家协会油画艺委会副主任、湖南省油画学会副秘书长、湖南省当代油画院副院长、长沙市美术家协会党支部书记兼副主席、首任长沙市美协油画艺委会主任、湖南省金融美协名誉主席、湘潭齐白石纪念馆特聘画家。
+          </span>
         </p>
       </div>
     </div>
@@ -44,10 +43,12 @@
 <script>
 import PageNavigation from "../components/Nav.vue";
 import NavCh from "../components/NavCh.vue";
+import NavDesktop from '../components/NavDesktop.vue';
 export default {
   components: {
     PageNavigation,
-    NavCh
+    NavCh,
+    NavDesktop
   },
   data() {
     return {
@@ -62,12 +63,12 @@ export default {
     },
     showEnglish: function () {
       this.display = true;
-      document.getElementById("english").style.color = "white";
+      document.getElementById("english").style.color = "red";
       document.getElementById("chinese").style.color = "black";
     },
     showChinese: function () {
       this.display = false;
-      document.getElementById("chinese").style.color = "white";
+      document.getElementById("chinese").style.color = "red";
       document.getElementById("english").style.color = "black";
     },
   },
@@ -85,12 +86,21 @@ export default {
   align-items: center;
 }
 
-#nav {
+#nav-en {
   height: 8vh;
   width: 100%;
   display: grid;
   justify-items: center;
   align-items: center;
+}
+
+#nav-ch {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-desktop {
+  display: none;
 }
 
 #en-ch {
@@ -112,8 +122,10 @@ export default {
 #content {
   min-height: 92vh;
   width: 100%;
+  display: grid;
   justify-items: center;
   align-items: center;
+  margin-top: 1em;
 
   #unit-2 {
     height: 40vh;
@@ -124,6 +136,7 @@ export default {
 
     img {
       width: 200px;
+      box-shadow: 8px 8px 2px darkgrey;
     }
   }
 
@@ -133,11 +146,12 @@ export default {
     display: grid;
     justify-items: center;
     align-items: center;
+    margin-top: 1em;
 
     h2 {
       font-weight: bold;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     h3 {
@@ -159,11 +173,15 @@ export default {
 }
 
 @media only screen and (min-width: 600px) {
-  #bio {
+#bio {
   width: 100%;
   min-height: 30vh;
   display: grid;
   align-items: center;
+}
+
+#nav-desktop {
+  display: none;
 }
 
 #en-ch {
@@ -178,6 +196,12 @@ export default {
   margin-top: 1em;
 
   #unit-2 {
+    height: 40vh;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    
     img {
       width: 300px;
     }
@@ -196,6 +220,88 @@ export default {
     p {
       width: 60%;
       font-size: 1.2rem;
+    }
+  }
+}
+}
+
+@media only screen and (min-width: 1024px) {
+#home {
+  min-height: 50vh;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+#nav-en {
+  display: none;
+}
+
+#nav-ch {
+  display: none;
+}
+
+#nav-desktop {
+  width: 100%;
+  height: 10vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+#en-ch {
+  height: 5vh;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 5% 10% 10% auto;
+  background-color: white;
+  margin-left: 1em;
+
+  h4 {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+  }
+}
+
+#content {
+  min-height: 30vh;
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2em;
+
+  #unit-2 {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: start;
+
+    img {
+      height: 90%;
+      width: auto;
+    }
+  }
+
+  .unit-3 {
+
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      width: 70%;
+      font-size: 1.2rem;
+      margin-top: 2em;
     }
   }
 }

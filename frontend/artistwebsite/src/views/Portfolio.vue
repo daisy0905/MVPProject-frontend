@@ -1,36 +1,29 @@
 <template>
     <div id="portfolio">
-        <navigation v-if="display == true" id="nav"></navigation>
-        <nav-ch v-if="display == false"></nav-ch>
-        <div id="unit-1">
+        <navigation v-if="display == true" id="nav-en"></navigation>
+        <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
+        <nav-desktop id="nav-desktop"></nav-desktop>
+        <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
             <h4 id="chinese" @click="showChinese">中文</h4>
             <div></div>
         </div>
-        <div v-if="display == true" class="unit">
-            <landscape-slider></landscape-slider>
-            <h2>LANDSCAPE</h2>
-        </div>
-        <div v-if="display == true" class="unit">
-            <portrait-slider></portrait-slider>
-            <h2>PORTRAIT</h2>
-        </div>
-        <div v-if="display == true" class="unit">
-            <other-slider></other-slider>
-            <h2>OTHERS</h2>
-        </div>
-        <div v-if="display == false" class="unit">
-            <landscape-slider></landscape-slider>
-            <h2>风&nbsp;景</h2>
-        </div>
-        <div v-if="display == false" class="unit">
-            <portrait-slider></portrait-slider>
-            <h2>人&nbsp;物</h2>
-        </div>
-        <div v-if="display == false" class="unit">
-            <other-slider></other-slider>
-            <h2>其&nbsp;它</h2>
+        <div class="desktop">
+            <div class="landscape-portrait">
+                <div class="unit">
+                    <landscape-slider></landscape-slider>
+                    <h2><span v-if="display">LANDSCAPE</span><span v-else>风景</span></h2>
+                </div>
+                <div class="unit">
+                    <portrait-slider></portrait-slider>
+                    <h2><span v-if="display">PORTRAIT</span><span v-else>人物</span></h2>
+                </div>
+            </div>
+            <div id="others" class="unit">
+                <other-slider></other-slider>
+                <h2><span v-if="display">OTHERS</span><span v-else>其它</span></h2>
+            </div>   
         </div>
     </div>
 </template>
@@ -41,13 +34,15 @@ import Navigation from "../components/Nav.vue"
 import NavCh from "../components/NavCh.vue";
 import OtherSlider from '../components/OtherSlider.vue'
 import PortraitSlider from '../components/PortraitSlider.vue'
+import NavDesktop from '../components/NavDesktop.vue';
     export default {
         components: {
             Navigation,
             LandscapeSlider,
             PortraitSlider,
             OtherSlider,
-            NavCh
+            NavCh,
+            NavDesktop
         },
         data() {
             return {
@@ -57,12 +52,12 @@ import PortraitSlider from '../components/PortraitSlider.vue'
         methods: {
             showEnglish: function () {
                 this.display = true;
-                document.getElementById("english").style.color = "white";
+                document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function () {
                 this.display = false;
-                document.getElementById("chinese").style.color = "white";
+                document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             },
         },
@@ -84,7 +79,21 @@ import PortraitSlider from '../components/PortraitSlider.vue'
     row-gap: 0.5vh;
 }
 
-#unit-1 {
+#nav-en {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-ch {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-desktop {
+  display: none;
+}
+
+#en-ch {
   height: 5vh;
   width: 100%;
   display: grid;
@@ -107,6 +116,7 @@ import PortraitSlider from '../components/PortraitSlider.vue'
     justify-items: center;
     align-items: center;
     position: relative;
+    margin-bottom: 0.3em;
 
     h2 {
             font-weight: bold; 
@@ -120,11 +130,15 @@ import PortraitSlider from '../components/PortraitSlider.vue'
 }
 
 @media only screen and (min-width: 600px) {
-    #unit-1 {
+    #nav-desktop {
+        display: none;
+    }
+
+    #en-ch {
 
         h4 {
-        font-size: 1.2rem;
-    }
+            font-size: 1.2rem;
+        }
     }
     .unit {
 
@@ -133,5 +147,72 @@ import PortraitSlider from '../components/PortraitSlider.vue'
         
         }
     }
+}
+
+@media only screen and (min-width: 1024px) {
+    #home {
+        min-height: 50vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #nav-en {
+        display: none;
+    }
+
+    #nav-ch {
+        display: none;
+    }
+
+    #nav-desktop {
+        width: 100%;
+        height: 10vh;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #en-ch {
+        height: 5vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 5% 10% 10% auto;
+        background-color: white;
+        margin-left: 1em;
+
+        h4 {
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+        }
+    }
+
+    .desktop {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        row-gap: 0.5em;
+        margin-top: 2.5em;
+
+        .landscape-portrait {
+            width: 100%;
+            height: 50vh;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 0.5em;
+        }
+    }
+
+    #others {
+        width: 50%;
+    }
+
 }
 </style>

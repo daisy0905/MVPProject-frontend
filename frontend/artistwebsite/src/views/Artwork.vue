@@ -1,14 +1,15 @@
 <template>
     <div id="landscape">
-        <navigation v-if="display == true"></navigation>
-        <nav-ch v-if="display == false"></nav-ch>
-        <div id="en-ch">
+        <navigation v-if="display == true" id="nav-en"></navigation>
+        <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
+        <nav-desktop id="nav-desktop"></nav-desktop>
+        <div id="en-ch-mobile">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
             <h4 id="chinese" @click="showChinese">中文</h4>
             <div></div>
         </div>
-        <div id="search-bar">
+        <div id="search-bar-mobile">
             <div></div>
             <input type="text" class="search" v-model="content" />
             <img @click="getArtworkList"
@@ -16,6 +17,18 @@
                 alt="search icon"
             />
             <div></div>
+        </div>
+        <div id="desktop">
+          <div></div>
+          <h4 id="english" @click="showEnglish">EN</h4>
+          <h4 id="chinese" @click="showChinese">中文</h4>
+          <div></div>
+          <input type="text" class="search" v-model="content" />
+          <img @click="getArtworkList"
+                src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/search-512.png"
+                alt="search icon"
+          />
+          <div></div>
         </div>
         <div id="content">
             <div id="image-detail">
@@ -29,42 +42,57 @@
             </div>
         </div>
         <div id="status">
-            <p @click="statusCheck">{{ status }}</p>
+          <p @click="statusCheck">{{ status }}</p>
         </div>
-        <div v-if="display == true">
-            <div id="btn-container">
-                <button @click="showEnquiry" class="btn-1">Enquiry</button>
-                <button class="btn-1" v-if="artStatus == true" @click="addToCart">Add to Cart</button>
-                <button v-else class="btn-2">Add to Cart</button>
-            </div>
-            <div id="alert" v-if="show == true">
-                <button class="closebtn" @click="close">&times;</button>
-                <h4>{{ updateStatus }}</h4>
-            </div>
+        <div id="btn-container">
+          <button @click="showEnquiry" class="btn-1"><span v-if="display">Enquiry</span><span v-else>询价</span></button>
+          <button class="btn-1" v-if="artStatus == true" @click="addToCart"><span v-if="display">Add to Cart</span><span v-else>下订单</span></button>
+          <button v-else class="btn-2">Add to Cart</button>
         </div>
-        <div v-if="display == false">
-            <div id="btn-container">
-                <button @click="showEnquiry" class="btn-1">询价</button>
-                <button class="btn-1" v-if="artStatus == true" @click="addToCart">下订单</button>
-                <button v-else class="btn-2">下订单</button>
-            </div>
-            <div id="alert" v-if="show == true">
-                <button class="closebtn" @click="close">&times;</button>
-                <h4>{{ updateStatus }}</h4>
-            </div>
+        <div id="alert" v-if="show == true">
+          <button class="closebtn" @click="close">&times;</button>
+          <h4>{{ updateStatus }}</h4>
         </div>
+        <div id="description-desktop">
+          <div id="image-detail-desktop">
+            <img :src="url" />
+          </div>
+          <div id="content-desktop">
+            <h2>{{ name }}</h2>
+            <p>{{ length }} X {{ width }}</p>
+            <p>{{ material }}</p>
+            <p>{{ completed_at }}</p>
+            <div></div>
+            <p id="text-status" @click="statusCheck">{{ status }}</p>
+            <button @click="showEnquiryForm" class="btn-1"><span v-if="display">Enquiry</span><span v-else>询价</span></button>
+            <button class="btn-1" v-if="artStatus == true" @click="addToCart"><span v-if="display">Add to Cart</span><span v-else>下订单</span></button>
+            <button v-else class="btn-2"><span v-if="display">Add to Cart</span><span v-else>下订单</span></button>
+            <div id="alert-desktop" v-if="show == true">
+              <button class="closebtn" @click="close">&times;</button>
+              <h4>{{ updateStatus }}</h4>
+            </div>
+          </div>
+        </div>
+        <enquiry-form class="enquiry-form" v-if="display && open"></enquiry-form>
+        <enquiry-form-ch class="enquiry-form" v-if="display == false && open"></enquiry-form-ch>
     </div>
 </template>
 
 <script>
 import Navigation from "../components/Nav.vue"
 import NavCh from "../components/NavCh.vue";
+import NavDesktop from '../components/NavDesktop.vue';
 import cookies from "vue-cookies";
 import axios from "axios";
+import EnquiryForm from '../components/EnquiryForm.vue';
+import EnquiryFormCh from '../components/EnquiryFormCh.vue'
     export default {
         components: {
             Navigation,
-            NavCh
+            NavCh,
+            NavDesktop,
+            EnquiryForm,
+            EnquiryFormCh
         },
         data() {
             return {
@@ -73,6 +101,7 @@ import axios from "axios";
                 artStatus: true,
                 updateStatus: "",
                 show: false,
+                open: false
             }
         },
         methods: {
@@ -124,18 +153,21 @@ import axios from "axios";
             },
             showEnglish: function() {
                 this.display = true;
-                document.getElementById("english").style.color = "white";
+                document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function() {
                 this.display = false;
-                document.getElementById("chinese").style.color = "white";
+                document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             },
             getArtworkList: function() {
                 cookies.set("artContent", this.content);
                 this.$router.push("/artworklist")
             },
+            showEnquiryForm: function() {
+              this.open =! this.open;
+            }
         },
         mounted: function() {
             if(this.$store.state.artworks.length == 0) {
@@ -198,7 +230,21 @@ import axios from "axios";
     justify-items: center;
 }
 
-#en-ch {
+#nav-en {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-ch {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-desktop {
+  display: none;
+}
+
+#en-ch-mobile {
     min-height: 5vh;
     width: 100%;
     display: grid;
@@ -215,7 +261,7 @@ import axios from "axios";
     }
 }
 
-#search-bar {
+#search-bar-mobile {
   min-height: 8vh;
   width: 100%;
   display: grid;
@@ -234,6 +280,10 @@ import axios from "axios";
   img {
     width: 25px;
   }
+}
+
+#desktop {
+  display: none;
 }
 
 #content {
@@ -363,15 +413,27 @@ import axios from "axios";
   }
 }
 
+#description-desktop {
+  display: none;
+}
+
+.enquiry-form {
+  display: none;
+}
+
 @media only screen and (min-width: 600px) {
-  #en-ch {
+  #nav-desktop {
+    display: none;
+  }
+
+  #en-ch-mobile {
 
       h4 {
       font-size: 1.2rem;
     }
   }
 
-#search-bar {
+#search-bar-mobile {
 
   .search {
     height: 4vh;
@@ -381,6 +443,10 @@ import axios from "axios";
   img {
     width: 30px;
   }
+}
+
+#desktop {
+  display: none;
 }
 
 #description {
@@ -426,5 +492,206 @@ import axios from "axios";
   }
 }
 
+#description-desktop {
+  display: none;
+}
+}
+
+.enquiry-form {
+  display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+
+#nav-en {
+  display: none;
+}
+
+#nav-ch {
+  display: none;
+}
+
+#en-ch-mobile {
+  display: none;
+}
+
+#search-bar-mobile {
+  display: none;
+}
+
+#nav-desktop {
+  width: 100%;
+  height: 10vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+#desktop {
+  height: 10vh;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 5% 10% 10% 48% 22% 5%;
+  margin: 0 1em 0 1em;
+
+  h4 {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+  }
+
+  .search {
+    height: 4vh;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    color: grey;
+    font-size: 1rem;
+  }
+
+  img {
+    width: 25px;
+  }
+}
+
+#content {
+  display: none;
+}
+
+#status {
+  display: none;
+}
+
+#btn-container {
+  display: none;
+}
+
+#alert {
+  display: none;
+}
+
+#description-desktop {
+  width: 100%;
+  height: 80vh;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  justify-items: center;
+  align-items: start;
+}
+
+#image-detail-desktop {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: start;
+
+  img {
+    height: 95%;
+  }
+}
+
+#content-desktop {
+  width: 90%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-rows: repeat(4, 10%) 20% repeat(4, 10%);
+  row-gap: 0.5em;
+
+  h2 {
+    width: 90%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  p {
+    width: 70%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 2em;
+  }
+
+  #text-status {
+    height: 5vh;
+    width: 15vw;
+    background-color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0.5em 0.8em 0.5em 0.8em;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
+
+  .btn-1 {
+    width: 15vw;
+    height: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    border: 1px solid black;
+    box-shadow: 1px 1px 2px grey;
+    font-weight: bold;
+  }
+
+  .btn-2 {
+    width: 15vw;
+    height: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    border: 1px solid black;
+    box-shadow: 1px 1px 2px grey;
+    font-weight: bold;
+    text-decoration: line-through;
+  }
+}
+
+#alert-desktop {
+  height: 5vh;
+  width: 40vw;
+  background-color: lightgrey;
+
+  .closebtn {
+    height: 100%;
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+
+    :hover {
+      color: black;
+    }
+  }
+
+  h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0;
+  }
+}
+.enquiry-form {
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  position: fixed;
+  top: 20vh;
+  right: -1em;
+  background-color: lightgrey;
+}
 }
 </style>

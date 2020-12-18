@@ -1,7 +1,8 @@
 <template>
   <div id="home">
-    <navigation v-if="show == true" id="nav"></navigation>
-    <nav-ch v-if="show == false"></nav-ch>
+    <navigation v-if="show == true" id="nav-en"></navigation>
+    <nav-ch v-if="show == false" id="nav-ch"></nav-ch>
+    <nav-desktop id="nav-desktop"></nav-desktop>
     <div id="en-ch">
       <div></div>
       <h4 id="english" @click="showEnglish">EN</h4>
@@ -10,14 +11,14 @@
     </div>
     <div id="content">
       <img src="../assets/artist.jpg" alt="" />
+      <div></div>
     </div>
     <div class="text" v-if="show == true">
       <p>OIL PAINTING ARTIST</p>
       <p>TONG, KEMIN</p>
     </div>
     <div class="text" v-if="show == false">
-      <p>油画艺术家</p>
-      <p>童柯敏</p>
+      <p>油画艺术家 童柯敏</p>
     </div>
   </div>
 </template>
@@ -25,10 +26,12 @@
 <script>
 import Navigation from "../components/Nav.vue";
 import NavCh from "../components/NavCh.vue"
+import NavDesktop from '../components/NavDesktop.vue';
 export default {
   components: {
     Navigation,
-    NavCh
+    NavCh,
+    NavDesktop
   },
   data() {
     return {
@@ -45,12 +48,12 @@ export default {
     },
     showEnglish: function () {
       this.show = true;
-      document.getElementById("english").style.color = "white";
+      document.getElementById("english").style.color = "red";
       document.getElementById("chinese").style.color = "black";
     },
     showChinese: function () {
       this.show = false;
-      document.getElementById("chinese").style.color = "white";
+      document.getElementById("chinese").style.color = "red";
       document.getElementById("english").style.color = "black";
     },
   },
@@ -65,13 +68,22 @@ export default {
   height: 100vh;
   width: 100%;
   display: grid;
-  // justify-items: center;
+  justify-items: center;
   align-items: center;
 }
 
-#nav {
+#nav-en {
   height: 8vh;
   width: 100%;
+}
+
+#nav-ch {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-desktop {
+  display: none;
 }
 
 #en-ch {
@@ -104,10 +116,10 @@ export default {
 
 .text {
   position: absolute;
-  width: 70%;
+  width: 80%;
   height: 5vh;
   top: 55vh;
-  left: 18vw;
+  left: 15vw;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -125,7 +137,11 @@ export default {
 }
 
 @media only screen and (min-width: 600px) {
-#unit-1 {
+#nav-desktop {
+  display: none;
+}
+
+#en-ch {
 
   h4 {
     font-size: 1.2rem;
@@ -147,5 +163,84 @@ export default {
   }
 }
 
+}
+
+@media only screen and (min-width: 1024px) {
+#home {
+  min-height: 50vh;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+#nav-en {
+  display: none;
+}
+
+#nav-ch {
+  display: none;
+}
+
+#nav-desktop {
+  width: 100%;
+  height: 10vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+#en-ch {
+  height: 5vh;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 5% 10% 10% auto;
+  background-color: white;
+  margin-left: 1em;
+
+  h4 {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+  }
+}
+
+#content {
+  min-height: 50vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    margin: 1em 0 0 5em;
+  }
+}
+
+.text {
+  position: absolute;
+  width: 70%;
+  height: 5vh;
+  top: 60vh;
+  left: 50vw;
+  display: grid;
+  justify-items: left;
+  align-items: left;
+
+  p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5rem;
+    color: darkgrey;
+    text-align: left;
+    padding: 0;
+    letter-spacing: 8px;
+    text-shadow: 2px 2px 2px black;
+    font-weight: bold;
+    line-height: 1.5em;
+  }
+}
 }
 </style>

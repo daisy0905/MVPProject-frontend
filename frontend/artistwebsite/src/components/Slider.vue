@@ -7,8 +7,38 @@
       <a class="icon" @click="prev" href="#">&#10094;</a>
     </div>
     <div id="main-image" v-for="i in [currentIndex]" :key="i">
-      <img class="color" v-if="mainImageSrc != ''" @click="goToHome" :src="mainImageSrc" />
-      <img class="black-and-white" v-if="mainImageSrc != ''" @click="goToHome" :src="mainImageSrc" />
+      <img
+        class="color"
+        v-if="mainImageSrc != ''"
+        @click="goToHome"
+        :src="mainImageSrc"
+      />
+      <img
+        class="black-and-white"
+        v-if="mainImageSrc != ''"
+        @click="goToHome"
+        :src="mainImageSrc"
+      />
+    </div>
+    <div id="image-desktop">
+      <div id="color-image" v-for="i in [currentIndex]" :key="i">
+        <img
+          class="color"
+          v-if="mainImageSrc != ''"
+          @click="goToHome"
+          :src="mainImageSrc"
+        />
+        <div></div>
+      </div>
+      <div id="grey-image" v-for="i in [currentIndex]" :key="i">
+        <div></div>
+        <img
+          class="color"
+          v-if="mainImageSrc != ''"
+          @click="goToHome"
+          :src="mainImageSrc"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -23,7 +53,7 @@ export default {
   },
   computed: {
     images() {
-      if(this.$store.getters.sliderImage == undefined) return
+      if (this.$store.getters.sliderImage == undefined) return;
       console.log(this.$store.getters.sliderImage);
       return this.$store.getters.sliderImage;
     },
@@ -40,7 +70,7 @@ export default {
       ].url;
     },
     created: function () {
-      if(this.images == undefined) return
+      if (this.images == undefined) return;
       this.mainImageSrc = this.images[
         Math.abs(this.currentIndex) % this.images.length
       ].url;
@@ -51,8 +81,8 @@ export default {
   },
   mounted() {
     let interval = setInterval(() => {
-      if(this.mainImageSrc != "") {
-        clearInterval(interval)
+      if (this.mainImageSrc != "") {
+        clearInterval(interval);
       }
       this.created();
     }, 500);
@@ -114,27 +144,99 @@ export default {
       filter: grayscale(100%);
     }
   }
+
+  #image-desktop {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 600px) {
   #cover-image {
+    height: 100vh;
 
-  #slider-icon-1 {
-    left: -42vw;
+    #slider-icon-1 {
+      left: -42vw;
 
-    .icon {
-      font-size: 3rem;
+      .icon {
+        font-size: 3rem;
+      }
     }
-  }
 
-  #slider-icon-2 {
-    right: -37vw;
+    #slider-icon-2 {
+      right: -37vw;
 
-    .icon {
-      font-size: 3rem;
+      .icon {
+        font-size: 3rem;
+      }
     }
+
+  #image-desktop {
+    display: none;
   }
 }
-    
+}
+@media only screen and (min-width: 1000px)  {
+#cover-image {
+    #slider-icon-1 {
+      position: fixed;
+      left: -17vw;
+      top: 93vh;
+
+      .icon {
+        font-size: 3.5rem;
+        color: darkgrey;
+      }
+    }
+
+    #slider-icon-2 {
+      position: fixed;
+      right: -17vw;
+      top: -1vh;
+
+      .icon {
+        font-size: 3.5rem;
+        color: darkgrey;
+      }
+    }
+
+    #main-image {
+      display: none;
+    }
+
+    #image-desktop {
+      width: 100%;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+      align-items: center;
+
+      #color-image {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: start;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      #grey-image {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: end;
+
+        img {
+          width: 100%;
+          height: auto;
+          filter: grayscale(100%);
+        }
+      }
+    }
+  }
 }
 </style>

@@ -84,4 +84,38 @@ import Slider from "../components/Slider.vue"
     }
 }
 }
+
+@media only screen and (min-width: 1024px) {
+    #landing {
+
+    #title-1 {
+        position: fixed;
+        top: 94vh;
+        z-index: 100;
+        color: darkgrey;
+        transform: rotate(0deg);
+        font-size: 3.5rem;
+        left: 0vw;
+        text-shadow: 3px 3px 3px grey;
+        letter-spacing: 5px;
+    }
+    
+    .slider {
+        width: 100%;
+        height: 100vh;
+    }
+
+    #title-2 {
+        position: fixed;
+        z-index: 100;
+        color: darkgrey;
+        transform: rotate(0deg);
+        font-size: 3.5em;
+        right: 0;
+        top: 0;
+        text-shadow: 3px 3px 3px grey;
+        letter-spacing: 5px;
+    }
+}
+}
 </style>

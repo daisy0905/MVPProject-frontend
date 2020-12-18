@@ -1,7 +1,7 @@
 <template>
     <div id="contact-page">
-        <navigation v-if="display == true"></navigation>
-        <nav-ch v-if="display == false"></nav-ch>
+        <navigation v-if="display == true" id="nav-en"></navigation>
+        <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
         <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -13,7 +13,7 @@
             <h2>I'D LOVE TO HEAR FROM YOU</h2>
             <div></div>
         </div>
-        <div v-if="display == true" class="contact-mobile">
+        <div class="contact-mobile">
             <div class="item">
                 <img src="../assets/phone-icon.png" alt="phone icon">
                 <h4>13908484972</h4>
@@ -28,28 +28,10 @@
             </div>
             <div class="item">
                 <img src="../assets/address-icon.png" alt="address icon">
-                <h4>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</h4>
+                <h4><span v-if="display">Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</span><span v-else>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</span></h4>
             </div>
         </div>
-        <div v-if="display == false" class="contact-mobile">
-            <div class="item">
-                <img src="../assets/phone-icon.png" alt="phone icon">
-                <h4>13908484972</h4>
-            </div>
-            <div class="item">
-                <img src="../assets/email-icon.png" alt="email icon">
-                <h4>kemin1018@163.com</h4>
-            </div>
-            <div class="item">
-                <img src="../assets/wechat-icon.png" alt="weChat icon">
-                <h4>TK17Tk17</h4>
-            </div>
-            <div class="item">
-                <img src="../assets/address-icon.png" alt="address icon">
-                <h4>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</h4>
-            </div>
-        </div>
-        <div v-if="display == true" class="contact-tablet">
+        <div class="contact-tablet">
             <div class="item-tablet">
                 <div class="item">
                     <img src="../assets/phone-icon.png" alt="phone icon">
@@ -66,85 +48,36 @@
             </div>
             <div class="item">
                 <img src="../assets/address-icon.png" alt="address icon">
-                <h4>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</h4>
+                <h4><span v-if="display">Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</span><span v-else>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</span></h4>
             </div>
         </div>
-        <div v-if="display == false" class="contact-tablet">
-            <div class="item-tablet">
-                <div class="item">
-                    <img src="../assets/phone-icon.png" alt="phone icon">
-                    <h4>13908484972</h4>
-                </div>
-                <div class="item">
-                    <img src="../assets/email-icon.png" alt="email icon">
-                    <h4>kemin1018@163.com</h4>
-                </div>
-                <div class="item">
-                    <img src="../assets/wechat-icon.png" alt="weChat icon">
-                    <h4>TK17Tk17</h4>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/address-icon.png" alt="address icon">
-                <h4>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</h4>
-            </div>
-        </div>
-        <div v-if="display == true" class="contact-form">
-            <h4>STAY IN TOUCH!</h4>
+        <div class="contact-form">
+            <h4><span v-if="display">STAY IN TOUCH!</span><span v-else>保持联络！</span></h4>
             <div class="box">
-                <p>Last Name</p>
+                <p><span v-if="display">Last Name</span><span v-else>姓</span></p>
                 <input type="text" class="input" v-model="lastname">
             </div>
             <div class="box">
-                <p>First Name</p>
+                <p><span v-if="display">First Name</span><span v-else>名</span></p>
                 <input type="text" class="input" v-model="firstname">
             </div>
             <div class="box">
-                <p>Phone Number</p>
+                <p><span v-if="display">Phone Number</span><span v-else>电话</span></p>
                 <input type="text" class="input" v-model="phone">
             </div>
             <div class="box">
-                <p>Email</p>
+                <p><span v-if="display">Email</span><span v-else>邮箱</span></p>
                 <input type="text" class="input" v-model="email">
             </div>
             <div class="box">
-                <p>WeChat ID</p>
+                <p><span v-if="display">WeChat ID</span><span v-else>微信</span></p>
                 <input type="text" class="input" v-model="wechat">
             </div>
-            <button @click="createContact">Submit</button>
+            <button @click="createContact"><span v-if="display">Submit</span><span v-else>提交</span></button>
             <p>{{ submitStatus }}</p>
         </div>
-        <div v-if="display == false" class="contact-form">
-            <h4>保持联系！</h4>
-            <div class="box">
-                <p>姓</p>
-                <input type="text" class="input" v-model="lastname">
-            </div>
-            <div class="box">
-                <p>名</p>
-                <input type="text" class="input" v-model="firstname">
-            </div>
-            <div class="box">
-                <p>电话</p>
-                <input type="text" class="input" v-model="phone">
-            </div>
-            <div class="box">
-                <p>邮箱</p>
-                <input type="text" class="input" v-model="email">
-            </div>
-            <div class="box">
-                <p>微信</p>
-                <input type="text" class="input" v-model="wechat">
-            </div>
-            <button @click="createContact">提交</button>
-            <p>{{ submitStatus }}</p>
-        </div>
-        <div v-if="display == true" class="unit-2">
-            <h3>TONG'S ART STUDIO</h3>
-            <img src="../assets/studio.jpg" alt="the image of studio">
-        </div>
-        <div v-if="display == false" class="unit-2">
-            <h3>童柯敏工作室</h3>
+        <div class="unit-2">
+            <h3><span v-if="display">TONG'S ART STUDIO</span><span v-else>童柯敏工作室</span></h3>
             <img src="../assets/studio.jpg" alt="the image of studio">
         </div>
     </div>
@@ -217,6 +150,20 @@ import axios from "axios"
     display: grid;
     align-items: start;
     justify-items: center;
+}
+
+#nav-en {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-ch {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-desktop {
+  display: none;
 }
 
 #en-ch {
@@ -378,6 +325,10 @@ p {
 }
 
 @media only screen and (min-width: 600px) {
+#nav-desktop {
+    display: none;
+}
+
 #en-ch {
 
     h4 {
