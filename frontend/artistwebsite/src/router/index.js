@@ -5,7 +5,6 @@ import Home from "../views/Home.vue";
 import Bio from "../views/Bio.vue";
 import Portfolio from "../views/Portfolio.vue";
 import Artwork from "../views/Artwork.vue";
-import UploadArtwork from "../views/Uploadartwork.vue"
 import ArtworkOverview from "../views/ArtworkOverview.vue"
 import ArtworkStatus from "../views/ArtworkStatus.vue"
 import Enquiry from "../views/Enquiry.vue"
@@ -47,11 +46,6 @@ const routes = [
     path: "/contact",
     name: "Contact",
     component: Contact
-  },
-  {
-    path: "/uploadartwork",
-    name: "UploadArtwork",
-    component: UploadArtwork
   },
   {
     path: "/artworkoverview",

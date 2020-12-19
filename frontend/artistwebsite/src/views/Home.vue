@@ -2,7 +2,8 @@
   <div id="home">
     <navigation v-if="show == true" id="nav-en"></navigation>
     <nav-ch v-if="show == false" id="nav-ch"></nav-ch>
-    <nav-desktop id="nav-desktop"></nav-desktop>
+    <nav-desktop v-if="show == true" id="nav-desktop"></nav-desktop>
+    <nav-desktop-ch v-if="show == false" id="nav-desktop-ch"></nav-desktop-ch>
     <div id="en-ch">
       <div></div>
       <h4 id="english" @click="showEnglish">EN</h4>
@@ -27,11 +28,13 @@
 import Navigation from "../components/Nav.vue";
 import NavCh from "../components/NavCh.vue"
 import NavDesktop from '../components/NavDesktop.vue';
+import NavDesktopCh from '../components/NavDesktopCh.vue'
 export default {
   components: {
     Navigation,
     NavCh,
-    NavDesktop
+    NavDesktop,
+    NavDesktopCh
   },
   data() {
     return {
@@ -86,6 +89,10 @@ export default {
   display: none;
 }
 
+#nav-desktop-ch {
+  display: none;
+}
+
 #en-ch {
   height: 5vh;
   width: 100%;
@@ -119,7 +126,7 @@ export default {
   width: 80%;
   height: 5vh;
   top: 55vh;
-  left: 15vw;
+  left: 13vw;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -138,6 +145,10 @@ export default {
 
 @media only screen and (min-width: 600px) {
 #nav-desktop {
+  display: none;
+}
+
+#nav-desktop-ch {
   display: none;
 }
 
@@ -190,8 +201,16 @@ export default {
   align-items: center;
 }
 
+#nav-desktop-ch {
+  width: 100%;
+  height: 10vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
 #en-ch {
-  height: 5vh;
+  height: 7vh;
   width: 100%;
   display: grid;
   justify-items: center;
@@ -211,12 +230,19 @@ export default {
   min-height: 50vh;
   width: 100%;
   display: grid;
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
+  background: url(../assets/background-image-1.jpg);
+  background-size: cover;
+  background-position: center;
   grid-template-columns: 40% 60%;
 
   img {
     width: 100%;
     object-fit: cover;
-    margin: 1em 0 0 5em;
+    // margin: 1em 0 0 5em;
+    margin-top: 0;
+    filter: grayscale(100%);
   }
 }
 
@@ -225,16 +251,16 @@ export default {
   width: 70%;
   height: 5vh;
   top: 60vh;
-  left: 50vw;
+  left: 35vw;
   display: grid;
-  justify-items: left;
-  align-items: left;
+  justify-items: center;
+  align-items: center;
 
   p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2.5rem;
-    color: darkgrey;
-    text-align: left;
+    color: white;
+    text-align: center;
     padding: 0;
     letter-spacing: 8px;
     text-shadow: 2px 2px 2px black;

@@ -87,7 +87,7 @@ import axios from "axios"
     h3 {
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 0.8rem;
         text-align: left;
         letter-spacing: 2px;
         margin-left: 2em;

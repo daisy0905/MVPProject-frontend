@@ -13,7 +13,6 @@
                 <div></div>
                 <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">ARTWORK OVERVIEW</h2>
                 <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">ARTWORK STATUS</h2>
-                <h2 id="artworkupload-page" class="nav-text" @click="goToUpload">ARTWORK UPLOAD</h2>
                 <h2 id="enquiry-page" class="nav-text" @click="goToEnquiry">ENQUIRY REVIEW</h2>
                 <h2 id="visitorlist-page" @click="goToVisitors">VISITOR LIST</h2>
                 <div></div>
@@ -54,24 +53,20 @@
                 this.display = true;
             },
             goToArtworkOverview: function() {
-                document.getElementById("artworkoverview-page").style.color = "grey";
+                document.getElementById("artworkoverview-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/artworkoverview")}, 1000);
             },
             goToArtworkStatus: function() {
-                document.getElementById("artworkstatus-page").style.color = "grey";
+                document.getElementById("artworkstatus-page").style.color = "red";
                 // this.$store.dispatch("getAllArtworks");
                 setTimeout(()=>{this.$router.push("/artworkstatus")}, 1000);
             },
-            goToUpload: function() {
-                document.getElementById("artworkupload-page").style.color = "grey";
-                setTimeout(()=>{this.$router.push("/uploadartwork")}, 1000);
-            },
             goToEnquiry: function() {
-                document.getElementById("enquiry-page").style.color = "grey";
+                document.getElementById("enquiry-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/enquiryreview")}, 1000);
             },
             goToVisitors: function() {
-                document.getElementById("visitorlist-page").style.color = "grey";
+                document.getElementById("visitorlist-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/visitors")}, 1000);
             },
             showInput: function() {
@@ -148,9 +143,10 @@
   align-items: left;
   position: absolute;
   right: 0;
-  top: 15vh;
+  top: 14vh;
   background-color: black;
   opacity: 0.7;
+  z-index: 100;
 
   #nav-unit-1 {
     height: 100%;

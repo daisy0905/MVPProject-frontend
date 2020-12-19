@@ -2,6 +2,8 @@
     <div id="contact-page">
         <navigation v-if="display == true" id="nav-en"></navigation>
         <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
+        <nav-desktop v-if="display == true" id="nav-desktop"></nav-desktop>
+        <nav-desktop-ch v-if="display == false" id="nav-desktop-ch"></nav-desktop-ch>
         <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -10,7 +12,7 @@
         </div>
         <div id="unit-1">
             <div></div>
-            <h2>I'D LOVE TO HEAR FROM YOU</h2>
+            <h2><span v-if="display">I'D LOVE TO HEAR FROM YOU</span><span v-else>期待与您联系！</span></h2>
             <div></div>
         </div>
         <div class="contact-mobile">
@@ -51,34 +53,36 @@
                 <h4><span v-if="display">Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</span><span v-else>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</span></h4>
             </div>
         </div>
-        <div class="contact-form">
-            <h4><span v-if="display">STAY IN TOUCH!</span><span v-else>保持联络！</span></h4>
-            <div class="box">
-                <p><span v-if="display">Last Name</span><span v-else>姓</span></p>
-                <input type="text" class="input" v-model="lastname">
+        <div id="desktop">
+            <div class="contact-form">
+                <h4><span v-if="display">STAY IN TOUCH!</span><span v-else>保持联络！</span></h4>
+                <div class="box">
+                    <p><span v-if="display">Last Name</span><span v-else>姓</span></p>
+                    <input type="text" class="input" v-model="lastname">
+                </div>
+                <div class="box">
+                    <p><span v-if="display">First Name</span><span v-else>名</span></p>
+                    <input type="text" class="input" v-model="firstname">
+                </div>
+                <div class="box">
+                    <p><span v-if="display">Phone Number</span><span v-else>电话</span></p>
+                    <input type="text" class="input" v-model="phone">
+                </div>
+                <div class="box">
+                    <p><span v-if="display">Email</span><span v-else>邮箱</span></p>
+                    <input type="text" class="input" v-model="email">
+                </div>
+                <div class="box">
+                    <p><span v-if="display">WeChat ID</span><span v-else>微信</span></p>
+                    <input type="text" class="input" v-model="wechat">
+                </div>
+                <button @click="createContact"><span v-if="display">Submit</span><span v-else>提交</span></button>
+                <p>{{ submitStatus }}</p>
             </div>
-            <div class="box">
-                <p><span v-if="display">First Name</span><span v-else>名</span></p>
-                <input type="text" class="input" v-model="firstname">
+            <div class="unit-2">
+                <h3><span v-if="display">TONG'S ART STUDIO</span><span v-else>童柯敏工作室</span></h3>
+                <img src="../assets/studio.jpg" alt="the image of studio">
             </div>
-            <div class="box">
-                <p><span v-if="display">Phone Number</span><span v-else>电话</span></p>
-                <input type="text" class="input" v-model="phone">
-            </div>
-            <div class="box">
-                <p><span v-if="display">Email</span><span v-else>邮箱</span></p>
-                <input type="text" class="input" v-model="email">
-            </div>
-            <div class="box">
-                <p><span v-if="display">WeChat ID</span><span v-else>微信</span></p>
-                <input type="text" class="input" v-model="wechat">
-            </div>
-            <button @click="createContact"><span v-if="display">Submit</span><span v-else>提交</span></button>
-            <p>{{ submitStatus }}</p>
-        </div>
-        <div class="unit-2">
-            <h3><span v-if="display">TONG'S ART STUDIO</span><span v-else>童柯敏工作室</span></h3>
-            <img src="../assets/studio.jpg" alt="the image of studio">
         </div>
     </div>
 </template>
@@ -86,11 +90,15 @@
 <script>
 import Navigation from "../components/Nav.vue"
 import NavCh from "../components/NavCh.vue";
+import NavDesktop from '../components/NavDesktop.vue';
+import NavDesktopCh from '../components/NavDesktopCh.vue'
 import axios from "axios"
     export default {
         components: {
             Navigation,
-            NavCh
+            NavCh,
+            NavDesktop,
+            NavDesktopCh
         },
         data() {
             return {
@@ -107,12 +115,12 @@ import axios from "axios"
         methods: {
             showEnglish: function() {
                 this.display = true;
-                document.getElementById("english").style.color = "white";
+                document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function() {
                 this.display = false;
-                document.getElementById("chinese").style.color = "white";
+                document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             },
             createContact: function() {
@@ -166,6 +174,10 @@ import axios from "axios"
   display: none;
 }
 
+#nav-desktop-ch {
+  display: none;
+}
+
 #en-ch {
     height: 5vh;
     width: 100%;
@@ -188,9 +200,9 @@ import axios from "axios"
     height: 30vh;
     background-attachment: fixed; 
     background-repeat: no-repeat;
-    background: url(../assets/studio-2.jpg);
+    background: url(../assets/studio-3.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: top;
     opacity: 0.9;
     display: grid;
     align-items: center;
@@ -241,6 +253,13 @@ import axios from "axios"
 
 .contact-tablet {
     display: none;
+}
+
+#desktop {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
 
 .contact-form {
@@ -329,6 +348,10 @@ p {
     display: none;
 }
 
+#nav-desktop-ch {
+  display: none;
+}
+
 #en-ch {
 
     h4 {
@@ -391,8 +414,8 @@ p {
 }
 
 .contact-form {
-  width: 60%;
-  margin: 2em 0 1em 0;
+    width: 60%;
+    margin: 2em 0 1em 0;
 }
 
 h4 {
@@ -417,6 +440,144 @@ button {
 p {
     font-size: 1rem;
 }
+
+.unit-2 {
+    width: 60%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 1em;
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5em;
+    }
+
+    img {
+        width: 100%;
+        height: 40vh;
+        object-fit: cover;
+        margin-bottom: 1em;
+    }
+}
+}
+
+@media only screen and (min-width: 1024px) {
+    #nav-en {
+        display: none;
+    }
+
+    #nav-ch {
+        display: none;
+    }
+
+    #nav-desktop {
+        width: 100%;
+        height: 10vh;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #nav-desktop-ch {
+        width: 100%;
+        height: 10vh;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #en-ch {
+        height: 7vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 5% 10% 10% auto;
+        background-color: white;
+        margin-left: 1em;
+
+        h4 {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    }
+
+    #unit-1 {
+        height: 40vh;
+
+        h2 {
+            font-size: 2.5rem;
+        }
+    }
+
+    .contact-tablet {
+        min-height: 30vh;
+
+        .item-tablet {
+            width: 100%;
+            height: 15vh;
+
+            .item {
+
+                img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                h4 {
+                    font-size: 1.5rem;
+                }
+            }
+        }   
+
+        .item {
+
+            img {
+                width: 50px;
+                height: 50px;
+            }
+
+            h4 {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    #desktop {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-form {
+        width: 60%;
+        margin: 2em 0 1em 4em;
+    }
+
+    h4 {
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin: 1em 0 1em 0;
+    }
+
+    .box {
+
+        p {
+            font-size: 1.2rem;
+        }
+    }
+
+    button {
+        width: 10vw;
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
 
 .unit-2 {
     width: 60%;

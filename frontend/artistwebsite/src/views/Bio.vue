@@ -2,7 +2,8 @@
   <div id="bio">
     <page-navigation v-if="display == true" id="nav-en"></page-navigation>
     <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
-    <nav-desktop id="nav-desktop"></nav-desktop>
+    <nav-desktop v-if="display == true" id="nav-desktop"></nav-desktop>
+    <nav-desktop-ch v-if="display == false" id="nav-desktop-ch"></nav-desktop-ch>
     <div id="en-ch">
       <div></div>
       <h4 id="english" @click="showEnglish">EN</h4>
@@ -44,11 +45,13 @@
 import PageNavigation from "../components/Nav.vue";
 import NavCh from "../components/NavCh.vue";
 import NavDesktop from '../components/NavDesktop.vue';
+import NavDesktopCh from '../components/NavDesktopCh.vue'
 export default {
   components: {
     PageNavigation,
     NavCh,
-    NavDesktop
+    NavDesktop,
+    NavDesktopCh
   },
   data() {
     return {
@@ -100,6 +103,10 @@ export default {
 }
 
 #nav-desktop {
+  display: none;
+}
+
+#nav-desktop-ch {
   display: none;
 }
 
@@ -184,6 +191,10 @@ export default {
   display: none;
 }
 
+#nav-desktop-ch {
+  display: none;
+}
+
 #en-ch {
 
   h4 {
@@ -208,6 +219,7 @@ export default {
   }
 
   .unit-3 {
+    margin-top: 1em;
 
     h2 {
       font-size: 2rem;
@@ -218,7 +230,7 @@ export default {
     }
 
     p {
-      width: 60%;
+      width: 50%;
       font-size: 1.2rem;
     }
   }
@@ -226,8 +238,8 @@ export default {
 }
 
 @media only screen and (min-width: 1024px) {
-#home {
-  min-height: 50vh;
+#bio {
+  min-height: 80vh;
   width: 100%;
   display: grid;
   justify-items: center;
@@ -250,8 +262,16 @@ export default {
   align-items: center;
 }
 
+#nav-desktop-ch {
+  width: 100%;
+  height: 10vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
 #en-ch {
-  height: 5vh;
+  height: 7vh;
   width: 100%;
   display: grid;
   justify-items: center;
@@ -268,40 +288,50 @@ export default {
 }
 
 #content {
-  min-height: 30vh;
+  min-height: 70vh;
   margin-top: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 2em;
+  margin-top: 0;
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
+  background: url(../assets/background-image-2.jpg);
+  background-size: cover;
+  background-position: center;
 
   #unit-2 {
     height: 100%;
     width: 100%;
     display: grid;
     justify-items: center;
-    align-items: start;
+    align-items: center;
 
     img {
-      height: 90%;
+      height: 70%;
       width: auto;
+      border: 4px solid white;
+      box-shadow: none;
     }
   }
 
   .unit-3 {
-
+    margin-top: 7em;
 
     h2 {
       font-size: 2rem;
+      color: white;
     }
 
     h3 {
       font-size: 1.5rem;
+      color: white;
     }
 
     p {
       width: 70%;
       font-size: 1.2rem;
       margin-top: 2em;
+      color: white;
     }
   }
 }

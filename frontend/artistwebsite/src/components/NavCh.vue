@@ -57,20 +57,20 @@
                 setTimeout(()=>{this.$router.push("/")}, 500);
             },
             goToHome: function() {
-                document.getElementById("home-page").style.color = "grey";
+                document.getElementById("home-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/home")}, 1000);
             },
             goToBio: function() {
-                document.getElementById("bio-page").style.color = "grey";
+                document.getElementById("bio-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/bio")}, 1000);
             },
             goToPortfolio: function() {
-                document.getElementById("portfolio-page").style.color = "grey";
+                document.getElementById("portfolio-page").style.color = "red";
                 this.$store.dispatch("getAllArtworks");
                 setTimeout(()=>{this.$router.push("/portfolio")}, 1000);
             },
             goToContact: function() {
-                document.getElementById("contact-page").style.color = "grey";
+                document.getElementById("contact-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/contact")}, 1000);
             },
             showInput: function() {
@@ -249,7 +249,7 @@
 
 #nav-bar {
   width: 100%;
-  top: 15vh;
+  top: 14vh;
   left: 0.5vw;
 
   h2 {

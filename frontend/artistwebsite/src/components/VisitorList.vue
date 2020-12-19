@@ -51,6 +51,17 @@ import axios from "axios"
     display: grid;
     justify-items: center;
     align-items: start;
+}
+
+@media only screen and (min-width: 600px) {
+.visitors {
     grid-template-columns: 1fr 1fr;
+}
+}
+
+@media only screen and (min-width: 1024px) {
+    .visitors {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 </style>

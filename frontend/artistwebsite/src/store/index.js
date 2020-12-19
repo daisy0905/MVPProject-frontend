@@ -101,7 +101,7 @@ export default new Vuex.Store({
     sliderImage: function(state) {
       let choseNum = []
       let indexArr = []
-      while (indexArr.length < Math.min(state.artworks.length, 4)) {
+      while (indexArr.length < Math.min(state.artworks.length, 5)) {
         let rndIndex = Math.floor(Math.random() * state.artworks.length)
         if (choseNum.includes(rndIndex)) {
           continue

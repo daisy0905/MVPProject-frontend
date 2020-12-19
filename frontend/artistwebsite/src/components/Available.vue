@@ -27,11 +27,10 @@
     display: grid;
     justify-items: center;
     align-items: center;
-    row-gap: 1vh;
 }
 
 .item {
-    height: 10vh;
+    height: 12vh;
     width: 90%;
     display: grid;
     justify-items: left;
@@ -55,6 +54,7 @@
 @media only screen and (min-width: 600px) {
     .item {
         height: 15vh;
+        grid-template-columns: 1fr 1fr;
 
         h4 { 
             font-size: 1.2rem;
@@ -64,5 +64,9 @@
             height: 90%;
         }
     }
+}
+
+@media only screen and (min-width: 1024px) {
+
 }
 </style>

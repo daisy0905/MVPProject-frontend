@@ -2,7 +2,8 @@
     <div id="portfolio">
         <navigation v-if="display == true" id="nav-en"></navigation>
         <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
-        <nav-desktop id="nav-desktop"></nav-desktop>
+        <nav-desktop v-if="display == true" id="nav-desktop"></nav-desktop>
+        <nav-desktop-ch v-if="display == false" id="nav-desktop-ch"></nav-desktop-ch>
         <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -32,9 +33,10 @@
 import LandscapeSlider from '../components/LandscapeSlider.vue'
 import Navigation from "../components/Nav.vue"
 import NavCh from "../components/NavCh.vue";
-import OtherSlider from '../components/OtherSlider.vue'
-import PortraitSlider from '../components/PortraitSlider.vue'
+import OtherSlider from '../components/OtherSlider.vue';
+import PortraitSlider from '../components/PortraitSlider.vue';
 import NavDesktop from '../components/NavDesktop.vue';
+import NavDesktopCh from '../components/NavDesktopCh.vue'
     export default {
         components: {
             Navigation,
@@ -42,7 +44,8 @@ import NavDesktop from '../components/NavDesktop.vue';
             PortraitSlider,
             OtherSlider,
             NavCh,
-            NavDesktop
+            NavDesktop,
+            NavDesktopCh
         },
         data() {
             return {
@@ -93,6 +96,10 @@ import NavDesktop from '../components/NavDesktop.vue';
   display: none;
 }
 
+#nav-desktop-ch {
+  display: none;
+}
+
 #en-ch {
   height: 5vh;
   width: 100%;
@@ -134,6 +141,11 @@ import NavDesktop from '../components/NavDesktop.vue';
         display: none;
     }
 
+    #nav-desktop-ch {
+        display: none;
+    }
+
+
     #en-ch {
 
         h4 {
@@ -150,14 +162,6 @@ import NavDesktop from '../components/NavDesktop.vue';
 }
 
 @media only screen and (min-width: 1024px) {
-    #home {
-        min-height: 50vh;
-        width: 100%;
-        display: grid;
-        justify-items: center;
-        align-items: center;
-    }
-
     #nav-en {
         display: none;
     }
@@ -174,8 +178,16 @@ import NavDesktop from '../components/NavDesktop.vue';
         align-items: center;
     }
 
+    #nav-desktop-ch {
+        width: 100%;
+        height: 10vh;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+
     #en-ch {
-        height: 5vh;
+        height: 7vh;
         width: 100%;
         display: grid;
         justify-items: center;
@@ -197,7 +209,7 @@ import NavDesktop from '../components/NavDesktop.vue';
         justify-items: center;
         align-items: center;
         row-gap: 0.5em;
-        margin-top: 2.5em;
+        margin-top: 0;
 
         .landscape-portrait {
             width: 100%;

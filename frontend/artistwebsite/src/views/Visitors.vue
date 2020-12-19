@@ -1,7 +1,9 @@
 <template>
     <div id="visitors">
-        <nav-admin v-if="display == true"></nav-admin>
-        <nav-admin-ch v-if="display == false"></nav-admin-ch>
+        <nav-admin v-if="display == true" id="nav-en"></nav-admin>
+        <nav-admin-ch v-if="display == false" id="nav-ch"></nav-admin-ch>
+        <nav-admin-desktop v-if="display == true" id="nav-admin-desktop"></nav-admin-desktop>
+        <nav-admin-desktop-ch v-if="display == false" id="nav-admin-desktop-ch"></nav-admin-desktop-ch>
         <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -17,11 +19,15 @@
 import NavAdmin from "../components/NavAdmin.vue"
 import NavAdminCh from "../components/NavAdminCh.vue"
 import VisitorList from '../components/VisitorList.vue'
+import NavAdminDesktop from '../components/NavAdminDesktop.vue'
+import NavAdminDesktopCh from '../components/NavAdminDesktopCh.vue'
     export default {
         components: {
             NavAdmin,
             NavAdminCh,
             VisitorList,
+            NavAdminDesktop,
+            NavAdminDesktopCh,
         },
         data() {
             return {
@@ -31,12 +37,12 @@ import VisitorList from '../components/VisitorList.vue'
         methods: {
             showEnglish: function() {
                 this.display = true;
-                document.getElementById("english").style.color = "white";
+                document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function() {
                 this.display = false;
-                document.getElementById("chinese").style.color = "white";
+                document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             },
         },
@@ -47,17 +53,29 @@ import VisitorList from '../components/VisitorList.vue'
 </script>
 
 <style lang="scss" scoped>
-* {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 #visitors {
     width: 100%;
     display: grid;
     align-items: start;
+}
+
+#nav-en {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-ch {
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-admin-desktop {
+  display: none;
+}
+
+#nav-admin-desktop-ch {
+  display: none;
 }
 
 #en-ch {
@@ -77,11 +95,62 @@ import VisitorList from '../components/VisitorList.vue'
 }
 
 @media only screen and (min-width: 600px) {
-    #en-ch {
-
-      h4 {
-      font-size: 1.2rem;
+    #nav-admin-desktop {
+        display: none;
     }
-  }
+
+    #nav-admin-desktop-ch {
+        display: none;
+    }
+
+    #en-ch {
+        h4 {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+     #nav-en {
+        display: none;
+    }
+
+    #nav-ch {
+        display: none;
+    }
+
+    #nav-admin-desktop {
+        width: 100%;
+        height: 10vh;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #nav-admin-desktop-ch {
+        width: 100%;
+        height: 10vh;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #en-ch {
+        height: 7vh;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 5% 10% 10% auto;
+        background-color: white;
+        margin-left: 1em;
+
+        h4 {
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+        }
+    }
+
 }
 </style>

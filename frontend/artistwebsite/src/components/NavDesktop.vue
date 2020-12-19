@@ -5,8 +5,8 @@
             <div></div>
             <h3 id="home-page" class="nav-text" @click="goToHome">HOME</h3>
             <h3 id="bio-page" class="nav-text" @click="goToBio">BIO</h3>
-            <h3 id="portfolio-page" @click="goToPortfolio">PORTFOLIO</h3>
-            <h3 id="contact-page" @click="goToContact">CONTACT</h3>
+            <h3 id="portfolio-page" class="nav-text" @click="goToPortfolio">PORTFOLIO</h3>
+            <h3 id="contact-page" class="nav-text" @click="goToContact">CONTACT</h3>
             <button id="login-btn" @click="showInput">admin login</button>
         </div>     
         <div v-if="show == false" id="login">
@@ -40,20 +40,20 @@
                 setTimeout(()=>{this.$router.push("/")}, 500);
             },
             goToHome: function() {
-                document.getElementById("home-page").style.color = "grey";
+                document.getElementById("home-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/home")}, 1000);
             },
             goToBio: function() {
-                document.getElementById("bio-page").style.color = "grey";
+                document.getElementById("bio-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/bio")}, 1000);
             },
             goToPortfolio: function() {
-                document.getElementById("portfolio-page").style.color = "grey";
+                document.getElementById("portfolio-page").style.color = "red";
                 this.$store.dispatch("getAllArtworks");
                 setTimeout(()=>{this.$router.push("/portfolio")}, 1000);
             },
             goToContact: function() {
-                document.getElementById("contact-page").style.color = "grey";
+                document.getElementById("contact-page").style.color = "red";
                 setTimeout(()=>{this.$router.push("/contact")}, 1000);
             },
             showInput: function() {

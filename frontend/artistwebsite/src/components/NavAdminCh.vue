@@ -12,10 +12,9 @@
             <div id="nav-unit-1">
                 <div></div>
                 <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">作品总览</h2>
-                <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">作品在售情况</h2>
-                <h2 id="artworkupload-page" class="nav-text" @click="goToUpload">新作上传</h2>
+                <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">作品在售</h2>
                 <h2 id="enquiry-page" class="nav-text" @click="goToEnquiry">访客留言</h2>
-                <h2 id="visitorlist-page" @click="goToVisitors">访客信息总览</h2>
+                <h2 id="visitorlist-page" @click="goToVisitors">访客信息</h2>
                 <div></div>
             </div>
             <div id="nav-unit-2">
@@ -149,9 +148,10 @@
   align-items: left;
   position: absolute;
   right: 0;
-  top: 15vh;
+  top: 14vh;
   background-color: black;
   opacity: 0.7;
+  z-index: 100;
 
   #nav-unit-1 {
     height: 100%;

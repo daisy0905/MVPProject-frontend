@@ -256,6 +256,7 @@ import axios from 'axios'
             width: auto;
             height: 100%;
             padding-top: 0;
+            border: 2px solid white;
         }
     }
 

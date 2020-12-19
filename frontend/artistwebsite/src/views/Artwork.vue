@@ -2,7 +2,8 @@
     <div id="landscape">
         <navigation v-if="display == true" id="nav-en"></navigation>
         <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
-        <nav-desktop id="nav-desktop"></nav-desktop>
+        <nav-desktop v-if="display == true" id="nav-desktop"></nav-desktop>
+        <nav-desktop-ch v-if="display == false" id="nav-desktop-ch"></nav-desktop-ch>
         <div id="en-ch-mobile">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -68,7 +69,7 @@
             <button class="btn-1" v-if="artStatus == true" @click="addToCart"><span v-if="display">Add to Cart</span><span v-else>下订单</span></button>
             <button v-else class="btn-2"><span v-if="display">Add to Cart</span><span v-else>下订单</span></button>
             <div id="alert-desktop" v-if="show == true">
-              <button class="closebtn" @click="close">&times;</button>
+              <button class="closebtn" @click="closeDesktop">&times;</button>
               <h4>{{ updateStatus }}</h4>
             </div>
           </div>
@@ -82,6 +83,7 @@
 import Navigation from "../components/Nav.vue"
 import NavCh from "../components/NavCh.vue";
 import NavDesktop from '../components/NavDesktop.vue';
+import NavDesktopCh from '../components/NavDesktopCh.vue'
 import cookies from "vue-cookies";
 import axios from "axios";
 import EnquiryForm from '../components/EnquiryForm.vue';
@@ -91,6 +93,7 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
             Navigation,
             NavCh,
             NavDesktop,
+            NavDesktopCh,
             EnquiryForm,
             EnquiryFormCh
         },
@@ -167,7 +170,10 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
             },
             showEnquiryForm: function() {
               this.open =! this.open;
-            }
+            },
+            closeDesktop: function () {
+                document.getElementById("alert-desktop").style.display = "none";
+            },
         },
         mounted: function() {
             if(this.$store.state.artworks.length == 0) {
@@ -234,6 +240,10 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
 }
 
 #nav-desktop {
+  display: none;
+}
+
+#nav-desktop-ch {
   display: none;
 }
 
@@ -338,7 +348,7 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8rem;
     margin: 0;
-    padding: 0.5em 0.8em 0.5em 0.8em;
+    padding: 0.5em;
     color: white;
     font-weight: bold;
     letter-spacing: 3px;
@@ -416,6 +426,10 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
 
 @media only screen and (min-width: 600px) {
   #nav-desktop {
+    display: none;
+  }
+
+  #nav-desktop-ch {
     display: none;
   }
 
@@ -520,6 +534,14 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
   align-items: center;
 }
 
+#nav-desktop-ch {
+  width: 100%;
+  height: 10vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
 #desktop {
   height: 10vh;
   width: 100%;
@@ -567,7 +589,7 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
 
 #description-desktop {
   width: 100%;
-  height: 80vh;
+  min-height: 80vh;
   display: grid;
   grid-template-columns: 70% 30%;
   justify-items: center;
@@ -588,7 +610,7 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
 
 #content-desktop {
   width: 90%;
-  height: 100%;
+  min-height: 80vh;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -598,7 +620,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
   h2 {
     width: 90%;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.8rem;
     text-align: center;
     margin: 0;
@@ -607,7 +628,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
 
   p {
     width: 70%;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
     margin: 0;
     line-height: 2em;
@@ -617,7 +637,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
     height: 5vh;
     width: 15vw;
     background-color: grey;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.2rem;
     margin: 0;
     padding: 0.5em 0.8em 0.5em 0.8em;
@@ -629,7 +648,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
   .btn-1 {
     width: 15vw;
     height: 5vh;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.2rem;
     border: 1px solid black;
     box-shadow: 1px 1px 2px grey;
@@ -639,7 +657,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
   .btn-2 {
     width: 15vw;
     height: 5vh;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.2rem;
     border: 1px solid black;
     box-shadow: 1px 1px 2px grey;
@@ -650,7 +667,7 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
 
 #alert-desktop {
   height: 5vh;
-  width: 40vw;
+  width: 15vw;
   background-color: lightgrey;
 
   .closebtn {
@@ -671,7 +688,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
   }
 
   h4 {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8rem;
     text-align: center;
     margin: 0;
