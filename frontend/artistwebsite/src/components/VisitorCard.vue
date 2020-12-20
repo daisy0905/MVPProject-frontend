@@ -139,13 +139,13 @@ import axios from "axios"
         .name {
 
             img {
-                width: 30px;
-                height: 30px;
+                width: 25px;
+                height: 25px;
             }
 
             h3 {
                 font-family: Arial, Helvetica, sans-serif;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 padding: 0.5em;
                 text-align: center;
                 font-weight: normal;
@@ -157,8 +157,8 @@ import axios from "axios"
             .item {
 
                 img {
-                    width: 30px;
-                    height: 30px;
+                    width: 25px;
+                    height: 25px;
                 }
 
                 p {

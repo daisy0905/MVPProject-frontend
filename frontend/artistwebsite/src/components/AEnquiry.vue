@@ -226,7 +226,7 @@ import axios from "axios"
     }
 
     p {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 }
 
@@ -234,19 +234,19 @@ import axios from "axios"
 
     .title {
         h4 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin: 0.5em 0 0 1em;
         }
 
         .contact {
             h4 {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
         }
     }
 
     p {
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin: 0.5em 0 0 1em;
     }
 }

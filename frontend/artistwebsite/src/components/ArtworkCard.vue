@@ -256,7 +256,7 @@ import axios from 'axios'
         margin-top: 0;
         
         img {
-            width: 80%;
+            width: 70%;
             height: auto;
             padding-top: 0;
             border: 3px solid white;
