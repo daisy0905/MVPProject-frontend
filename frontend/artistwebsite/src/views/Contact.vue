@@ -124,7 +124,7 @@ import cookies from "vue-cookies";
             },
             createContact: function() {
                 axios.request({
-                    url: "http://127.0.0.1:5000/visitor",
+                    url: "https://artisttongkemin.ml/api/visitor",
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

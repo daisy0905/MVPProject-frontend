@@ -47,7 +47,7 @@ import axios from "axios"
         methods: {
             uploadArtwork: function() {
                 axios.request({
-                    url: "http://127.0.0.1:5000/artwork",
+                    url: "https://artisttongkemin.ml/api/artwork",
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

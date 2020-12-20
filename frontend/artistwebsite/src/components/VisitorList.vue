@@ -25,7 +25,7 @@ export default {
     getVisitors: function () {
       axios
         .request({
-          url: "http://127.0.0.1:5000/visitor",
+          url: "https://artisttongkemin.ml/api/visitor",
           method: "GET",
         })
         .then((response) => {

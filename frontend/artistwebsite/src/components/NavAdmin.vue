@@ -23,7 +23,7 @@
                     <h4><span v-if="this.$store.getters.languageGet">用户名</span><span v-else>Username</span></h4>
                     <input type="text" id="username-input" class="input" v-model="username">
                     <h4><span v-if="this.$store.getters.languageGet">密码</span><span v-else>Password</span></h4>
-                    <input type="text" id="password-input" class="input" v-model="password">
+                    <input type="password" id="password-input" class="input" v-model="password">
                     <button @click="logout">><span v-if="this.$store.getters.languageGet">退出</span><span v-else>Log Out</span></button>
                     <p>{{ logoutStatus }}</p>
                 </div>

@@ -45,7 +45,7 @@ import axios from 'axios'
         methods: {
             getArtworkCard: function() {
                 axios.request({
-                url: "http://127.0.0.1:5000/artwork",
+                url: "https://artisttongkemin.ml/api/artwork",
                    method: "GET",
                    headers: {
                     "Content-Type": "application/json",
@@ -71,7 +71,7 @@ import axios from 'axios'
             },
             deleteArt: function() {
                 axios.request({
-                    url: "http://127.0.0.1:5000/artwork",
+                    url: "https://artisttongkemin.ml/api/artwork",
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",

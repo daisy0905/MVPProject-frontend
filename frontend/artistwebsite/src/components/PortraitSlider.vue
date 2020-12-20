@@ -60,7 +60,7 @@ export default {
     getArtwork: function () {
       axios
         .request({
-          url: "http://127.0.0.1:5000/artwork",
+          url: "https://artisttongkemin.ml/api/artwork",
           method: "GET",
           headers: {
             "Content-Type": "application/json",

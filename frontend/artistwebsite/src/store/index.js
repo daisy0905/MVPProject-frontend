@@ -34,7 +34,7 @@ export default new Vuex.Store({
   actions: {
     getAllArtworks: function(context) {
       axios.request({
-        url: "http://127.0.0.1:5000/artwork",
+        url: "https://artisttongkemin.ml/api/artwork",
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export default new Vuex.Store({
     },
     getArtwork: function(context) {
       axios.request({
-          url: "http://127.0.0.1:5000/artwork",
+          url: "https://artisttongkemin.ml/api/artwork",
           method: "GET",
           headers: {
               "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default new Vuex.Store({
     },
     getAllEnquiries: function(context) {
       axios.request({
-          url: "http://127.0.0.1:5000/enquiry",
+          url: "https://artisttongkemin.ml/api/enquiry",
           method: "GET",
           headers: {
               "Content-Type": "application/json",

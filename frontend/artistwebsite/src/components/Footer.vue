@@ -30,18 +30,18 @@
       </div>
     </div>
     <p @click="goToContact">
-      <span v-if="this.$store.getters.languageGet">>期待留下您的联系方式 ></span
+      <span v-if="this.$store.getters.languageGet">期待留下您的联系方式 ></span
       ><span v-else>Subscribe to our newsletter ></span>
     </p>
     <div id="container-2">
       <h4>
         <span v-if="this.$store.getters.languageGet"
-          >>网页由Daisy Tong制作于2020年</span
+          >网页由Daisy Tong制作于2020年</span
         ><span v-else>Created By Daisy Tong @ 2020</span>
       </h4>
       <h4>
         <span v-if="this.$store.getters.languageGet">版权所有</span
-        ><span v-else>>All Rights Reserved</span>
+        ><span v-else>All Rights Reserved</span>
       </h4>
     </div>
   </div>
