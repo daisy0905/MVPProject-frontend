@@ -1,9 +1,7 @@
 <template>
   <div id="home">
-    <navigation v-if="show == true" id="nav-en"></navigation>
-    <nav-ch v-if="show == false" id="nav-ch"></nav-ch>
-    <nav-desktop v-if="show == true" id="nav-desktop"></nav-desktop>
-    <nav-desktop-ch v-if="show == false" id="nav-desktop-ch"></nav-desktop-ch>
+    <navigation id="nav-en"></navigation>
+    <nav-desktop id="nav-desktop"></nav-desktop>
     <div id="en-ch">
       <div></div>
       <h4 id="english" @click="showEnglish">EN</h4>
@@ -14,55 +12,51 @@
       <img src="../assets/artist.jpg" alt="" />
       <div></div>
     </div>
-    <div class="text" v-if="show == true">
-      <p>OIL PAINTING ARTIST</p>
-      <p>TONG, KEMIN</p>
+    <div class="text">
+      <p><span v-if="this.$store.getters.languageGet">油画艺术家</span><span v-else>OIL PAINTING ARTIST</span></p>
+      <p><span v-if="this.$store.getters.languageGet">童柯敏</span><span v-else>TONG, KEMIN</span></p>
     </div>
-    <div class="text" v-if="show == false">
-      <p>油画艺术家 童柯敏</p>
-    </div>
+    <footer-section></footer-section>
   </div>
 </template>
 
 <script>
-import Navigation from "../components/Nav.vue";
-import NavCh from "../components/NavCh.vue"
-import NavDesktop from '../components/NavDesktop.vue';
-import NavDesktopCh from '../components/NavDesktopCh.vue'
+import FooterSection from '../components/Footer.vue'
+import Navigation from "../components/Nav.vue"
+import NavDesktop from '../components/NavDesktop.vue'
+import cookies from "vue-cookies"
 export default {
   components: {
     Navigation,
-    NavCh,
     NavDesktop,
-    NavDesktopCh
+    FooterSection
   },
   data() {
     return {
-      firstname: "",
-      lastname: "",
-      email: "",
-      display: true,
-      show: false,
-    };
-  },
+        firstname: "",
+        lastname: "",
+        email: "",
+    }
+  }, 
   methods: {
-    hideForm: function () {
-      this.display = false;
-    },
     showEnglish: function () {
-      this.show = true;
+      cookies.remove("chinese")
+      this.$store.commit("updateLanguage", false)
+      console.log(this.$store.getters.languageGet)
       document.getElementById("english").style.color = "red";
       document.getElementById("chinese").style.color = "black";
     },
     showChinese: function () {
-      this.show = false;
+      cookies.set("chinese", true)
+      this.$store.commit("updateLanguage", true)
+      console.log(this.$store.getters.languageGet)
       document.getElementById("chinese").style.color = "red";
       document.getElementById("english").style.color = "black";
     },
   },
-  mounted() {
-    this.showChinese();
-  },
+  mounted () {
+            this.showEnglish();
+        }
 };
 </script>
 
@@ -80,16 +74,7 @@ export default {
   width: 100%;
 }
 
-#nav-ch {
-  height: 8vh;
-  width: 100%;
-}
-
 #nav-desktop {
-  display: none;
-}
-
-#nav-desktop-ch {
   display: none;
 }
 
@@ -148,10 +133,6 @@ export default {
   display: none;
 }
 
-#nav-desktop-ch {
-  display: none;
-}
-
 #en-ch {
 
   h4 {
@@ -194,14 +175,6 @@ export default {
 }
 
 #nav-desktop {
-  width: 100%;
-  height: 10vh;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-}
-
-#nav-desktop-ch {
   width: 100%;
   height: 10vh;
   display: grid;

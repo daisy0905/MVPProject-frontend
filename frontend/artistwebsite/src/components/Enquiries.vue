@@ -28,20 +28,23 @@ import AEnquiry from './AEnquiry.vue'
 }
 
 #enquiries {
-    min-height: 5vh;
+    min-height: 80vh;
     width: 100%;
     display: grid;
     justify-items: center;
-    align-items: start; 
+    align-items: start;
+    align-content: start;
+    margin-top: 0.5em; 
 }
 
 @media only screen and (min-width: 1024px) {
     #enquiries {
-        min-height: 5vh;
+        min-height: 76vh;
         width: 100%;
         display: grid;
         justify-items: center;
         align-items: start; 
+        align-content: start;
         grid-template-columns: 1fr 1fr;
     } 
 }

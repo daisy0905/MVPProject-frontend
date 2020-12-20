@@ -1,9 +1,7 @@
 <template>
     <div id="artwork-list">
-        <nav-admin v-if="display == true" id="nav-en"></nav-admin>
-        <nav-admin-ch v-if="display == false" id="nav-ch"></nav-admin-ch>
-        <nav-admin-desktop v-if="display == true" id="nav-admin-desktop"></nav-admin-desktop>
-        <nav-admin-desktop-ch v-if="display == false" id="nav-admin-desktop-ch"></nav-admin-desktop-ch>
+        <nav-admin id="nav-en"></nav-admin>
+        <nav-admin-desktop id="nav-admin-desktop"></nav-admin-desktop>
         <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -14,45 +12,46 @@
         <div id="upload-artwork">
             <img @click="openUpload" src="../assets/upload-icon.png" alt="artwork upload icon">
         </div>
-        <upload-form class="upload-form" v-if="display == true && open"></upload-form>
-        <upload-form-ch class="upload-form" v-if="display == false && open"></upload-form-ch>
+        <upload-form class="upload-form" v-if="open"></upload-form>
+        <footer-contact></footer-contact>
+        <div id="go-to-top">
+            <a href="#artwork-list">TO TOP</a>
+        </div>
     </div>
 </template>
 
 <script>
 import ArtworkCardList from '../components/ArtworkCardList.vue'
+import FooterContact from '../components/FooterContact.vue'
 import NavAdmin from "../components/NavAdmin.vue"
-import NavAdminCh from "../components/NavAdminCh.vue"
 import NavAdminDesktop from '../components/NavAdminDesktop.vue'
-import NavAdminDesktopCh from '../components/NavAdminDesktopCh.vue'
 import UploadForm from '../components/UploadForm.vue'
-import UploadFormCh from "../components/UploadFormCh"
+import cookies from "vue-cookies";
 
     export default {
         components: {
             NavAdmin,
-            NavAdminCh,
             ArtworkCardList,
             NavAdminDesktop,
-            NavAdminDesktopCh,
             UploadForm,
-            UploadFormCh
+            FooterContact,
 
         },
         data() {
             return {
-                display: false,
                 open: false
             }
         },
         methods: {
             showEnglish: function() {
-                this.display = true;
+                cookies.remove("chinese")
+                this.$store.commit("updateLanguage", false)
                 document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function() {
-                this.display = false;
+                cookies.set("chinese", true)
+                this.$store.commit("updateLanguage", true)
                 document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             },
@@ -62,7 +61,7 @@ import UploadFormCh from "../components/UploadFormCh"
         },
         mounted () {
             this.$store.dispatch("getAllArtworks");
-            this.showChinese()
+            this.showEnglish()
         },
     }
 </script>
@@ -81,16 +80,7 @@ import UploadFormCh from "../components/UploadFormCh"
   width: 100%;
 }
 
-#nav-ch {
-  height: 8vh;
-  width: 100%;
-}
-
 #nav-admin-desktop {
-  display: none;
-}
-
-#nav-admin-desktop-ch {
   display: none;
 }
 
@@ -137,18 +127,44 @@ import UploadFormCh from "../components/UploadFormCh"
     height: 72vh;
     width: 90%;
     left: 5vw;
-    bottom: 15vh;
+    bottom: 10vh;
     z-index: 1000;
     background-color: white;
     box-shadow: 4px 4px 4px grey;
 }
 
+#go-to-top {
+    position: fixed;
+    bottom: 22vh;
+    right: 2vw;
+    width: 5vw;
+    height: 5vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    z-index: 20;
+    
+    a {
+        color: white;
+        width: 100%;
+        padding: 0.6em;
+        box-shadow: 1px 1px 2px black; 
+        opacity: 1;
+        font-size: 0.6rem;
+
+        &:link, &:visited {
+            background-color: black;
+        }
+                
+        &:hover, &:active {
+            background-color: grey;
+            
+        }
+    }   
+}
+
 @media only screen and (min-width: 600px) {
     #nav-admin-desktop {
-        display: none;
-    }
-
-    #nav-admin-desktop-ch {
         display: none;
     }
 
@@ -171,6 +187,17 @@ import UploadFormCh from "../components/UploadFormCh"
     height: 70vh;
     width: 80%;
 }
+
+#go-to-top {
+    bottom: 22vh;
+    right: 0;
+    width: 5vw;
+    height: 10vh;
+    
+    a {
+        font-size: 0.8rem;
+    }   
+}
 }
 
 @media only screen and (min-width: 1024px) {
@@ -186,19 +213,7 @@ import UploadFormCh from "../components/UploadFormCh"
         display: none;
     }
 
-    #nav-ch {
-        display: none;
-    }
-
     #nav-admin-desktop {
-        width: 100%;
-        height: 10vh;
-        display: grid;
-        justify-items: center;
-        align-items: center;
-    }
-
-    #nav-admin-desktop-ch {
         width: 100%;
         height: 10vh;
         display: grid;
@@ -239,6 +254,17 @@ import UploadFormCh from "../components/UploadFormCh"
         width: 40%;
         left: 2vw;
         bottom: 12vh;
+    }
+
+    #go-to-top {
+        bottom: 22vh;
+        right: 0;
+        width: 5vw;
+        height: 10vh;
+    
+        a {
+            font-size: 1rem;
+        }   
     }
 }
 

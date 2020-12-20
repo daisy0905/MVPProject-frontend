@@ -1,32 +1,26 @@
 <template>
   <div id="upload">
-    <div id="en-ch">
-      <div></div>
-      <h4 id="english" @click="showEnglish">EN</h4>
-      <h4 id="chinese" @click="showChinese">中文</h4>
-      <div></div>
-    </div>
     <div class="upload-form">
-      <h3><span v-if="display">Name</span><span v-else>名称</span></h3>
+      <h3><span v-if="this.$store.getters.languageGet">名称</span><span v-else>Name</span></h3>
       <input type="text" class="input" v-model="name" />
-      <h3><span v-if="display">Length</span><span v-else>长</span></h3>
+      <h3><span v-if="this.$store.getters.languageGet">长</span><span v-else>Length</span></h3>
       <input type="text" class="input" v-model="length" />
-      <h3><span v-if="display">Width</span><span v-else>宽</span></h3>
+      <h3><span v-if="this.$store.getters.languageGet">宽</span><span v-else>Width</span></h3>
       <input type="text" class="input" v-model="width" />
-      <h3><span v-if="display">Completed at</span><span v-else>完成年份</span></h3>
+      <h3><span v-if="this.$store.getters.languageGet">完成年份</span><span v-else>Completed at</span></h3>
       <input type="text" class="input" v-model="completed_at" />
-      <h3><span v-if="display">Material</span><span v-else>材料</span></h3>
+      <h3><span v-if="this.$store.getters.languageGet">材料</span><span v-else>Material</span></h3>
       <input type="text" class="input" v-model="material" />
-      <h3><span v-if="display">Category</span><span v-else>主题</span></h3>
+      <h3><span v-if="this.$store.getters.languageGet">主题</span><span v-else>Category</span></h3>
       <input type="text" class="input" v-model="category" />
-      <h3><span v-if="display">Status</span><span v-else>状态</span></h3>
+      <h3><span v-if="this.$store.getters.languageGet">状态</span><span v-else>Status</span></h3>
       <input type="text" class="input" v-model="status" />
-      <h3><span v-if="display">Image URL</span><span v-else>画作图片</span></h3>
+      <h3><span v-if="this.$store.getters.languageGet">画作图片</span><span v-else>Image URL</span></h3>
       <input type="text" class="input" v-model="url" />
     </div>
     <div class="submit-btn">
       <div></div>
-      <button @click="updateArtwork"><span v-if="display">Update</span><span v-else>更新</span></button>
+      <button @click="updateArtwork"><span v-if="this.$store.getters.languageGet">更新</span><span v-else>Update</span></button>
       <div></div>
     </div>
     <h3>{{ uploadStatus }}</h3>
@@ -47,7 +41,6 @@ export default {
       status: "",
       url: "",
       uploadStatus: "",
-      display: false,
     };
   },
   props: {
@@ -57,16 +50,6 @@ export default {
     },
   },
   methods: {
-    showEnglish: function () {
-      this.display = true;
-      document.getElementById("english").style.color = "white";
-      document.getElementById("chinese").style.color = "black";
-    },
-    showChinese: function () {
-      this.display = false;
-      document.getElementById("chinese").style.color = "white";
-      document.getElementById("english").style.color = "black";
-    },
     updateArtwork: function () {
       axios
         .request({
@@ -98,9 +81,6 @@ export default {
         });
     },
   },
-  mounted() {
-    this.showChinese();
-  },
 };
 </script>
 
@@ -111,22 +91,6 @@ export default {
   width: 100%;
   display: grid;
   align-items: center;
-}
-
-#en-ch {
-  height: 5vh;
-  width: 100%;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: 40% 10% 10% 40%;
-  margin-top: 0.5em;
-
-  h4 {
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-  }
 }
 
 .upload-form {
@@ -192,12 +156,6 @@ h3 {
 }
 
 @media only screen and (min-width: 600px) {
-  #en-ch {
-
-    h4 {
-      font-size: 1.2rem;
-    }
-  }
 
   .upload-form {
 
@@ -224,12 +182,6 @@ h3 {
 }
 
 @media only screen and (min-width: 1024px) {
-  #en-ch {
-    height: 2vh;
-    h4 {
-      font-size: 1.2rem;
-    }
-  }
 
   .upload-form {
     min-height: 15vh;

@@ -1,18 +1,18 @@
 <template>
     <div id="enquiry">
         <div id="form">
-            <h4>Please leave your message, we will reply ASAP!</h4>
-            <h4>Last Name</h4>
+            <h4><span v-if="this.$store.getters.languageGet">请留下您的信息，我们将尽快回复，谢谢</span><span v-else>Please leave your message, we will reply ASAP!</span></h4>
+            <h4><span v-if="this.$store.getters.languageGet">姓</span><span v-else>Last Name</span></h4>
             <input type="text" class="input" v-model="lastname" />
-            <h4>First Name</h4>
+            <h4><span v-if="this.$store.getters.languageGet">名</span><span v-else>姓</span></h4>
             <input type="text" class="input" v-model="firstname" />
-            <h4>Email</h4>
+            <h4><span v-if="this.$store.getters.languageGet">邮箱</span><span v-else>Email</span></h4>
             <input type="text" class="input" v-model="email" />
-            <h4>Phone Number</h4>
+            <h4><span v-if="this.$store.getters.languageGet">电话</span><span v-else>Phone Number</span></h4>
             <input type="text" class="input" v-model="phone_number" />
-            <h4>Message</h4>
+            <h4><span v-if="this.$store.getters.languageGet">留言</span><span v-else>Message</span></h4>
             <textarea id="message-input" v-model="message"></textarea>
-            <button @click="postEnquiry">Submit</button>
+            <button @click="postEnquiry"><span v-if="this.$store.getters.languageGet">提交</span><span v-else>Submit</span></button>
             <p>{{ enquiryStatus }}</p>
         </div>
     </div>

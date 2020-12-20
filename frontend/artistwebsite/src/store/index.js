@@ -10,7 +10,9 @@ export default new Vuex.Store({
   state: {
     artworks: [],
     artwork: [],
-    enquiries: []
+    enquiries: [],
+    activePage: 0,
+    language: cookies.get("chinese")
   },
   mutations: {
     updateAllArtworks: function(state, data) {
@@ -22,6 +24,12 @@ export default new Vuex.Store({
     updateAllEnquiry: function(state, data) {
       state.enquiries = data;
     },
+    chagePage: function(state, data) {
+      state.activePage = data
+    },
+    updateLanguage: function(state, data) {
+      state.language = data
+    }
   },
   actions: {
     getAllArtworks: function(context) {
@@ -139,6 +147,9 @@ export default new Vuex.Store({
         }
       }
       return solds;
+    },
+    languageGet: function(state) {
+      return state.language;
     }
   }
 });

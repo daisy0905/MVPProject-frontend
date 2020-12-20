@@ -11,20 +11,20 @@
         <div v-if="display == false" id="nav-bar">
             <div id="nav-unit-1">
                 <div></div>
-                <h2 id="home-page" class="nav-text" @click="goToHome">HOME</h2>
-                <h2 id="bio-page" class="nav-text" @click="goToBio">BIO</h2>
-                <h2 id="portfolio-page" @click="goToPortfolio">PORTFOLIO</h2>
-                <h2 id="contact-page" @click="goToContact">CONTACT</h2>
+                <h2 id="home-page" @click="goToHome"><span v-if="this.$store.getters.languageGet">首页</span><span v-else>HOME</span></h2>
+                <h2 id="bio-page" @click="goToBio"><span v-if="this.$store.getters.languageGet">个人简介</span><span v-else>BIO</span></h2>
+                <h2 id="portfolio-page" @click="goToPortfolio"><span v-if="this.$store.getters.languageGet">作品集</span><span v-else>PORTFOLIO</span></h2>
+                <h2 id="contact-page" @click="goToContact"><span v-if="this.$store.getters.languageGet">与我联系</span><span v-else>CONTACT</span></h2>
                 <div></div>
             </div>
             <div id="nav-unit-2">
-                <button id="login-btn" @click="showInput">admin login</button>
+                <button id="login-btn" @click="showInput"><span v-if="this.$store.getters.languageGet">管理员登录</span><span v-else>admin login</span></button>
                 <div v-if="show == false" id="login">
-                    <h4>Username</h4>
+                    <h4><span v-if="this.$store.getters.languageGet">用户名</span><span v-else>Username</span></h4>
                     <input type="text" id="username-input" class="input" v-model="username">
-                    <h4>Password</h4>
+                    <h4><span v-if="this.$store.getters.languageGet">密码</span><span v-else>Password</span></h4>
                     <input type="text" id="password-input" class="input" v-model="password">
-                    <button @click="login">Login In</button>
+                    <button @click="login"><span v-if="this.$store.getters.languageGet">登录</span><span v-else>Log In</span></button>
                     <p>{{ loginStatus }}</p>
                     <div></div>
                 </div>
@@ -42,7 +42,7 @@
                 show: true,
                 username: "",
                 password: "",
-                loginStatus: ""
+                loginStatus: "",
             }
         },
         methods: {
@@ -56,20 +56,20 @@
                 setTimeout(()=>{this.$router.push("/")}, 500);
             },
             goToHome: function() {
-                document.getElementById("home-page").style.color = "red";
+                document.getElementById("home-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/home")}, 1000);
             },
             goToBio: function() {
-                document.getElementById("bio-page").style.color = "red";
+                document.getElementById("bio-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/bio")}, 1000);
             },
             goToPortfolio: function() {
-                document.getElementById("portfolio-page").style.color = "red";
+                document.getElementById("portfolio-page").style.color = "#bb9457ff";
                 this.$store.dispatch("getAllArtworks");
                 setTimeout(()=>{this.$router.push("/portfolio")}, 1000);
             },
             goToContact: function() {
-                document.getElementById("contact-page").style.color = "red";
+                document.getElementById("contact-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/contact")}, 1000);
             },
             showInput: function() {

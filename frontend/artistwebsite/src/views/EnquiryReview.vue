@@ -1,9 +1,7 @@
 <template>
     <div id="enquiry-review">
-        <nav-admin v-if="display == true" id="nav-en"></nav-admin>
-        <nav-admin-ch v-if="display == false" id="nav-ch"></nav-admin-ch>
-        <nav-admin-desktop v-if="display == true" id="nav-admin-desktop"></nav-admin-desktop>
-        <nav-admin-desktop-ch v-if="display == false" id="nav-admin-desktop-ch"></nav-admin-desktop-ch>
+        <nav-admin id="nav-en"></nav-admin>
+        <nav-admin-desktop id="nav-admin-desktop"></nav-admin-desktop>
         <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -11,43 +9,45 @@
             <div></div>
         </div>
         <enquiries ></enquiries>
+        <footer-contact></footer-contact>
+        <div id="go-to-top">
+            <a href="#enquiry-review">TO TOP</a>
+        </div>
     </div>
 </template>
 
 <script>
 import NavAdmin from "../components/NavAdmin.vue"
 import Enquiries from "../components/Enquiries.vue"
-import NavAdminCh from "../components/NavAdminCh.vue"
 import NavAdminDesktop from '../components/NavAdminDesktop.vue'
-import NavAdminDesktopCh from '../components/NavAdminDesktopCh.vue'
+import FooterContact from '../components/FooterContact.vue'
+import cookies from "vue-cookies";
+
     export default {
         components: {
             NavAdmin,
-            NavAdminCh,
             Enquiries,
             NavAdminDesktop,
-            NavAdminDesktopCh,  
+            FooterContact
         },
-        data() {
-            return {
-                display: false
-            }
-        },
+        
         methods: {
             showEnglish: function() {
-                this.display = true;
+                cookies.remove("chinese")
+                this.$store.commit("updateLanguage", false)
                 document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function() {
-                this.display = false;
+                cookies.set("chinese", true);
+                this.$store.commit("updateLanguage", true);
                 document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             }
         },
         mounted () {
             this.$store.dispatch("getAllEnquiries");
-            this.showChinese()
+            this.showEnglish()
         },
         
     }
@@ -66,16 +66,7 @@ import NavAdminDesktopCh from '../components/NavAdminDesktopCh.vue'
   width: 100%;
 }
 
-#nav-ch {
-  height: 8vh;
-  width: 100%;
-}
-
 #nav-admin-desktop {
-  display: none;
-}
-
-#nav-admin-desktop-ch {
   display: none;
 }
 
@@ -96,12 +87,38 @@ import NavAdminDesktopCh from '../components/NavAdminDesktopCh.vue'
     }
 }
 
+#go-to-top {
+    position: fixed;
+    bottom: 22vh;
+    right: 2vw;
+    width: 5vw;
+    height: 5vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    z-index: 20;
+    
+    a {
+        color: white;
+        width: 100%;
+        padding: 0.6em;
+        box-shadow: 1px 1px 2px black; 
+        opacity: 1;
+        font-size: 0.6rem;
+
+        &:link, &:visited {
+            background-color: black;
+        }
+                
+        &:hover, &:active {
+            background-color: grey;
+            
+        }
+    }   
+}
+
 @media only screen and (min-width: 600px) {
     #nav-admin-desktop {
-        display: none;
-    }
-
-    #nav-admin-desktop-ch {
         display: none;
     }
 
@@ -111,6 +128,17 @@ import NavAdminDesktopCh from '../components/NavAdminDesktopCh.vue'
             font-size: 1.2rem;
         }
     }
+
+    #go-to-top {
+        bottom: 22vh;
+        right: 0;
+        width: 5vw;
+        height: 10vh;
+    
+        a {
+            font-size: 0.8rem;
+        }   
+    }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -118,19 +146,7 @@ import NavAdminDesktopCh from '../components/NavAdminDesktopCh.vue'
         display: none;
     }
 
-    #nav-ch {
-        display: none;
-    }
-
     #nav-admin-desktop {
-        width: 100%;
-        height: 10vh;
-        display: grid;
-        justify-items: center;
-        align-items: center;
-    }
-
-    #nav-admin-desktop-ch {
         width: 100%;
         height: 10vh;
         display: grid;
@@ -154,5 +170,16 @@ import NavAdminDesktopCh from '../components/NavAdminDesktopCh.vue'
             font-size: 1rem;
         }
     }
+
+    #go-to-top {
+        bottom: 22vh;
+        right: 0;
+        width: 5vw;
+        height: 10vh;
+    
+        a {
+            font-size: 1rem;
+        }   
+    } 
 }
 </style>

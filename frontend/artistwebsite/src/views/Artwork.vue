@@ -1,9 +1,7 @@
 <template>
     <div id="landscape">
-        <navigation v-if="display == true" id="nav-en"></navigation>
-        <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
-        <nav-desktop v-if="display == true" id="nav-desktop"></nav-desktop>
-        <nav-desktop-ch v-if="display == false" id="nav-desktop-ch"></nav-desktop-ch>
+        <navigation id="nav-en"></navigation>
+        <nav-desktop id="nav-desktop"></nav-desktop>
         <div id="en-ch-mobile">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -21,8 +19,8 @@
         </div>
         <div id="desktop">
           <div></div>
-          <h4 id="english" @click="showEnglish">EN</h4>
-          <h4 id="chinese" @click="showChinese">中文</h4>
+          <h4 id="english-show" @click="English">EN</h4>
+          <h4 id="chinese-show" @click="Chinese">中文</h4>
           <div></div>
           <input type="text" class="search" v-model="content" />
           <img @click="getArtworkList"
@@ -46,9 +44,9 @@
           <p @click="statusCheck">{{ status }}</p>
         </div>
         <div id="btn-container">
-          <button @click="showEnquiry" class="btn-1"><span v-if="display">Enquiry</span><span v-else>询价</span></button>
-          <button class="btn-1" v-if="artStatus == true" @click="addToCart"><span v-if="display">Add to Cart</span><span v-else>下订单</span></button>
-          <button v-else class="btn-2">Add to Cart</button>
+          <button @click="showEnquiry" class="btn-1"><span v-if="this.$store.getters.languageGet">询价</span><span v-else>Enquiry</span></button>
+          <button class="btn-1" v-if="artStatus == true" @click="addToCart"><span v-if="this.$store.getters.languageGet">下订单</span><span v-else>Add to Cart</span></button>
+          <button v-else class="btn-2"><span v-if="this.$store.getters.languageGet">下订单</span><span v-else>Add to Cart</span></button>
         </div>
         <div id="alert" v-if="show == true">
           <button class="closebtn" @click="close">&times;</button>
@@ -65,41 +63,36 @@
             <p>{{ completed_at }}</p>
             <div></div>
             <p id="text-status" @click="statusCheck">{{ status }}</p>
-            <button @click="showEnquiryForm" class="btn-1"><span v-if="display">Enquiry</span><span v-else>询价</span></button>
-            <button class="btn-1" v-if="artStatus == true" @click="addToCart"><span v-if="display">Add to Cart</span><span v-else>下订单</span></button>
-            <button v-else class="btn-2"><span v-if="display">Add to Cart</span><span v-else>下订单</span></button>
+            <button @click="showEnquiryForm" class="btn-1"><span v-if="this.$store.getters.languageGet">询价</span><span v-else>Enquiry</span></button>
+            <button class="btn-1" v-if="artStatus == true" @click="addToCart"><span v-if="this.$store.getters.languageGet">下订单</span><span v-else>Add to Cart</span></button>
+            <button v-else class="btn-2"><span v-if="this.$store.getters.languageGet">下订单</span><span v-else>Add to Cart</span></button>
             <div id="alert-desktop" v-if="show == true">
               <button class="closebtn" @click="closeDesktop">&times;</button>
               <h4>{{ updateStatus }}</h4>
             </div>
           </div>
         </div>
-        <enquiry-form class="enquiry-form" v-if="display && open"></enquiry-form>
-        <enquiry-form-ch class="enquiry-form" v-if="display == false && open"></enquiry-form-ch>
+        <enquiry-form class="enquiry-form" v-if="open"></enquiry-form>
+        <footer-section></footer-section>
     </div>
 </template>
 
 <script>
 import Navigation from "../components/Nav.vue"
-import NavCh from "../components/NavCh.vue";
 import NavDesktop from '../components/NavDesktop.vue';
-import NavDesktopCh from '../components/NavDesktopCh.vue'
 import cookies from "vue-cookies";
 import axios from "axios";
 import EnquiryForm from '../components/EnquiryForm.vue';
-import EnquiryFormCh from '../components/EnquiryFormCh.vue'
+import FooterSection from '../components/Footer.vue'
     export default {
         components: {
             Navigation,
-            NavCh,
             NavDesktop,
-            NavDesktopCh,
             EnquiryForm,
-            EnquiryFormCh
+            FooterSection,
         },
         data() {
             return {
-                display: false,
                 content: "Search artwork",
                 artStatus: true,
                 updateStatus: "",
@@ -155,12 +148,14 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
                 this.$router.push("/enquiry");
             },
             showEnglish: function() {
-                this.display = true;
+                cookies.remove("chinese")
+                this.$store.commit("updateLanguage", false)
                 document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function() {
-                this.display = false;
+                cookies.set("chinese", true)
+                this.$store.commit("updateLanguage", true)
                 document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             },
@@ -169,10 +164,24 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
                 this.$router.push("/artworklist")
             },
             showEnquiryForm: function() {
-              this.open =! this.open;
+                this.open =! this.open;
             },
             closeDesktop: function () {
                 document.getElementById("alert-desktop").style.display = "none";
+            },
+            English: function() {
+                this.display = true;
+                cookies.remove("chinese")
+                this.$store.commit("updateLanguage", false)
+                document.getElementById("english-show").style.color = "red";
+                document.getElementById("chinese-show").style.color = "black";
+            },
+            Chinese: function() {
+                this.display = false;
+                cookies.set("chinese", true)
+                this.$store.commit("updateLanguage", true)
+                document.getElementById("chinese-show").style.color = "red";
+                document.getElementById("english-show").style.color = "black";
             },
         },
         mounted: function() {
@@ -185,7 +194,7 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
             setTimeout(() => {
                 this.statusCheck();
             }, 500),
-            this.showChinese()
+            this.showEnglish()
         },
         computed: {
             name() {
@@ -234,16 +243,7 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
   width: 100%;
 }
 
-#nav-ch {
-  height: 8vh;
-  width: 100%;
-}
-
 #nav-desktop {
-  display: none;
-}
-
-#nav-desktop-ch {
   display: none;
 }
 
@@ -429,10 +429,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
     display: none;
   }
 
-  #nav-desktop-ch {
-    display: none;
-  }
-
   #en-ch-mobile {
 
       h4 {
@@ -514,10 +510,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
   display: none;
 }
 
-#nav-ch {
-  display: none;
-}
-
 #en-ch-mobile {
   display: none;
 }
@@ -527,14 +519,6 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
 }
 
 #nav-desktop {
-  width: 100%;
-  height: 10vh;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-}
-
-#nav-desktop-ch {
   width: 100%;
   height: 10vh;
   display: grid;
@@ -589,7 +573,7 @@ import EnquiryFormCh from '../components/EnquiryFormCh.vue'
 
 #description-desktop {
   width: 100%;
-  min-height: 80vh;
+  min-height: 90vh;
   display: grid;
   grid-template-columns: 70% 30%;
   justify-items: center;

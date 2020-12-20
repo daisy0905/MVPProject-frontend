@@ -11,20 +11,20 @@
         <div v-if="display == false" id="nav-bar">
             <div id="nav-unit-1">
                 <div></div>
-                <h2 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">ARTWORK OVERVIEW</h2>
-                <h2 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">ARTWORK STATUS</h2>
-                <h2 id="enquiry-page" class="nav-text" @click="goToEnquiry">ENQUIRY REVIEW</h2>
-                <h2 id="visitorlist-page" @click="goToVisitors">VISITOR LIST</h2>
+                <h2 id="artworkoverview-page" @click="goToArtworkOverview"><span v-if="this.$store.getters.languageGet">作品总览</span><span v-else>ARTWORK OVERVIEW</span></h2>
+                <h2 id="artworkstatus-page" @click="goToArtworkStatus"><span v-if="this.$store.getters.languageGet">作品状态</span><span v-else>ARTWORK STATUS</span></h2>
+                <h2 id="enquiry-page" @click="goToEnquiry"><span v-if="this.$store.getters.languageGet">留言总览</span><span v-else>ENQUIRY REVIEW</span></h2>
+                <h2 id="visitorlist-page" @click="goToVisitors"><span v-if="this.$store.getters.languageGet">访客清单</span><span v-else>VISITOR LIST</span></h2>
                 <div></div>
             </div>
             <div id="nav-unit-2">
-                <button id="login-btn" @click="showInput">admin logout</button>
+                <button id="login-btn" @click="showInput"><span v-if="this.$store.getters.languageGet">管理员退出</span><span v-else>admin logout</span></button>
                 <div v-if="show == false" id="logout">
-                    <h4>Username</h4>
+                    <h4><span v-if="this.$store.getters.languageGet">用户名</span><span v-else>Username</span></h4>
                     <input type="text" id="username-input" class="input" v-model="username">
-                    <h4>Password</h4>
+                    <h4><span v-if="this.$store.getters.languageGet">密码</span><span v-else>Password</span></h4>
                     <input type="text" id="password-input" class="input" v-model="password">
-                    <button @click="logout">Login Out</button>
+                    <button @click="logout">><span v-if="this.$store.getters.languageGet">退出</span><span v-else>Log Out</span></button>
                     <p>{{ logoutStatus }}</p>
                 </div>
                 <div></div>
@@ -53,20 +53,20 @@
                 this.display = true;
             },
             goToArtworkOverview: function() {
-                document.getElementById("artworkoverview-page").style.color = "red";
+                document.getElementById("artworkoverview-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/artworkoverview")}, 1000);
             },
             goToArtworkStatus: function() {
-                document.getElementById("artworkstatus-page").style.color = "red";
+                document.getElementById("artworkstatus-page").style.color = "#bb9457ff";
                 // this.$store.dispatch("getAllArtworks");
                 setTimeout(()=>{this.$router.push("/artworkstatus")}, 1000);
             },
             goToEnquiry: function() {
-                document.getElementById("enquiry-page").style.color = "red";
+                document.getElementById("enquiry-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/enquiryreview")}, 1000);
             },
             goToVisitors: function() {
-                document.getElementById("visitorlist-page").style.color = "red";
+                document.getElementById("visitorlist-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/visitors")}, 1000);
             },
             showInput: function() {
@@ -163,6 +163,10 @@
     font-size: 0.8rem;
     margin-left: 2em;
     color: white;
+  }
+
+  .activaPage {
+      color: #bb9457ff;
   }
 
   #nav-unit-2 {

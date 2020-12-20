@@ -224,7 +224,7 @@ import axios from 'axios'
 @media only screen and (min-width: 1024px) {
     .artwork-card {
         // width: 100%;
-        height: 50vh;
+        height: 65vh;
         row-gap: 0;
         justify-items: center;
         align-items: center;
@@ -246,17 +246,20 @@ import axios from 'axios'
     }
 
     .image {
-        width: auto;
-        height: 90%;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        justify-items: center;
+        align-items: center;
         row-gap: 0;
         padding: 0;
         margin-top: 0;
         
         img {
-            width: auto;
-            height: 100%;
+            width: 80%;
+            height: auto;
             padding-top: 0;
-            border: 2px solid white;
+            border: 3px solid white;
         }
     }
 
@@ -315,8 +318,8 @@ import axios from 'axios'
         width: 85%;
         height: 20vh;
         position: absolute;
-        background-color: white;
-        box-shadow: none;
+        background-color: lightgrey;
+        box-shadow: 1px 1px 1px grey;
         bottom: 0;
         left: 0;
         z-index: 1000;

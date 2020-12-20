@@ -28,11 +28,11 @@
 }
 
 .onhold-list {
-    min-height: 50vh;
+    min-height: 100vh;
     width: 100%;
     display: grid;
     justify-items: center;
-    align-items: center;
+    align-items: start;
 }
 
 .item {

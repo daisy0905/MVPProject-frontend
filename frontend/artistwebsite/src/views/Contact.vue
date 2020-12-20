@@ -1,9 +1,7 @@
 <template>
     <div id="contact-page">
-        <navigation v-if="display == true" id="nav-en"></navigation>
-        <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
-        <nav-desktop v-if="display == true" id="nav-desktop"></nav-desktop>
-        <nav-desktop-ch v-if="display == false" id="nav-desktop-ch"></nav-desktop-ch>
+        <navigation id="nav-en"></navigation>
+        <nav-desktop id="nav-desktop"></nav-desktop>
         <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -12,7 +10,7 @@
         </div>
         <div id="unit-1">
             <div></div>
-            <h2><span v-if="display">I'D LOVE TO HEAR FROM YOU</span><span v-else>期待与您联系！</span></h2>
+            <h2><span v-if="this.$store.getters.languageGet">期待与您联系！</span><span v-else>I'D LOVE TO HEAR FROM YOU</span></h2>
             <div></div>
         </div>
         <div class="contact-mobile">
@@ -30,7 +28,7 @@
             </div>
             <div class="item">
                 <img src="../assets/address-icon.png" alt="address icon">
-                <h4><span v-if="display">Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</span><span v-else>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</span></h4>
+                <h4><span v-if="this.$store.getters.languageGet">中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</span><span v-else>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</span></h4>
             </div>
         </div>
         <div class="contact-tablet">
@@ -50,59 +48,58 @@
             </div>
             <div class="item">
                 <img src="../assets/address-icon.png" alt="address icon">
-                <h4><span v-if="display">Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</span><span v-else>中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</span></h4>
+                <h4><span v-if="this.$store.getters.languageGet">中国长沙岳麓区后湖路后湖国际艺术区童柯敏工作室</span><span v-else>Studio of Kemin Tong, Houhu International Art Park, Houhu Road, Yuelu District, Changsha, China</span></h4>
             </div>
         </div>
         <div id="desktop">
             <div class="contact-form">
-                <h4><span v-if="display">STAY IN TOUCH!</span><span v-else>保持联络！</span></h4>
+                <h4><span v-if="this.$store.getters.languageGet">保持联络！</span><span v-else>STAY IN TOUCH!</span></h4>
                 <div class="box">
-                    <p><span v-if="display">Last Name</span><span v-else>姓</span></p>
+                    <p><span v-if="this.$store.getters.languageGet">姓</span><span v-else>Last Name</span></p>
                     <input type="text" class="input" v-model="lastname">
                 </div>
                 <div class="box">
-                    <p><span v-if="display">First Name</span><span v-else>名</span></p>
+                    <p><span v-if="this.$store.getters.languageGet">名</span><span v-else>First Name</span></p>
                     <input type="text" class="input" v-model="firstname">
                 </div>
                 <div class="box">
-                    <p><span v-if="display">Phone Number</span><span v-else>电话</span></p>
+                    <p><span v-if="this.$store.getters.languageGet">电话</span><span v-else>Phone Number</span></p>
                     <input type="text" class="input" v-model="phone">
                 </div>
                 <div class="box">
-                    <p><span v-if="display">Email</span><span v-else>邮箱</span></p>
+                    <p><span v-if="this.$store.getters.languageGet">邮箱</span><span v-else>Email</span></p>
                     <input type="text" class="input" v-model="email">
                 </div>
                 <div class="box">
-                    <p><span v-if="display">WeChat ID</span><span v-else>微信</span></p>
+                    <p><span v-if="this.$store.getters.languageGet">微信</span><span v-else>WeChat ID</span></p>
                     <input type="text" class="input" v-model="wechat">
                 </div>
-                <button @click="createContact"><span v-if="display">Submit</span><span v-else>提交</span></button>
+                <button @click="createContact"><span v-if="this.$store.getters.languageGet">提交</span><span v-else>Submit</span></button>
                 <p>{{ submitStatus }}</p>
             </div>
             <div class="unit-2">
-                <h3><span v-if="display">TONG'S ART STUDIO</span><span v-else>童柯敏工作室</span></h3>
+                <h3><span v-if="this.$store.getters.languageGet">童柯敏工作室</span><span v-else>TONG'S ART STUDIO</span></h3>
                 <img src="../assets/studio.jpg" alt="the image of studio">
             </div>
         </div>
+        <footer-contact></footer-contact>
     </div>
 </template>
 
 <script>
 import Navigation from "../components/Nav.vue"
-import NavCh from "../components/NavCh.vue";
-import NavDesktop from '../components/NavDesktop.vue';
-import NavDesktopCh from '../components/NavDesktopCh.vue'
+import NavDesktop from '../components/NavDesktop.vue'
 import axios from "axios"
+import FooterContact from '../components/FooterContact.vue'
+import cookies from "vue-cookies";
     export default {
         components: {
             Navigation,
-            NavCh,
             NavDesktop,
-            NavDesktopCh
+            FooterContact
         },
         data() {
             return {
-                display: false,
                 firstname: "",
                 lastname: "",
                 phone: "",
@@ -114,12 +111,14 @@ import axios from "axios"
         },
         methods: {
             showEnglish: function() {
-                this.display = true;
+                cookies.remove("chinese")
+                this.$store.commit("updateLanguage", false)
                 document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function() {
-                this.display = false;
+                cookies.set("chinese", true)
+                this.$store.commit("updateLanguage", true)
                 document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             },
@@ -147,7 +146,7 @@ import axios from "axios"
             }
         },
         mounted () {
-            this.showChinese();
+            this.showEnglish();
         },
     }
 </script>
@@ -165,16 +164,7 @@ import axios from "axios"
   width: 100%;
 }
 
-#nav-ch {
-  height: 8vh;
-  width: 100%;
-}
-
 #nav-desktop {
-  display: none;
-}
-
-#nav-desktop-ch {
   display: none;
 }
 
@@ -208,6 +198,7 @@ import axios from "axios"
     align-items: center;
     justify-content: center;
     grid-template-columns: 15% 70% 15%;
+    margin-top: 1em;
 
     h2 {
         color: white;
@@ -348,10 +339,6 @@ p {
     display: none;
 }
 
-#nav-desktop-ch {
-  display: none;
-}
-
 #en-ch {
 
     h4 {
@@ -467,19 +454,7 @@ p {
         display: none;
     }
 
-    #nav-ch {
-        display: none;
-    }
-
     #nav-desktop {
-        width: 100%;
-        height: 10vh;
-        display: grid;
-        justify-items: center;
-        align-items: center;
-    }
-
-    #nav-desktop-ch {
         width: 100%;
         height: 10vh;
         display: grid;

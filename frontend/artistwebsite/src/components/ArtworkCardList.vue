@@ -40,7 +40,6 @@ import ArtworkCard from '../components/ArtworkCard.vue'
 
 @media only screen and (min-width: 1024px) {
     .artworks {
-        height: 40vh;
         width: 90%;
         display: grid;
         

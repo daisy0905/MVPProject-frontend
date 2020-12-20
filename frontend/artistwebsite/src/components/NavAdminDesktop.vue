@@ -3,20 +3,20 @@
         <div id="header">
             <h2>KEMIN TONG</h2>
             <div></div>
-            <h3 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview">ARTWORK OVERVIEW</h3>
-            <h3 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus">ARTWORK STATUS</h3>
-            <h3 id="enquiry-page" class="nav-text" @click="goToEnquiry">ENQUIRY REVIEW</h3>
-            <h3 id="visitorlist-page" @click="goToVisitors">VISITOR LIST</h3>
-            <button id="logout-btn" @click="showInput">admin log out</button>
+            <h3 id="artworkoverview-page" class="nav-text" @click="goToArtworkOverview"><span v-if="this.$store.getters.languageGet">作品总览</span><span v-else>ARTWORK OVERVIEW</span></h3>
+            <h3 id="artworkstatus-page" class="nav-text" @click="goToArtworkStatus"><span v-if="this.$store.getters.languageGet">作品状态</span><span v-else>ARTWORK STATUS</span></h3>
+            <h3 id="enquiry-page" class="nav-text" @click="goToEnquiry"><span v-if="this.$store.getters.languageGet">留言总览</span><span v-else>ENQUIRY REVIEW</span></h3>
+            <h3 id="visitorlist-page" @click="goToVisitors"><span v-if="this.$store.getters.languageGet">访客清单</span><span v-else>VISITOR LIST</span></h3>
+            <button id="logout-btn" @click="showInput"><span v-if="this.$store.getters.languageGet">管理员退出</span><span v-else>admin logout</span></button>
         </div>     
         <div v-if="show == false" id="logout">
             <div></div>
             <div id="form">
-                <h4>Username</h4>
+                <h4><span v-if="this.$store.getters.languageGet">用户名</span><span v-else>Username</span></h4>
                 <input type="text" id="username-input" class="input" v-model="username">
-                <h4>Password</h4>
+                <h4><span v-if="this.$store.getters.languageGet">密码</span><span v-else>Password</span></h4>
                 <input type="text" id="password-input" class="input" v-model="password">
-                <button @click="logout">Login Out</button>
+                <button @click="logout"><span v-if="this.$store.getters.languageGet">退出</span><span v-else>Log Out</span></button>
                 <p>{{ loginStatus }}</p>
             </div>
             <div></div>
@@ -37,20 +37,20 @@
         },
         methods: {          
             goToArtworkOverview: function() {
-                document.getElementById("artworkoverview-page").style.color = "red";
+                document.getElementById("artworkoverview-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/artworkoverview")}, 1000);
             },
             goToArtworkStatus: function() {
-                document.getElementById("artworkstatus-page").style.color = "red";
+                document.getElementById("artworkstatus-page").style.color = "#bb9457ff";
                 // this.$store.dispatch("getAllArtworks");
                 setTimeout(()=>{this.$router.push("/artworkstatus")}, 1000);
             },
             goToEnquiry: function() {
-                document.getElementById("enquiry-page").style.color = "red";
+                document.getElementById("enquiry-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/enquiryreview")}, 1000);
             },
             goToVisitors: function() {
-                document.getElementById("visitorlist-page").style.color = "red";
+                document.getElementById("visitorlist-page").style.color = "#bb9457ff";
                 setTimeout(()=>{this.$router.push("/visitors")}, 1000);
             },
             showInput: function() {

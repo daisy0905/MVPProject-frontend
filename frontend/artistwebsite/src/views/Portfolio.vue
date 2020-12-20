@@ -1,9 +1,7 @@
 <template>
     <div id="portfolio">
-        <navigation v-if="display == true" id="nav-en"></navigation>
-        <nav-ch v-if="display == false" id="nav-ch"></nav-ch>
-        <nav-desktop v-if="display == true" id="nav-desktop"></nav-desktop>
-        <nav-desktop-ch v-if="display == false" id="nav-desktop-ch"></nav-desktop-ch>
+        <navigation id="nav-en"></navigation>
+        <nav-desktop id="nav-desktop"></nav-desktop>
         <div id="en-ch">
             <div></div>
             <h4 id="english" @click="showEnglish">EN</h4>
@@ -14,52 +12,50 @@
             <div class="landscape-portrait">
                 <div class="unit">
                     <landscape-slider></landscape-slider>
-                    <h2><span v-if="display">LANDSCAPE</span><span v-else>风景</span></h2>
+                    <h2><span v-if="this.$store.getters.languageGet">风景</span><span v-else>LANDSCAPE</span></h2>
                 </div>
                 <div class="unit">
                     <portrait-slider></portrait-slider>
-                    <h2><span v-if="display">PORTRAIT</span><span v-else>人物</span></h2>
+                    <h2><span v-if="this.$store.getters.languageGet">人物</span><span v-else>PORTRAIT</span></h2>
                 </div>
             </div>
             <div id="others" class="unit">
                 <other-slider></other-slider>
-                <h2><span v-if="display">OTHERS</span><span v-else>其它</span></h2>
+                <h2><span v-if="this.$store.getters.languageGet">其它</span><span v-else>OTHERS</span></h2>
             </div>   
         </div>
+        <footer-section></footer-section>
     </div>
 </template>
 
 <script>
 import LandscapeSlider from '../components/LandscapeSlider.vue'
 import Navigation from "../components/Nav.vue"
-import NavCh from "../components/NavCh.vue";
-import OtherSlider from '../components/OtherSlider.vue';
-import PortraitSlider from '../components/PortraitSlider.vue';
-import NavDesktop from '../components/NavDesktop.vue';
-import NavDesktopCh from '../components/NavDesktopCh.vue'
+import OtherSlider from '../components/OtherSlider.vue'
+import PortraitSlider from '../components/PortraitSlider.vue'
+import NavDesktop from '../components/NavDesktop.vue'
+import FooterSection from '../components/Footer.vue'
+import cookies from "vue-cookies"
+
     export default {
         components: {
             Navigation,
             LandscapeSlider,
             PortraitSlider,
             OtherSlider,
-            NavCh,
             NavDesktop,
-            NavDesktopCh
-        },
-        data() {
-            return {
-                display: false,
-            };
+            FooterSection
         },
         methods: {
             showEnglish: function () {
-                this.display = true;
+                cookies.remove("chinese")
+                this.$store.commit("updateLanguage", false)
                 document.getElementById("english").style.color = "red";
                 document.getElementById("chinese").style.color = "black";
             },
             showChinese: function () {
-                this.display = false;
+                cookies.set("chinese", true)
+                this.$store.commit("updateLanguage", true)
                 document.getElementById("chinese").style.color = "red";
                 document.getElementById("english").style.color = "black";
             },
@@ -68,7 +64,7 @@ import NavDesktopCh from '../components/NavDesktopCh.vue'
             if(this.$store.state.artworks.length == 0) {
                 this.$store.dispatch("getAllArtworks")
             }
-            this.showChinese()
+            this.showEnglish()
         },
     }
 </script>
@@ -87,16 +83,7 @@ import NavDesktopCh from '../components/NavDesktopCh.vue'
   width: 100%;
 }
 
-#nav-ch {
-  height: 8vh;
-  width: 100%;
-}
-
 #nav-desktop {
-  display: none;
-}
-
-#nav-desktop-ch {
   display: none;
 }
 
@@ -141,11 +128,6 @@ import NavDesktopCh from '../components/NavDesktopCh.vue'
         display: none;
     }
 
-    #nav-desktop-ch {
-        display: none;
-    }
-
-
     #en-ch {
 
         h4 {
@@ -166,19 +148,7 @@ import NavDesktopCh from '../components/NavDesktopCh.vue'
         display: none;
     }
 
-    #nav-ch {
-        display: none;
-    }
-
     #nav-desktop {
-        width: 100%;
-        height: 10vh;
-        display: grid;
-        justify-items: center;
-        align-items: center;
-    }
-
-    #nav-desktop-ch {
         width: 100%;
         height: 10vh;
         display: grid;
