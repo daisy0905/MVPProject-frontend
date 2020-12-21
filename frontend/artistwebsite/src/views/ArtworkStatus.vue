@@ -193,11 +193,12 @@ export default {
 }
 
 .status {
-  min-height: 10vh;
+  min-height: 80vh;
   width: 100%;
   display: grid;
   justify-items: center;
   align-items: start;
+  align-content: start;
 }
 
 #go-to-top {
@@ -255,11 +256,7 @@ export default {
   }
 
   .status {
-    min-height: 10vh;
     width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: start;
     grid-template-columns: 1fr 1fr;
   }
 

@@ -47,7 +47,7 @@
     h4 { 
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
-        margin: 0 0.5em 0 0.5em;
+        margin: 0 0.5em 0 1.2em;
         font-weight: normal;
         text-align: left;
     }

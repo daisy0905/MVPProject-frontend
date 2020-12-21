@@ -99,6 +99,7 @@ export default {
         .icon {
             color: white;
             text-decoration: none;
+            font-size: 1.5rem;
         }
     }
 
@@ -123,7 +124,7 @@ export default {
     #slider-icon {
 
         .icon {
-            font-size: 1.5rem;
+            font-size: 2rem;
         }
     }
 
